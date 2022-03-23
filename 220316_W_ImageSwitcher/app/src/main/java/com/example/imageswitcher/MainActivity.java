@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,7 +42,11 @@ public class MainActivity extends AppCompatActivity {
     private void setPage(int newPage) {
         page = newPage;
 
-        ImageView iv =  findViewById(R.id.whaleImage);
+        String text = page + " / " + IMG_TEXT.length;  // 텍스트 변경
+        TextView tv = findViewById(R.id.pageText);
+        tv.setText(text);
+
+        ImageView iv =  findViewById(R.id.whaleImage);  // 이미지 변경
         iv.setImageResource(IMG_TEXT[page-1]);
     }
 }
