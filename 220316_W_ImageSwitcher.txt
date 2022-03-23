@@ -1,0 +1,41 @@
+Image Switcher & Cards
+
+- 로그
+Log.e(String, String) : 오류
+Log.w(String, String) : 경고
+Log.i(String, String) : 정보
+Log.d(String, String) : 디버그
+Log.v(String, String) : 상세
+
+- 이미지
+res > drawable : vector 이미지, selcetor xml(이미지 선택)
+res > layout : 
+res > mipmap : 비트맵
+res > values : 
+
+h : 
+xxx : 고해상도
+같은 크기의 그림을 넣으면 h에서 더 크게 보임
+
+개선사항
+1. 맨 위에 위치한 이름 보이지 않게 설정
+2. 버튼 이미지가 크기에 맞게 설정(테두리 안 보이도록)
+3. 이미지 3종류로 사용(1페이지에서 왼쪽을 눌렀을 때 버튼 비활성화)
+4. 본 페이지 저장 후 다시 로드 가능하도록
+5. 코드 개선
+findViewById() : 여러 번 호출하는 것은 좋지 않음
+-> 생성자에서 한 번만 호출되도록
+imgText 배열 : 한 번만 생성되면 됨
+-> static member로 적용
+imgText 이미지 개수에 변경이 일어났을 경우, 수정 용이하도록 수정
+ImageButton 동일한 내용 Style로 묶어서 사용 가능
+
+--------------------------------------------------------------------------------------------------
+- selector xml
+
+- 타이틀바(액션바) 제거
+ActionBar actionBar = getSupportActionBar();
+        actionBar.hide(); 
+
+
+

@@ -1,0 +1,63 @@
+alert message : 무조건 사용자가 봐야하는 메시지
+toast message : 안봐도 상관없는 메시지
+
+- 
+
+모든 카드 제거시 Restart와 같은 alert창 뜨도록
+
+-  
+
+Restart 추가 구현
+
+- 
+
+카드 랜덤 배치
+
+-
+
+Orientation Change
+세로로 실행하던중 가로로 바꿨을 경우, 그대로 내용 유지되도록
+> AndroidManifest.xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.cardsapp">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CardsApp">
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize"  // orientation에 대한 것은 직접하겠다고 설정
+            android:screenOrientation="portrait"  // 세로모드로만 진행되도록
+            ...
+
+-
+
+한국어, 영어 지원
+> 문자열 대신 리소스 사용
+res > values > strings.xml
+alt + enter > Extract String Resource : 자동으로 변경됨
+> 다국어 처리
+strings.xml > Open editor > 한국어 추가
+> 확인
+Settings > System >  Languages & input
+
+------------------------------------------------------------------------------------------------------------------------------
+
+Layout, Widget 조사
+
+- 
+
+CheckBox
+
+-
+
+EditText
+
+
+
+

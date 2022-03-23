@@ -1,0 +1,6 @@
+- 텀프로젝트 및 강의 일정 설명
+
+- CardApp
+style : 동일한 코드를 하나로 묶어줌
+alt + enter
+> TAG
