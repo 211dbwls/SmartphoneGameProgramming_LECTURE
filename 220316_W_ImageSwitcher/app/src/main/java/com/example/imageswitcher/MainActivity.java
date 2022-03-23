@@ -6,6 +6,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setPage(1);
     }
 
     public void onBtnPrev(View view) {
@@ -40,6 +43,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setPage(int newPage) {
+        ImageButton prevButton = findViewById(R.id.prevButton);
+        ImageButton nextButton = findViewById(R.id.nextButton);
+
+        if(newPage <= 1) {  // 페이지 예외처리
+            prevButton.setEnabled(false);
+            nextButton.setEnabled(true);
+        }
+        else if(newPage >= IMG_TEXT.length) {
+            prevButton.setEnabled(true);
+            nextButton.setEnabled(false);
+        }
+        else {
+            prevButton.setEnabled(true);
+            nextButton.setEnabled(true);
+        }
+
         page = newPage;
 
         String text = page + " / " + IMG_TEXT.length;  // 텍스트 변경

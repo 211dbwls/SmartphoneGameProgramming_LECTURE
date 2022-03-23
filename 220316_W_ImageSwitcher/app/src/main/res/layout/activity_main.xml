@@ -15,7 +15,7 @@
             android:id="@+id/prevButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@mipmap/prev"
+            android:background="@drawable/sel_prev"
             android:onClick="onBtnPrev"
             />
         <TextView
@@ -32,7 +32,7 @@
             android:id="@+id/nextButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@mipmap/next"
+            android:background="@drawable/sel_next"
             android:onClick="onBtnNext"
             />
     </LinearLayout>
