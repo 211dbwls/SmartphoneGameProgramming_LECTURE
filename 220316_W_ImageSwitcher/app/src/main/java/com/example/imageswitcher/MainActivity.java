@@ -3,6 +3,8 @@ package com.example.imageswitcher;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
     protected int page;
 
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +38,12 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();  // actionBar 제거
         actionBar.hide();
 
-        setPage(1);
+        pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+        editor = pref.edit();
+
+        page = pref.getInt("page", 1);  // 저장된 page로 설정
+
+        setPage(page);
     }
 
     public void onBtnPrev(View view) {
@@ -71,5 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView iv =  findViewById(R.id.whaleImage);  // 이미지 변경
         iv.setImageResource(IMG_TEXT[page-1]);
+
+        editor.putInt("page", page);
+        editor.apply();
     }
 }
