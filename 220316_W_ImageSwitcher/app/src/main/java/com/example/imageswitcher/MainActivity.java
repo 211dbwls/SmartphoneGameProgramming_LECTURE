@@ -3,9 +3,12 @@ package com.example.imageswitcher;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,8 +17,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBtnPrev(View view) {
+        Log.d(TAG, "Prev Button Press");
     }
 
     public void onBtnNext(View view) {
+        Log.d(TAG, "Next Button Press");
     }
 }
