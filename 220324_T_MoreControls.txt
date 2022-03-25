@@ -1,0 +1,197 @@
+-
+
+TextWatcher 3가지 방법
+1) onCreate 안에서 실행
+        edit.addTextChangedListener(new TextWatcher() {  
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.v(TAG, "before");
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.d(TAG, "text change: " + charSequence);
+                output.setText("Text Length: " + charSequence.length());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Log.v(TAG, "after");
+            }
+        });
+2) MainActivity가 구현
+public class MainActivity extends AppCompatActivity implements TextWatcher {  // TextWatcher 3가지 방법 중 두번째
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    private EditText edit;
+    private TextView output;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        edit = findViewById(R.id.nameEdit);
+        output = findViewById(R.id.outputTextView);
+
+        edit.addTextChangedListener(this);  // TextWatcher 3가지 방법 중 두번째
+    }
+    
+    // TextWatcher 3가지 방법 중 두번째
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        Log.v(TAG, "before");
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        Log.d(TAG, "textChange: " + charSequence);
+        output.setText("Text Length: " + charSequence.length());
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+        Log.v(TAG, "after");
+    }
+    public void onCheckBox(View view) {
+        CheckBox cb = (CheckBox) view;
+        Log.d(TAG,  "Checked: " + cb.isChecked());
+    }
+
+    public void onBtnDoIt(View view) {
+        CheckBox cb = findViewById(R.id.checkbox);
+        Log.d(TAG,  "onBtnDoIt(), Checked: " + cb.isChecked());
+
+        String text = edit.getText().toString();
+        output.setText(text);
+    }
+}
+
+3) member로 가지는 방법
+public class MainActivity extends AppCompatActivity {    // TextWatcher 3가지 방법 중 세번째
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    private EditText edit;
+    private TextView output;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        edit = findViewById(R.id.nameEdit);
+        output = findViewById(R.id.outputTextView);
+
+        edit.addTextChangedListener(editWatcher);  // TextWatcher 3가지 방법 중 세번째
+    }
+
+    TextWatcher editWatcher = new TextWatcher() {    // TextWatcher 3가지 방법 중 세번째
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            Log.v(TAG, "before");
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            Log.d(TAG, "textChange: " + charSequence);
+            output.setText("Text Length: " + charSequence.length());
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            Log.v(TAG, "after");
+        }
+    };
+
+    public void onCheckBox(View view) {
+        CheckBox cb = (CheckBox) view;
+        Log.d(TAG,  "Checked: " + cb.isChecked());
+    }
+
+    public void onBtnDoIt(View view) {
+        CheckBox cb = findViewById(R.id.checkbox);
+        Log.d(TAG,  "onBtnDoIt(), Checked: " + cb.isChecked());
+
+        String text = edit.getText().toString();
+        output.setText(text);
+    }
+}
+
+-
+
+MoreControls 
+
+-
+
+Custom View
+1. 파일 생성
+java > com.exampe.layoutandwidget > 우클릭 >  new >  java > 'GameView'
+2. view 상속 받도록
+3. 생성자 생성
+4. xml로 생성하기 위해 필요한 생성자 생성
+5. activity_main.xml에 GameView 배치
+6. onDraw 생성
+onDraw : 
+canvas : 그림을 그릴 곳
+paint : 어떻게 그릴 것인지
+
+android:layout_margin : 설정한 만큼 떨어뜨린 후 표시(background도 같이 떨어짐)
+android:padding : 설정한 만큼 떨어뜨린 후 표시(background는 영향받지 않음)
+7
+
+-
+
+GameView 공 그리기
+1. LinearLayout 안에 버튼과 GameView 배치
+2. 크기가 다른 GameView 2개 배치
+
+- 
+
+Paint 생성 한번만 생성하도록 코드 수정
+
+- 
+
+GameView 공 그리기
+3. 비트맵 이미지 그리기
+        Resources res = getResources();  // view가 가진 getResources()함수를 통해 Resources 얻음
+        soccerBitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);
+4. 그릴 곳 좌표 구함 = 중앙값
+5. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
