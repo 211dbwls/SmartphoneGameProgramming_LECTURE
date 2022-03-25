@@ -65,7 +65,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         int resId = (Integer) imageButton.getTag();  // getTag()로 태그로 설정한 이미지 리소스 받아옴
-        imageButton.setImageResource(resId);  // 카드 이미지 변경
+
+        if(previousImageButton != null) {  // 이전에 누른 버튼이 있을 경우
+           imageButton.setImageResource(resId);  // 현재 누른 카드 이미지 변경
+            previousImageButton.setImageResource(R.mipmap.card_blue_back);  // 이전에 누른 카드 이미지 변경
+        }
+        else {  // 이전에 누른 버튼이 null인 경우
+            imageButton.setImageResource(resId);  // 현재 누른 카드 이미지 변경
+        }
 
         previousImageButton = imageButton;  // 이전에 눌린 버튼 저장
     }
