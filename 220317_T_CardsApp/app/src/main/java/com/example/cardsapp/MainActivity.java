@@ -52,11 +52,17 @@ public class MainActivity extends AppCompatActivity {
 
         for(int i = 0; i < BUTTON_IDS.length; ++i) {  // 각 카드에 이미지 부여
             ImageButton btn = findViewById(BUTTON_IDS[i]);  // i번째 ImageButton 받아옴
+
             int resId = resIds[i];  // 이미지 리소스 받아옴
             btn.setTag(resId);  // ImageButton에 이미지 리소스를 태그로 설정
-        }
-    }
 
+            btn.setVisibility(View.VISIBLE);  // 카드 보이도록 설정
+            btn.setImageResource(R.mipmap.card_blue_back);  // 뒷면 보이도록 설정정
+        }
+
+        setScore(0);  // flips 0으로 초기화
+        previousImageButton = null;  // 이전에 누른 버튼 null로 초기화화
+    }
     public void onBtnRestart(View view) {
         Log.d(TAG, "Restart");
         askRetry();
