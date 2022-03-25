@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.time.LocalDate;
 import java.util.Random;
@@ -106,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
 
         if(imageButton == previousImageButton) {  // 이전에 누른 버튼을 또 누른 경우
             Log.d(TAG, "Same Image Button");
+            Toast.makeText(this,
+                    R.string.same_card,
+                    Toast.LENGTH_SHORT).show();  // Toast message
             return;
         }
 

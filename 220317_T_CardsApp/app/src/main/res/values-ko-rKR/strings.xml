@@ -6,4 +6,5 @@
     <string name="yes">네</string>
     <string name="no">아니오</string>
     <string name="flips_fmt">횟수: %d</string>
+    <string name="same_card">같은 카드입니다.</string>
 </resources>
