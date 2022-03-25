@@ -29,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBtnCard(View view) {
+        if(!(view instanceof ImageButton)) {  // 눌린 버튼이 ImageButton이 아닌 경우
+            Log.d(TAG, "Not an ImageButton: " + view);
+            return;
+        }
         ImageButton imageButton = (ImageButton) view;  // 클릭한 ImageButton 가져옴
 
         int cardIndex = findButtonIndex(imageButton.getId());  // 카드 인덱스 구함
