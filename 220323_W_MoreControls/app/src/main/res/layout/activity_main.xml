@@ -12,6 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Hello World!"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        />
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Am I Checked?"
+        android:onClick="onCheckBox"
+        />
 
 </LinearLayout>
