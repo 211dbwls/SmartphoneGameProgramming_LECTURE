@@ -38,7 +38,7 @@ public class GameView extends View {
 
     private void initView() {
         paint = new Paint();
-        paint.setColor(Color.parseColor("#c5d1c5"));
+        paint.setColor(Color.parseColor("purple"));
 
         textPaint = new Paint();
         textPaint.setColor(Color.parseColor("blue"));
@@ -61,7 +61,7 @@ public class GameView extends View {
         int height = getHeight();
 
         float rx =  width / 10, ry = height / 10;
-        canvas.drawRoundRect(left, top, width - right, height - bottom, rx, ry, paint);  // Rect의 모서리를 rx, ry의 크기를 갖는 타원의 모양
+        // canvas.drawRoundRect(left, top, width - right, height - bottom, rx, ry, paint);  // Rect의 모서리를 rx, ry의 크기를 갖는 타원의 모양
 
         Log.d(TAG, "size: " + width + ", " + height + " padding: " + left + ", " + top + ", " + right + ", " + bottom);
 
@@ -86,6 +86,10 @@ public class GameView extends View {
         float tx = cx - bounds.width() / 2;
         float ty = cy + height / 4;
         canvas.drawText(text, tx, ty, textPaint);  // 텍스트 그림
+
+        /* 원 그리기 */
+        canvas.drawCircle(cx - width / 4, cy - height / 4, height / 10, paint);
+        canvas.drawCircle(cx + width / 4, cy - height / 4, height / 10, paint);
     }
 
 }
