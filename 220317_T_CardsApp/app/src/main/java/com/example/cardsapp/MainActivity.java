@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -80,15 +81,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void askRetry() {  // 재시작 알림창
         new AlertDialog.Builder(this)
-                .setTitle("Restart?")
-                .setMessage("Do you really want to restart tha game?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {  // Yes 클릭할 경우
+                .setTitle(R.string.Restart)
+                .setMessage(R.string.restart_alert_message)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {  // Yes 클릭할 경우
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         startGame();  // 재시작
                     }
                 })
-                .setNegativeButton("No", null)  // No 클릭할 경우
+                .setNegativeButton(R.string.no, null)  // No 클릭할 경우
                 .create()
                 .show();
     }
@@ -144,7 +145,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void setScore(int score) {
        flips = score;
-       String text = "Flips: " + flips;
+       Resources res = getResources();
+       String format = res.getString(R.string.flips_fmt);
+       String text = String.format(format, score);
        scoreTextView.setText(text);  // text 변경
     }
 
