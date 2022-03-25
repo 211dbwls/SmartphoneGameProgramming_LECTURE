@@ -29,17 +29,30 @@
         android:layout_height="wrap_content"
         />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Do It"
-        android:onClick="onBtnDoIt"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Do It"
+            android:onClick="onBtnDoIt"
+            />
+        <com.example.morecontrols.GameView
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            />
+
+    </LinearLayout>
 
     <com.example.morecontrols.GameView
         android:id="@+id/gameView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:layout_margin="20dp"
         android:padding="10dp"
         />

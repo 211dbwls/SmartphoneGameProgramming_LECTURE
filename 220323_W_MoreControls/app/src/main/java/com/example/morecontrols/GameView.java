@@ -37,12 +37,12 @@ public class GameView extends View {
     protected void onDraw(Canvas canvas) {
         // super.onDraw(canvas);
 
-        int left = getPaddingLeft();  // 35
-        int top  = getPaddingTop();  // 35
-        int right =  getPaddingRight();  // 35
-        int bottom = getPaddingBottom();  // 35
-        int width = getWidth();  // 1300
-        int height = getHeight();  // 1691
+        int left = getPaddingLeft();
+        int top  = getPaddingTop();
+        int right =  getPaddingRight();
+        int bottom = getPaddingBottom();
+        int width = getWidth();
+        int height = getHeight();
 
         float rx =  width / 10, ry = height / 10;
         canvas.drawRoundRect(left, top, width - right, height - bottom, rx, ry, paint);  // Rect의 모서리를 rx, ry의 크기를 갖는 타원의 모양
