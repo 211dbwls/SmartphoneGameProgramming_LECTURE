@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.time.LocalDate;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,6 +50,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void startGame() {  // 기본 세팅하는 함수
         openCardCount = BUTTON_IDS.length;  // 카드 개수 설정
+
+        Random r = new Random();
+        for(int i = 0; i < resIds.length; ++i) {  // 카드 랜덤 배치
+            int t = r.nextInt(resIds.length);  // 랜덤으로 숫자 얻음
+
+            int id = resIds[t];
+            resIds[t] = resIds[i];
+            resIds[i] = id;
+        }
 
         for(int i = 0; i < BUTTON_IDS.length; ++i) {  // 각 카드에 이미지 부여
             ImageButton btn = findViewById(BUTTON_IDS[i]);  // i번째 ImageButton 받아옴
