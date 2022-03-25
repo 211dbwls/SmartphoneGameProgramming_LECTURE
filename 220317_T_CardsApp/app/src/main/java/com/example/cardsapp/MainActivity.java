@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import java.time.LocalDate;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -17,7 +19,9 @@ public class MainActivity extends AppCompatActivity {
             R.id.card_20, R.id.card_21, R.id.card_22,R.id.card_23,
             R.id.card_30, R.id.card_31, R.id.card_32,R.id.card_33
     };
-    
+
+    private ImageButton previousImageButton;  // 이전에 눌린 버튼
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,13 @@ public class MainActivity extends AppCompatActivity {
 
         int cardIndex = findButtonIndex(imageButton.getId());  // 카드 인덱스 구함
         Log.d(TAG, "Card: " + cardIndex);
+
+        if(imageButton == previousImageButton) {  // 이전에 누른 버튼을 또 누른 경우
+            Log.d(TAG, "Same Image Button");
+            return;
+        }
+
+        previousImageButton = imageButton;  // 이전에 눌린 버튼 저장
     }
 
     private int findButtonIndex(int id) {  // 카드 인덱스 구하는 함수
