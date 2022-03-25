@@ -67,14 +67,26 @@ public class MainActivity extends AppCompatActivity {
         int resId = (Integer) imageButton.getTag();  // getTag()로 태그로 설정한 이미지 리소스 받아옴
 
         if(previousImageButton != null) {  // 이전에 누른 버튼이 있을 경우
-           imageButton.setImageResource(resId);  // 현재 누른 카드 이미지 변경
-            previousImageButton.setImageResource(R.mipmap.card_blue_back);  // 이전에 누른 카드 이미지 변경
+            int previousResourceId = (Integer) previousImageButton.getTag();  // getTag()로 태그로 설정한 이미지 리소스 받아옴
+
+            if(resId == previousResourceId) {  // 같은 카드를 클릭한 경우
+                imageButton.setVisibility(View.INVISIBLE);  // 현재 누른 카드 안보이도록 설정
+                previousImageButton.setVisibility(View.INVISIBLE);  // 이전에 누른 카드 안보이도록 설정
+
+                previousImageButton = null;  // 이전에 누른 카드 null로 설정
+            }
+            else {  // 다른 카드를 클릭한 경우
+                imageButton.setImageResource(resId);  // 현재 누른 카드 이미지 변경
+                previousImageButton.setImageResource(R.mipmap.card_blue_back);  // 이전에 누른 카드 이미지 변경
+
+                previousImageButton = imageButton;  // 이전에 눌린 버튼 저장
+            }
         }
         else {  // 이전에 누른 버튼이 null인 경우
             imageButton.setImageResource(resId);  // 현재 누른 카드 이미지 변경
-        }
 
-        previousImageButton = imageButton;  // 이전에 눌린 버튼 저장
+            previousImageButton = imageButton;  // 이전에 눌린 버튼 저장
+        }
     }
 
     private int findButtonIndex(int id) {  // 카드 인덱스 구하는 함수
