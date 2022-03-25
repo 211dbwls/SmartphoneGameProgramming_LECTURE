@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,5 +27,11 @@ public class MainActivity extends AppCompatActivity {
     public void onBtnDoIt(View view) {
         CheckBox cb = findViewById(R.id.checkbox);
         Log.d(TAG, "onBtnDoIt(), Checked: " + cb.isChecked());
+
+        EditText et = findViewById(R.id.nameEdit);
+        String text = et.getText().toString();
+
+        TextView tv = findViewById(R.id.outputTextView);
+        tv.setText(text);
     }
 }
