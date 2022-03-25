@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.time.LocalDate;
 
@@ -33,10 +34,15 @@ public class MainActivity extends AppCompatActivity {
 
     private int openCardCount;  // 열린 카드 개수
 
-    @Override
+    private int flips;  // 카드 클릭한 횟수
+    private TextView scoreTextView;  // 점수 표시하는 TextView
+
+   @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        scoreTextView = findViewById(R.id.scoreTextView);  // 점수 표시하는 TextView 연결
 
         startGame();  // 게임 시작시 기본 세팅하는 함수
     }
@@ -106,14 +112,24 @@ public class MainActivity extends AppCompatActivity {
                 imageButton.setImageResource(resId);  // 현재 누른 카드 이미지 변경
                 previousImageButton.setImageResource(R.mipmap.card_blue_back);  // 이전에 누른 카드 이미지 변경
 
+                setScore(flips + 1);  // 클릭한 횟수 증가
+
                 previousImageButton = imageButton;  // 이전에 눌린 버튼 저장
             }
         }
         else {  // 이전에 누른 버튼이 null인 경우
             imageButton.setImageResource(resId);  // 현재 누른 카드 이미지 변경
 
+            setScore(flips + 1);  // 클릭한 횟수 증가
+
             previousImageButton = imageButton;  // 이전에 눌린 버튼 저장
         }
+    }
+
+    private void setScore(int score) {
+       flips = score;
+       String text = "Flips: " + flips;
+       scoreTextView.setText(text);  // text 변경
     }
 
     private int findButtonIndex(int id) {  // 카드 인덱스 구하는 함수
