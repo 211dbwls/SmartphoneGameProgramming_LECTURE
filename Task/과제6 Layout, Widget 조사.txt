@@ -1,0 +1,166 @@
+1. Android 화면 개발시 사용되는 Layout 들에 대한 특징 및 속성에 대해 조사하라. 
+아래 2번 항목 외에, 각 Layout 아래에 있는 Widget 들이 가져야 하는 LayoutParams 도 함께 알아보도록 하라.
+- FrameLayout
+: 여러 개의 뷰를 중첩으로 배치하고 그 중 하나를 레이아웃 전면에 표시할 때 사용하는 레이아웃.
+  같은 크기의 뷰를 여러 개 배치할 경우 가장 나중에 배치된 뷰만 보임.
+  크기가 다를 경우 뒤에 배치된 뷰의 일부가 보일수도 있음. 
+  public LayoutParams(Context c, AttributeSet attrs)
+  public LayoutParams(int w, int h)
+  public LayoutParams(int width, int height, int gravity)
+  public LayoutParams(ViewGroup.LayoutParams source)
+  public LayoutParams(ViewGroup.MarginLayoutParams source)
+  public LayoutParams(FrameLayout.LayoutParams source)
+
+- LinearLayout
+: 뷰를 수평 또는 수직 방향으로 배치할 수 있는 레이아웃.
+
+- RelativeLayout
+: 부모 뷰 또는 자식 뷰의 상대적 위치관계를 정의해 배치하는 레이아웃.
+  public LayoutParams(Context c, AttributeSet attrs)
+  public LayoutParams(int w, int h)
+  public LayoutParams(ViewGroup.LayoutParams source)
+  public LayoutParams(ViewGroup.MarginLayoutParams source)
+  public LayoutParams(RelativeLayout.LayoutParams source)
+
+- ConstraintLayout 
+: 레이아웃 구성 시 뷰 위젯의 위치와 크기를 유연하게 조절할 수 있게 만들어주는 레이아웃.
+  public LayoutParams(ConstraintLayout.LayoutParams source)
+  public LayoutParams(Context c, AttributeSet attrs)
+  public LayoutParams(int width, int height)
+  public LayoutParams(ViewGroup.LayoutParams source)
+
+2. Layout XML 속성 중 다음 항목에 대해 조사하라
+- layout_width : 뷰의 너비를 설정.
+- layout_height : 뷰의 높이를 설정.
+- layout_weight : 뷰의 가중치를 설정.
+- layout_gravity : 부모 뷰 내에서 위치를 설정.
+
+3. Android 화면 구성시 사용되는 Widget 들에 대하여 조사하라. 
+각 항목별로 대표적인 Property(속성), Operation(함수), Event(함수 설정) 에 대해 조사하라. 
+생긴 모양을 소개하기위해 이미지를 본문에 삽입하라
+- TextView
+  : Property(속성)
+    android:text : 내용 설정. 
+    android:textSize : 텍스트 크기 설정.
+    android:textColor : 텍스트 색 설정.
+    android:textStyle : 글꼴 설정.
+    andorid:autoLink : 설정된 링크 열어줌.
+    android:autoSizeTextType : TextView 크기에 맞게 텍스트 크기 자동으로 설정.
+    android:ellipsize : 텍스트 ..으로 생략해서 표시.
+  : Operation(함수)
+    getInputType() : TextView에 설정된 InputType 반환.
+    getText() : TextView에 입력된 텍스트 반환.
+    setText() : TextView에 출력할 내용 설정.
+  : Event (함수 설정)
+    onClick() : 클릭 시 호출.
+
+- ImageView
+  : Property(속성)
+    android:src : 이미지 설정.(이미지 크기만큼만 나옴)
+    android:background : 이미지 설정.(ImageView 전체를 덮음)
+    android:scaleType : 이미지 출력 크기 및 비율 설정.
+  : Operation(함수)
+    setImageResource() : 설정된 이미지 출력.
+    setImageBitmap() : 비트맵 출력.
+    setImageDrawable() : drawable형식의 이미지 출력.
+    setOnClickListener() : 리스너 등록.
+  : Event (함수 설정)
+    onClick() : 클릭 시 호출.
+
+- EditText
+  : Property(속성)
+    android:lines : 입력창이 차지하는 줄 수 설정.(처음부터 설정한 줄 수가 나타남)
+    android:maxLines : 입력창이 차지하는 줄 수 설정.(입력할 때마다 줄 수 늘어남)
+    android:inputType : 입력값 종류 설정.
+  : Operation(함수)
+    setText() : 설정한 텍스트 출력.
+  : Event (함수 설정)
+    addTextChangedListener() : 입력된 Text 변화.
+    setOnFocusChangeListener() : View Focus 변화.
+    setOnEditorActionListener() : Keypad의 KeyEvent.
+    setCustomSelectionActionModeCallBack : Long press시 나타나는 menu 접근.  
+
+- Button
+  : Property(속성)
+    android:text : 텍스트 설정.
+    android:drawableLeft : 텍스트와 아이콘 같이 사용하는 경우 사용.
+    android:visibility : 보이게 할 것인지 설정.
+    androdi:enabled : 활성화할 것인지 설정.
+  : Operation(함수)
+    setVisibility() : 버튼 보이게 할 것인지 설정.
+    getVisibility() : 버튼 현재 상태 가져옴.
+    setEnabled() : 버튼 활성화, 비활성화 설정.
+  : Event (함수 설정)
+    onClick() : 클릭 시 호출.
+
+- CheckBox
+  : Property(속성)
+    android:visibility : 보이게 할 것인지 설정.
+    androdi:enabled : 활성화할 것인지 설정.
+  : Operation(함수)
+    isChecked() : 체크박스 체크 상태 반환.
+    setChecked() : 체크박스 체크 상태 변경.
+    toggle() : 체크박스 체크 상태 true이면 false로, false면 true로 변경.
+  : Event (함수 설정)
+    onClick() : 클릭 시 호출.
+
+- RadioButton
+  : Property(속성)
+    android:checked : 버튼 체크 상태 설정.
+    android:text : 출력할 텍스트 설정.
+  : Operation(함수)
+  : Event (함수 설정)
+    onClick() : 클릭 시 호출.
+
+- Switch
+  : Property(속성)
+    android:showText : on/off 텍스트가 보이게 할 것인지 설정.
+    android:thumb : 사용자 드래그를 통해 on/off 설정 가능하도록 설정.
+  : Operation(함수)
+  : Event (함수 설정)
+    onClick() : 클릭 시 호출.
+
+- ToggleButton
+  : Property(속성)
+    android:textOff : toggle이 off인 상태일 때 버튼에 나타날 텍스트 설정.
+    android:textOn : toggle이 on인 상태일 때 버튼에 나타날 텍스트 설정.
+  : Operation(함수)
+    getSelectedItem() : 선택된 아이템 가져옴.
+  : Event (함수 설정)
+    onClick() : 클릭 시 호출.
+
+- Spinner
+  : Property(속성)
+    android:dropDownWidht : 스피너를 클릭했을 때 열리는 메뉴의 가로폭 설정.
+    android:spinnerMode : 스피터 형태 설정.
+  : Operation(함수)
+  : Event (함수 설정)
+    onClick() : 클릭 시 호출.
+
+- ListView
+  : Property(속성)
+    android:divider : 아이템 간 구분을 위한 색상, 이미지 설정.
+    android:divider : divider 높이 지정.
+    android:fastScrollEnabled : 스크롤 할 때 thumb 사용할 것인지 설정.
+  : Operation(함수)
+  : Event (함수 설정)
+    onClick() : 클릭 시 호출.
+
+- SeekBar
+  : Property(속성)
+    android:max : SeekBar의 최대값 설정.
+    android:thumb : 커서 이미지  설정.
+  : Operation(함수)
+  : Event (함수 설정)
+    onProgressChanged : SeekBar를 조작하고 있는 중 발생.
+    onStartTrackingTouch : SeekBar를 처음 터치했을 때 발생.
+    onStopTrackingTouch : SeekBar 터치가 끝났을 때 발생.
+
+4. 안드로이드 layout xml 내에서 사용하는 단위(px, dp, sp 등) 은 어떤 것들이 있는지 간단히 정리하라. 
+- px : 화면을 구성하는 최소단위인 픽셀 수.
+- dp : 밀도 독립 픽셀 단위. 화면 해상도에 상관없이 동일한 크기를 갖음.
+- dpi : 1인치에 들어가는 픽셀을 나타내는 단위.
+- sp : 스케일 독립 픽셀 단위. 글꼴의 단위. 사용자 설정에 따라 바뀜.
+- in : 화면의 물리적 사이즈 기반으로 인치를 사용.
+- mm : 화면의 물리적 사이즈 기반으로 밀리미터 사용.
+- em : 글꼴과 상관없이 동일한 텍스트의 크기를 출력.

@@ -1,0 +1,52 @@
+1. OOP 개념정리 ( https://www.slideshare.net/plusjune/ss-46109239 ) 를 읽고 내용을 정리하고 느낀점을 적어 올리시오.
+대표적인 프로그래밍 패러다임 : 1. 구조적 프로그래밍 2. 객체지향 프로그래밍
+구조적 프로그래밍 : 기능, 절차 중심
+객체지향 프로그래밍 : 객체, 관계 중심
+
+객체지향(Object Oriented) = '객체 위주'
+
+객체지향의 키워드로 : 1. 클래스(class) 2. 오브젝트(object) 3. 캡슐화(Encapsulation) 4. 상속성(Inheritance) 5. 다형성(Polymorphism)
+클래스(class) : 표현 대상들의 공통적인 특징을 서술한 것
+클래스(class) = 추상(abstract)
+추상(abstract) : 사용자가 구체적인 내용을 생각하지 않고도 사용할 수 있는 기능
+프로시져 추상화(Procedural abstractuin) : 함수
+데이터 추상화(Data abstraction) : 구조체, 배열, 포인터
+
+오브젝트(object) : instance of class. 클래스가 실체로 만들어진 것. 데이터와 데이터에 대한 조작의 묶은 것.
+오브젝트(object) = 실체(instance)
+
+attribute = data = member variables = state = field
+behavior = operation = member function = method = message
+
+객체지향 프로그래밍 언어 : 캡슐화(encapsulation), 상속성(inheritance), 다형성(polymorphism) 세 가지 특성을 지원하는 언어
+캡슐화 : 데이터와 데이터를 다루는 방법을 묶는 것.
+상속성 : 하나의 클래스가 가지고 있는 특징들을 그대로 다른 클래스가 물려 받는 것
+다형성 : 상속성의 계층을 따라서 각각의 클래스에 한가지 이름을 줄 수 있는 것
+
+객체지향의 장점 : 1. 자연스러운 모델링 2. 생산성 향상 3. 점진적 개발 4. 견고한 의미적 모델링 5. 명확한 인터페이스 기술 6. 보안 7. 유지보수의 용이성
+
+글을 읽고 정리하면서 객체지향이라는 단어의 의미와 객체지향 프로그래밍에 대한 내용을 다시 한번 정리할 수 있게 된 것 같다. 
+
+2. 다음 Case 들이 무엇이며 주로 어떨 때 사용하는지 조사하여 답하라. 
+2-1. CamelCase (그 중 UpperCamelCase 와 lowerCamelCase 는 어떻게 구별하여 사용하는지 명시하라.)
+CamelCase : 단어가 합쳐진 부분의 맨 앞 글자를 대문자로 표기하는 방법 ex. MonsterMaxSpeed
+UpperCamelCase : 단어들의 맨 앞 글자를 대문자로 표기하는 방법 ex. MonsterMaxSpeed
+                        주로 함수, 클래스, 구조체, 열거형의 이름으로 사용
+lowerCamelCase : 맨 앞 글자를 소문자로 표기하고 뒤에 오는 단어들의 앞 글자를 대문자로 표기하는 방법 ex. monsterMaxSpeed
+                      주로 변수 이름으로 사용
+2-2. snake_case 
+snake_case : 단어가 합쳐지는 부분을 _ 또는 -로 구분하는 방법 ex. monster_max_speed
+                주로 변수 이름으로 사용
+
+2-3. ALL_CAPS_UNDERSCORE
+ALL_CAPS_UNDERSCORE : 모든 문자를 대문자로 표기하는 방법
+                                 주로 상수 이름으로 사용
+
+3. 첨부한 파일은 (오래 전, 2009년) 한 팀에서 사용하던 코딩컨벤션 문서이다. 문서를 읽어보고 각 항목별로 본인이 사용하던 방식과 어떻게 다는지 기술하라. 혹 문서의 주장과 반대 의견이 있으면 펼져 보아도 좋다.
+3.5.1 if, if-else, if else-if else statements
+if-else문 혹은 if else-if else문을 사용할 때는 "}" 뒤는 줄바꿈을 하여 사용한다. 줄바꿈을 하지 않고 사용할 경우 어디까지가 if문이고 else if문인지 구별하기 어려움으로 줄바꿈을 통해 쉽게 구분할 수 있게 사용한다.
+if문의 statement가 간결한 경우 "{}"를 생략하여도 괜찮지만 줄바꿈을 필수로 한다. 줄바꿈을 할 경우 if문이라는 것이 눈에 더 잘 들어오고, statement를 파악하기 좋기 때문에 if문을 사용할 경우 줄바꿈을 필수로 사용한다.
+3.5.3 switch statements
+case와 case문 사이는 blank를 갖지 않는다. case가 statements보다 시작점이 앞에 있기 때문에 case들을 파악하는데 어려움이 없으므로 blank line을 사용하지 않는다.
+
+* 파일 첨부는 하지 않고 본문에 제출합니다.

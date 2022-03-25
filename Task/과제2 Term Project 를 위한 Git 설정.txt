@@ -1,0 +1,28 @@
+이번 강의는 git 을 사용합니다만, 따로 git 에 대한 설명을 하지는 않습니다. 접한 적이 없다면 각자 공부하기 바랍니다.
+
+1) 
+학기 프로젝트를 위한 git 설정을 한 뒤 내용을 확인할 수 있는 Repository URL 을 적어 제출하라.
+학기 프로젝트는 개인으로 하며 2인이상 팀 구성은 하지 않는다.
+
+- Github, Gitlab, Bitbucket 등을 사용하면 되며 zip 으로 다운로드 받을 수 있는 방법을 제공하는 곳으로 한다. 
+  가급적 Github 을 사용할 것을 권장한다.
+- Public project 로 Repository 를 생성하도록 하고, clone 하기 전에 web interface 로 내용을 확인할 수 있도록 한다.
+- Android 개발을 위한 gitignore 를 준비한다. 사이트에서 제공하는 것을 사용해도 좋고 검색을 통해 좋은 것을 마련하도록 한다. 
+  JetBrains 에서 제공하는 것을 merge 해야 할 수 있다
+- 앞으로의 과제들을 git 에 commit/push 하도록 한다. 과제는 과제 번호별로 폴더 구별을 하도록 한다. 
+  commit 할 때 공유할 필요 없는 파일이 올라가지 않도록 주의한다. 
+  예를 들어 cache 폴더나 AndroidStudio 에서 생성되는 파일 등은 git 에서 관리되지 않도록 주의한다.
+- commit 은 최대한 잘게 쪼개서 하도록 하여 commit log 를 보고 무엇을 했는지 알 수 있도록 한다.
+
+2)
+gitignore 에 대해 조사하라. AndroidStudio/java 을 위한 gitignore 에 적혀 있는 항목들에 대해 어떤 파일이길래 ignore 해야 하는지 함께 조사하여 본문에 적도록 한다.
+
+* 학기 내내 git 에 필요 없는 파일이 올라가는 것이 발견되는 대로 감점 처리합니다.
+
+https://github.com/211dbwls/SmartphoneGameProgramming.git
+
+gitignore은 git 버전 관리에서 제외할 파일 목록을 지정하는 파일을 말한다.
+내용이 변경되지 않는 파일들은 commit을 할 이유가 없기 때문에 gitignore에 등록하는 것이다. 
+gitignore에 적히는 파일로는 application files, language files, logs 등이 있다.
+
+
