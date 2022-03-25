@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageButton previousImageButton;  // 이전에 눌린 버튼
 
+    private int openCardCount;  // 열린 카드 개수
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startGame() {  // 기본 세팅하는 함수
+        openCardCount = BUTTON_IDS.length;  // 카드 개수 설정
+
         for(int i = 0; i < BUTTON_IDS.length; ++i) {  // 각 카드에 이미지 부여
             ImageButton btn = findViewById(BUTTON_IDS[i]);  // i번째 ImageButton 받아옴
             int resId = resIds[i];  // 이미지 리소스 받아옴
@@ -90,6 +94,11 @@ public class MainActivity extends AppCompatActivity {
             if(resId == previousResourceId) {  // 같은 카드를 클릭한 경우
                 imageButton.setVisibility(View.INVISIBLE);  // 현재 누른 카드 안보이도록 설정
                 previousImageButton.setVisibility(View.INVISIBLE);  // 이전에 누른 카드 안보이도록 설정
+
+                openCardCount -= 2;  // 열린 카드 마이너스
+                if(openCardCount == 0) {  // 모든 카드가 제거된 경우
+                    askRetry();  // Restart 알림창
+                }
 
                 previousImageButton = null;  // 이전에 누른 카드 null로 설정
             }
