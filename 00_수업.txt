@@ -2,4 +2,5 @@
 220303 목 Android Studio 설치 | OOP 개념 정리
 220316 수 Image Switcher
 220317 목 Cards App 
-220323 수 Cards App | Layout | Widget
+220323 수 Cards App | Layout&Widget | MoreControls
+220324 목 MoreControls(Custom View - Soccer 이미지)
