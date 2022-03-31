@@ -52,12 +52,12 @@ public class GameView extends View {  // View 상속받음.
 
         invalidate();  // 다시 그려지는 것을 예약하는 함수.
 
-        handler.post(new Runnable() {  // 할 일을 한 후 updateGame() 호출되도록.
+        handler.postDelayed(new Runnable() {  // 할 일을 한 후 updateGame() 호출되도록.
             @Override
             public void run() {
                 updateGame();  // handler 리턴 후 시간이 지난 후 updateGame() 호출됨.
             }
-        });
+        }, 30);
     }
 
     private void initView() {  // 초기화하는 함수.
