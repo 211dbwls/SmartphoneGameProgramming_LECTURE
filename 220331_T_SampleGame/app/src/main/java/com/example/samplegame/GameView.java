@@ -34,7 +34,10 @@ public class GameView extends View {  // View 상속받음.
     }
 
     private void updateGame() {  // View를 다시 그리는 함수.
-        this.invalidate();  // 다시 그려지는 것을 예약하는 함수.
+        update();  // 게임 내용 업데이트하는 함수.
+
+        invalidate();  // 다시 그려지는 것을 예약하는 함수.
+
         handler.post(new Runnable() {  // 할 일을 한 후 updateGame() 호출되도록.
             @Override
             public void run() {
@@ -55,5 +58,9 @@ public class GameView extends View {  // View 상속받음.
         // super.onDraw(canvas);
         canvas.drawBitmap(soccerBitmap, srcRect, dstRect, null);
         Log.d(TAG, "onDraw()");
+    }
+
+    private void update() {  // 게임 내용 업데이트하는 함수.
+        dstRect.offset(1, 1);  // (1, 1) 크기로 이동.
     }
 }
