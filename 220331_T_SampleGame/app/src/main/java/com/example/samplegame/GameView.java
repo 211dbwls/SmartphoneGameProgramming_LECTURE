@@ -7,12 +7,15 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 
 public class GameView extends View {  // View 상속받음.
+
+    private static final String TAG = GameView.class.getSimpleName();
 
     private Bitmap soccerBitmap;  // 축구공 이미지.
     private Rect srcRect = new Rect();
@@ -35,5 +38,6 @@ public class GameView extends View {  // View 상속받음.
     protected void onDraw(Canvas canvas) {
         // super.onDraw(canvas);
         canvas.drawBitmap(soccerBitmap, srcRect, dstRect, null);
+        Log.d(TAG, "onDraw()");
     }
 }
