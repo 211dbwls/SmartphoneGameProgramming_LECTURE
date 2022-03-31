@@ -24,8 +24,10 @@ public class GameView extends View implements Choreographer.FrameCallback {  // 
     private Bitmap soccerBitmap;  // 축구공 이미지.
     private Rect srcRect = new Rect();
     private Rect dstRect = new Rect();
+    private Rect dstRect2 = new Rect();  // 축구공 추가.
 
     private int ballDx, ballDy;  // 축구공 이동 크기 나타내는 변수.
+    private int ballDx2, ballDy2;  // 축구공 추가.
 
     private long lastTimeNanos;  // 기억하는 시각.
 
@@ -59,9 +61,13 @@ public class GameView extends View implements Choreographer.FrameCallback {  // 
         soccerBitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);  // bitmap 로드.
         srcRect.set(0,  0, soccerBitmap.getWidth(), soccerBitmap.getWidth());  // srcRect 초기화.
         dstRect.set(0, 0, 100, 100);  // (0, 0)에 100, 100 크기로 축구공 그림.
+        dstRect2.set(0, 0, 100, 100);  // 축구공 추가.
 
         ballDx = 10;  // 축구공 이동하는 크기 초기값 설정.
         ballDy = 10;
+
+        ballDx2 = 20;  // 축구공 추가.
+        ballDy2 = 20;
 
         fpsPaint.setColor(Color.BLUE);  // text 색 설정.
         fpsPaint.setTextSize(50);  // text 크기 설정.
@@ -72,9 +78,11 @@ public class GameView extends View implements Choreographer.FrameCallback {  // 
         // super.onDraw(canvas);
 
         canvas.drawBitmap(soccerBitmap, srcRect, dstRect, null);
+        canvas.drawBitmap(soccerBitmap, srcRect, dstRect2, null);  // 축구공 추가.
 
         // canvas.drawText(String.valueOf(framePerSecond), 0, 100, fpsPaint);
-        canvas.drawText("" + framePerSecond, 0, 100, fpsPaint);  // fps text 그림
+        canvas.drawText("" + framePerSecond, 0, 100, fpsPaint);  // fps text 그림.
+
 
         Log.d(TAG, "onDraw()");
     }
@@ -100,6 +108,30 @@ public class GameView extends View implements Choreographer.FrameCallback {  // 
         else {  // 위로 움직일때
             if(dstRect.bottom > getHeight()) {   // 벽에 부딪힐 경우.
                 ballDy = -ballDy;  // 방향 바꿈.
+            }
+        }
+
+        // 축구공 추가.
+        dstRect2.offset(ballDx2, ballDy2);  // (ballDx2, ballDy2) 크기로 이동.
+        if(ballDx2 < 0) {  // 왼쪽으로 움직일때.
+            if(dstRect2.left < 0) {  // 벽에 부딪힐 경우.
+                ballDx2 = -ballDx2;  // 방향 바꿈.
+            }
+        }
+        else {  // 오른쪽으로 움직일때.
+            if(dstRect2.right > getWidth()) {  // 벽에 부딪힐 경우.
+                ballDx2 = -ballDx2;  // 방향 바꿈.
+            }
+        }
+
+        if(ballDy2 < 0) {  // 아래로 움직일때
+            if(dstRect2.top < 0) {  // 벽에 부딪힐 경우.
+                ballDy2 = -ballDy2;  // 방향 바꿈.
+            }
+        }
+        else {  // 위로 움직일때
+            if(dstRect2.bottom > getHeight()) {   // 벽에 부딪힐 경우.
+                ballDy2 = -ballDy2;  // 방향 바꿈.
             }
         }
     }
