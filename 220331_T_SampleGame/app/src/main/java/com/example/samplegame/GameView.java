@@ -24,6 +24,8 @@ public class GameView extends View {  // View 상속받음.
     private Rect srcRect = new Rect();
     private Rect dstRect = new Rect();
 
+    private int ballDx, ballDy;  // 축구공 이동 크기 나타내는 변수.
+
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
@@ -50,7 +52,10 @@ public class GameView extends View {  // View 상속받음.
         Resources res = getResources();
         soccerBitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);  // bitmap 로드.
         srcRect.set(0,  0, soccerBitmap.getWidth(), soccerBitmap.getWidth());  // srcRect 초기화.
-        dstRect.set(0, 0, 100, 100);  // (0, 0)에 100, 100 크기로 축구공 그림
+        dstRect.set(0, 0, 100, 100);  // (0, 0)에 100, 100 크기로 축구공 그림.
+
+        ballDx = 10;  // 축구공 이동하는 크기 초기값 설정.
+        ballDy = 10;
     }
 
     @Override
@@ -61,6 +66,27 @@ public class GameView extends View {  // View 상속받음.
     }
 
     private void update() {  // 게임 내용 업데이트하는 함수.
-        dstRect.offset(1, 1);  // (1, 1) 크기로 이동.
+        dstRect.offset(ballDx, ballDy);  // (ballDx, ballDy) 크기로 이동.
+        if(ballDx < 0) {  // 왼쪽으로 움직일때.
+            if(dstRect.left < 0) {  // 벽에 부딪힐 경우.
+                ballDx = -ballDx;  // 방향 바꿈.
+            }
+        }
+        else {  // 오른쪽으로 움직일때.
+            if(dstRect.right > getWidth()) {  // 벽에 부딪힐 경우.
+                ballDx = -ballDx;  // 방향 바꿈.
+            }
+        }
+
+        if(ballDy < 0) {  // 아래로 움직일때
+            if(dstRect.top < 0) {  // 벽에 부딪힐 경우.
+                ballDy = -ballDy;  // 방향 바꿈.
+            }
+        }
+        else {  // 위로 움직일때
+            if(dstRect.bottom > getHeight()) {   // 벽에 부딪힐 경우.
+                ballDy = -ballDy;  // 방향 바꿈.
+            }
+        }
     }
 }
