@@ -20,7 +20,7 @@ public class GameView extends View {  // View 상속받음.
 
     private static final String TAG = GameView.class.getSimpleName();
 
-    private final Handler handler;
+    // private final Handler handler;
 
     private Bitmap soccerBitmap;  // 축구공 이미지.
     private Rect srcRect = new Rect();
@@ -38,7 +38,7 @@ public class GameView extends View {  // View 상속받음.
 
         initView();  // 초기화하는 함수.
 
-        handler = new Handler();
+        // handler = new Handler();
         updateGame();  // View를 다시 그리는 함수.
     }
 
@@ -52,12 +52,19 @@ public class GameView extends View {  // View 상속받음.
 
         invalidate();  // 다시 그려지는 것을 예약하는 함수.
 
-        handler.postDelayed(new Runnable() {  // 할 일을 한 후 updateGame() 호출되도록.
+        postDelayed(new Runnable() {  // 할 일을 한 후 updateGame() 호출되도록.
             @Override
             public void run() {
                 updateGame();  // handler 리턴 후 시간이 지난 후 updateGame() 호출됨.
             }
         }, 30);
+        
+        /*handler.postDelayed(new Runnable() {  // 할 일을 한 후 updateGame() 호출되도록.
+            @Override
+            public void run() {
+                updateGame();  // handler 리턴 후 시간이 지난 후 updateGame() 호출됨.
+            }
+        }, 30);  // 1초에 30프레임되도록 설정.*/
     }
 
     private void initView() {  // 초기화하는 함수.
