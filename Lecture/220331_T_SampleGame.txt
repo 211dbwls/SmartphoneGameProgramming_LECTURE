@@ -1,0 +1,120 @@
+[SampleGame]
+-
+
+프로젝트 생성
+
+-
+
+GameView 생성
+public class GameView extends View {  // View 상속 받도록
+
+}
+
+초기화 함수 생성
+비트맵 로드
+ 
+onDraw에서 그림
+
+xml에 GameView 그림
+
+-
+
+애니메이션 그리는 법 :  timer 사용
+
+-
+
+Log 추가
+
+-
+
+updateGame() 함수 추가
+handler 추가(생성자에서만 생성되기 때문에 final로 초기화됨)
+
+update() 호출
+this.invalidate() -> 다시 그려질 것을 예약
+handler.post() -> 할 일을 다한 후 updateGame()을 다시 호출할 것
+handler 리턴
+그 뒤에 updateGame() 호출됨
+
+-
+
+축구공 이동하도록
+update()함수 구현
+
+-
+
+좀 더 빨리 움직이도 부딪히면 방향 바뀌도록
+
+- 
+
+fps 구해서 표시
+
+전 프레임부터 현재 프레임까지 흐른 시간 구함 = elapsed
+System.currentTimeMillis()을 사용해 현재 시작 받아옴
+now - lastTimeMillis
+
+fps로 변환  
+framePerSecond = 1000/elapsed; 
+
+fps 텍스트 그리기
+paint 생성 후 텍스트 색과 크기 설정
+onDraw()에서 canvas.drawText로 텍스트 그림
+
+- 
+
+1초에 30프레임이 되도록 설정
+
+handler.post : 시간이 될 때 호출
+handler.postAtTime : 설정한 시간에 호출
+handler.postDelayed : 설정한 시간이 지난 후 호출
+
+-
+
+View 자신이 handler를 가지고 있음
+handler를 사용하지 않아도 됨
+
+-
+
+VSync : 주기적으로 신호를 발생시켜 화면을 바꿔주는 것
+
+- 
+
+매 프레임마다 불리는 함수 사용
+public class GameView extends View implements Choreographer.FrameCallback{
+...
+}
+Choreographer.getInstance().postFrameCallback(this);
+
+-
+
+공 1개 더 추가
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
