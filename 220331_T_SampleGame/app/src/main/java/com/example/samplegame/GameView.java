@@ -11,16 +11,15 @@ import android.graphics.Rect;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Choreographer;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 
-public class GameView extends View {  // View 상속받음.
+public class GameView extends View implements Choreographer.FrameCallback {  // View 상속받음.
 
     private static final String TAG = GameView.class.getSimpleName();
-
-    // private final Handler handler;
 
     private Bitmap soccerBitmap;  // 축구공 이미지.
     private Rect srcRect = new Rect();
@@ -28,7 +27,7 @@ public class GameView extends View {  // View 상속받음.
 
     private int ballDx, ballDy;  // 축구공 이동 크기 나타내는 변수.
 
-    private long lastTimeMillis;  // 기억하는 시각.
+    private long lastTimeNanos;  // 기억하는 시각.
 
     private int framePerSecond;  // fps.
     private Paint fpsPaint = new Paint();  // fps 그릴 때 사용할 Paint.
@@ -38,33 +37,21 @@ public class GameView extends View {  // View 상속받음.
 
         initView();  // 초기화하는 함수.
 
-        // handler = new Handler();
-        updateGame();  // View를 다시 그리는 함수.
+        Choreographer.getInstance().postFrameCallback(this);
     }
 
-    private void updateGame() {  // View를 다시 그리는 함수.
-        long now = System.currentTimeMillis();  // 현재 시각.
-        int elapsed = (int) (now - lastTimeMillis);  // 전 프레임부터 현재 프레임까지 흐른 시간 구함.
-        framePerSecond = 1000/elapsed;  // fps 구함.
-        lastTimeMillis = now;  // 현재 시각 저장.
+    @Override
+    public void doFrame(long currentTimeNanos) {  // 매 프레임마다 불리는 함수
+        long now = currentTimeNanos;  // 현재 시각.
+        int elapsed = (int) (now - lastTimeNanos);  // 전 프레임부터 현재 프레임까지 흐른 시간 구함.
+        framePerSecond = 1_000_000_000 / elapsed;  // fps 구함.
+        lastTimeNanos = now;  // 현재 시각 저장.
 
         update();  // 게임 내용 업데이트하는 함수.
 
         invalidate();  // 다시 그려지는 것을 예약하는 함수.
 
-        postDelayed(new Runnable() {  // 할 일을 한 후 updateGame() 호출되도록.
-            @Override
-            public void run() {
-                updateGame();  // handler 리턴 후 시간이 지난 후 updateGame() 호출됨.
-            }
-        }, 30);
-        
-        /*handler.postDelayed(new Runnable() {  // 할 일을 한 후 updateGame() 호출되도록.
-            @Override
-            public void run() {
-                updateGame();  // handler 리턴 후 시간이 지난 후 updateGame() 호출됨.
-            }
-        }, 30);  // 1초에 30프레임되도록 설정.*/
+        Choreographer.getInstance().postFrameCallback(this);
     }
 
     private void initView() {  // 초기화하는 함수.
