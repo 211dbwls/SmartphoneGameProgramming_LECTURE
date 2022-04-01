@@ -6,7 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-public class Ball {
+public class Ball implements GameObject {
     /* 공이 가지고 있어야 하는 정보 */
     private int dx, dy;
     private Rect dstRect = new Rect();

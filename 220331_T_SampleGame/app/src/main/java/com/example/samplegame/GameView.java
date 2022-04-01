@@ -29,9 +29,11 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
     private static final String TAG = GameView.class.getSimpleName();
 
-    private ArrayList<Ball> balls = new ArrayList<>();
+    // private ArrayList<Ball> balls = new ArrayList<>();
 
     private Fighter fighter;  // fighter.
+
+    private ArrayList<GameObject> gameObjects = new ArrayList<>();  // GameObject
 
     private long lastTimeNanos;  // 기억하는 시각.
 
@@ -63,21 +65,16 @@ public class GameView extends View implements Choreographer.FrameCallback {
     }
 
     private void initView() {  // 초기화하는 함수.
-        // Resources res = getResources();
-        // Bitmap soccerBitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);  // bitmap 로드.
-        // Ball.setBitmap(soccerBitmap);
-
         Random random = new Random();
         for(int i = 0;i < BALL_COUNT; i++) {  // 공 여러개 생성
             int dx = random.nextInt(10) + 5;
             int dy = random.nextInt(10) + 5;
             Ball ball = new Ball(dx, dy);
-            balls.add(ball);
+            gameObjects.add(ball);  // gameObjects에 넣음.
         }
 
-        // Bitmap fighterBitmap = BitmapFactory.decodeResource(res, R.mipmap.plane_240);  // fighter bitmap 생성
-        // Fighter.setBitmap(fighterBitmap);
         fighter = new Fighter();  // fighter 생성
+        gameObjects.add(fighter);  // gameObjects에 넣음.
 
         fpsPaint.setColor(Color.BLUE);  // text 색 설정.
         fpsPaint.setTextSize(50);  // text 크기 설정.
@@ -100,11 +97,15 @@ public class GameView extends View implements Choreographer.FrameCallback {
     protected void onDraw(Canvas canvas) {
         // super.onDraw(canvas);
 
-        for(Ball ball : balls) {  // 공 여러개 그리기.
+        /*for(Ball ball : balls) {  // 공 여러개 그리기.
             ball.draw(canvas);
         }
 
-        fighter.draw(canvas);  // fighter 그리기.
+        fighter.draw(canvas);  // fighter 그리기.*/
+
+        for(GameObject gobj : gameObjects) {  // 모든 gameObjects에 대해 그림.
+            gobj.draw(canvas);
+        }
 
         canvas.drawText("" + framePerSecond, 0, 100, fpsPaint);  // fps text 그림.
 
@@ -112,10 +113,14 @@ public class GameView extends View implements Choreographer.FrameCallback {
     }
 
     private void update() {  // 게임 내용 업데이트하는 함수.
-        for(Ball ball : balls) {   // 공 업데이트.
+        /*for(Ball ball : balls) {   // 공 업데이트.
             ball.update();
         }
 
-        fighter.update();  // fighter 업데이트.
+        fighter.update();  // fighter 업데이트.*/
+
+        for(GameObject gobj : gameObjects) {  // 모든 gameObjects 업데이트.
+            gobj.update();
+        }
     }
 }
