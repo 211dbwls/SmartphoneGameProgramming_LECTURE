@@ -63,9 +63,9 @@ public class GameView extends View implements Choreographer.FrameCallback {
     }
 
     private void initView() {  // 초기화하는 함수.
-        Resources res = getResources();
-        Bitmap soccerBitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);  // bitmap 로드.
-        Ball.setBitmap(soccerBitmap);
+        // Resources res = getResources();
+        // Bitmap soccerBitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);  // bitmap 로드.
+        // Ball.setBitmap(soccerBitmap);
 
         Random random = new Random();
         for(int i = 0;i < BALL_COUNT; i++) {  // 공 여러개 생성
@@ -75,8 +75,8 @@ public class GameView extends View implements Choreographer.FrameCallback {
             balls.add(ball);
         }
 
-        Bitmap fighterBitmap = BitmapFactory.decodeResource(res, R.mipmap.plane_240);  // fighter bitmap 생성
-        Fighter.setBitmap(fighterBitmap);
+        // Bitmap fighterBitmap = BitmapFactory.decodeResource(res, R.mipmap.plane_240);  // fighter bitmap 생성
+        // Fighter.setBitmap(fighterBitmap);
         fighter = new Fighter();  // fighter 생성
 
         fpsPaint.setColor(Color.BLUE);  // text 색 설정.
