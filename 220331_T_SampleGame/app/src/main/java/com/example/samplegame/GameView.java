@@ -17,7 +17,12 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 
-public class GameView extends View implements Choreographer.FrameCallback {  // View 상속받음.
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Vector;
+
+public class GameView extends View implements Choreographer.FrameCallback {
+    private static final int BALL_COUNT = 10;  // View 상속받음.
 
     public static GameView view;
 
@@ -31,8 +36,9 @@ public class GameView extends View implements Choreographer.FrameCallback {  // 
     // private int ballDx, ballDy;  // 축구공 이동 크기 나타내는 변수.
     // private int ballDx2, ballDy2;  // 축구공 추가.
 
-    private Ball ball1;
-    private Ball ball2;
+    // private Ball ball1;
+    // private Ball ball2;
+    private ArrayList<Ball> balls = new ArrayList<>();
 
     private long lastTimeNanos;  // 기억하는 시각.
 
@@ -68,8 +74,15 @@ public class GameView extends View implements Choreographer.FrameCallback {  // 
         Bitmap soccerBitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);  // bitmap 로드.
         Ball.setBitmap(soccerBitmap);
 
-        ball1 = new Ball(10, 10);  // ball 2개 생성.
-        ball2 = new Ball(7, 15);
+        // ball1 = new Ball(10, 10);  // ball 2개 생성.
+        // ball2 = new Ball(7, 15);
+        Random random = new Random();
+        for(int i = 0;i < BALL_COUNT; i++) {  // 공 여러개 생성
+            int dx = random.nextInt(10) + 5;
+            int dy = random.nextInt(10) + 5;
+            Ball ball = new Ball(dx, dy);
+            balls.add(ball);
+        }
 
         // srcRect.set(0,  0, soccerBitmap.getWidth(), soccerBitmap.getWidth());  // srcRect 초기화.
         // dstRect.set(0, 0, 100, 100);  // (0, 0)에 100, 100 크기로 축구공 그림.
@@ -89,8 +102,11 @@ public class GameView extends View implements Choreographer.FrameCallback {  // 
     protected void onDraw(Canvas canvas) {
         // super.onDraw(canvas);
 
-        ball1.draw(canvas);
-        ball2.draw(canvas);
+        // ball1.draw(canvas);
+        // ball2.draw(canvas);
+        for(Ball ball : balls) {  // 공 여러개 그리기.
+            ball.draw(canvas);
+        }
         // canvas.drawBitmap(soccerBitmap, srcRect, dstRect, null);
         // canvas.drawBitmap(soccerBitmap, srcRect, dstRect2, null);  // 축구공 추가.
 
@@ -101,8 +117,11 @@ public class GameView extends View implements Choreographer.FrameCallback {  // 
     }
 
     private void update() {  // 게임 내용 업데이트하는 함수.
-        ball1.update();
-        ball2.update();
+        // ball1.update();
+        // ball2.update();
+        for(Ball ball : balls) {   // 공 업데이트.
+            ball.update();
+        }
         /* dstRect.offset(ballDx, ballDy);  // (ballDx, ballDy) 크기로 이동.
         if(ballDx < 0) {  // 왼쪽으로 움직일때.
             if(dstRect.left < 0) {  // 벽에 부딪힐 경우.
