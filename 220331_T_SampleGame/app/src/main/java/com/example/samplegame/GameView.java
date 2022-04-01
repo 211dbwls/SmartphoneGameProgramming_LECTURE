@@ -19,15 +19,20 @@ import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 
 public class GameView extends View implements Choreographer.FrameCallback {  // View 상속받음.
 
+    public static GameView view;
+
     private static final String TAG = GameView.class.getSimpleName();
 
-    private Bitmap soccerBitmap;  // 축구공 이미지.
-    private Rect srcRect = new Rect();
-    private Rect dstRect = new Rect();
-    private Rect dstRect2 = new Rect();  // 축구공 추가.
+    // private Bitmap soccerBitmap;  // 축구공 이미지.
+    // private Rect srcRect = new Rect();
+    // private Rect dstRect = new Rect();
+    // private Rect dstRect2 = new Rect();  // 축구공 추가.
 
-    private int ballDx, ballDy;  // 축구공 이동 크기 나타내는 변수.
-    private int ballDx2, ballDy2;  // 축구공 추가.
+    // private int ballDx, ballDy;  // 축구공 이동 크기 나타내는 변수.
+    // private int ballDx2, ballDy2;  // 축구공 추가.
+
+    private Ball ball1;
+    private Ball ball2;
 
     private long lastTimeNanos;  // 기억하는 시각.
 
@@ -36,6 +41,8 @@ public class GameView extends View implements Choreographer.FrameCallback {  // 
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+
+        view = this;
 
         initView();  // 초기화하는 함수.
 
@@ -58,16 +65,21 @@ public class GameView extends View implements Choreographer.FrameCallback {  // 
 
     private void initView() {  // 초기화하는 함수.
         Resources res = getResources();
-        soccerBitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);  // bitmap 로드.
-        srcRect.set(0,  0, soccerBitmap.getWidth(), soccerBitmap.getWidth());  // srcRect 초기화.
-        dstRect.set(0, 0, 100, 100);  // (0, 0)에 100, 100 크기로 축구공 그림.
-        dstRect2.set(0, 0, 100, 100);  // 축구공 추가.
+        Bitmap soccerBitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);  // bitmap 로드.
+        Ball.setBitmap(soccerBitmap);
 
-        ballDx = 10;  // 축구공 이동하는 크기 초기값 설정.
-        ballDy = 10;
+        ball1 = new Ball(10, 10);  // ball 2개 생성.
+        ball2 = new Ball(7, 15);
 
-        ballDx2 = 20;  // 축구공 추가.
-        ballDy2 = 20;
+        // srcRect.set(0,  0, soccerBitmap.getWidth(), soccerBitmap.getWidth());  // srcRect 초기화.
+        // dstRect.set(0, 0, 100, 100);  // (0, 0)에 100, 100 크기로 축구공 그림.
+        // dstRect2.set(0, 0, 100, 100);  // 축구공 추가.
+
+        // ballDx = 10;  // 축구공 이동하는 크기 초기값 설정.
+        // ballDy = 10;
+
+        // ballDx2 = 20;  // 축구공 추가.
+        // ballDy2 = 20;
 
         fpsPaint.setColor(Color.BLUE);  // text 색 설정.
         fpsPaint.setTextSize(50);  // text 크기 설정.
@@ -77,18 +89,21 @@ public class GameView extends View implements Choreographer.FrameCallback {  // 
     protected void onDraw(Canvas canvas) {
         // super.onDraw(canvas);
 
-        canvas.drawBitmap(soccerBitmap, srcRect, dstRect, null);
-        canvas.drawBitmap(soccerBitmap, srcRect, dstRect2, null);  // 축구공 추가.
+        ball1.draw(canvas);
+        ball2.draw(canvas);
+        // canvas.drawBitmap(soccerBitmap, srcRect, dstRect, null);
+        // canvas.drawBitmap(soccerBitmap, srcRect, dstRect2, null);  // 축구공 추가.
 
         // canvas.drawText(String.valueOf(framePerSecond), 0, 100, fpsPaint);
         canvas.drawText("" + framePerSecond, 0, 100, fpsPaint);  // fps text 그림.
-
 
         Log.d(TAG, "onDraw()");
     }
 
     private void update() {  // 게임 내용 업데이트하는 함수.
-        dstRect.offset(ballDx, ballDy);  // (ballDx, ballDy) 크기로 이동.
+        ball1.update();
+        ball2.update();
+        /* dstRect.offset(ballDx, ballDy);  // (ballDx, ballDy) 크기로 이동.
         if(ballDx < 0) {  // 왼쪽으로 움직일때.
             if(dstRect.left < 0) {  // 벽에 부딪힐 경우.
                 ballDx = -ballDx;  // 방향 바꿈.
@@ -133,6 +148,6 @@ public class GameView extends View implements Choreographer.FrameCallback {  // 
             if(dstRect2.bottom > getHeight()) {   // 벽에 부딪힐 경우.
                 ballDy2 = -ballDy2;  // 방향 바꿈.
             }
-        }
+        } */
     }
 }
