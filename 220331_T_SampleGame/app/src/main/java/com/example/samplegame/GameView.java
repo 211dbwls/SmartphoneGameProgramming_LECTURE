@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Choreographer;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -80,6 +81,16 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
         fpsPaint.setColor(Color.BLUE);  // text 색 설정.
         fpsPaint.setTextSize(50);  // text 크기 설정.
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN) {  // 터치했을 경우 해당 위치로 이동하도록.
+            float x = event.getX();
+            float y = event.getY();
+            fighter.setPosition(x, y);
+        }
+        return super.onTouchEvent(event);
     }
 
     @Override

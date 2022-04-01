@@ -26,4 +26,9 @@ public class Fighter {
     public void update() {
 
     }
+
+    public void setPosition(float x, float y) {
+        int radius =  200 / 2;
+        dstRect.set((int)x - radius, (int)y - radius, (int)x + radius, (int)y + radius);
+    }
 }
