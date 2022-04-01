@@ -1,0 +1,20 @@
+- GameView 모양
+
+  - GameView는 RoundRect과 축구공, 'soccer' 텍스트, 원 2개로 구성되어 있다.
+  - 위에 위치한 게임뷰에는 padding을 10dp로 설정하였고 background를 녹색으로 설정하여 padding 설정한 것이 잘 보이게 했다. 그림에서 보면 알 수 있듯이 padding을 설정할 경우 설정한 만큼 간격을 띄운 후 그림을 그린다. 즉, padding은 현재 위젯 테두리부터 안의 내용 사이에 여백을 두는 것을 말한다. 
+
+(사진)
+
+  - 아래에 위치한 게임뷰에는 layout_margin을 20dp로 설정하고, padding을 20dp로 설정하였다. 구분이 가도록 background를 파란색으로 설정하였다. 앞에서 배치한 GameView와 다르게 layout_margin을 설정했기 때문에 흰 부분이 보이는 걸 확인할 수 있다. layout_margin은 부모 레이아웃 테투리부터 위젯 사이에 여백을 두는 것이기 때문에 흰 부분이 보이는 것이다.
+
+(사진)
+
+  - RoundRect은 배치할 때 getPaddingxxx()를 사용하여 left, top, right, bottom을 얻어와서 사용했다. 따라서 padding이 적용된 후 크기에  맞게 RoundRect이 그려졌다. rx와 ry는 모서리 부분을 설정하는 변수로 width / 10과 height / 10한 값으로 사용했다. rx, ry의 값이 커질수록 모서리가 둥근 모양이 된다. 
+
+  - 축구공은 left + (width - left - right) / 2으로 중심x값을 구하고 top + (height - top - bottom) / 2으로 중심y값을 구한 후 공의 반지름을 빼고 다해 left, top, right, bottom을 구해 중심에 공이 위치하도록 했다.
+
+  - 텍스트는 축구공을 그릴 때 구했던 cx와 cy를 사용해서 배치할 위치를 구했다. cx에서 텍스트 width를 2로 나눈 값을 빼서 가운데에 위치하도록 설정했고, cy에 ballRadius를 더해서 공 아래에 위치하도록 값을 설정하였다.
+
+  - 1번공은 중심x값에 width / 4를 빼서 전체 너비의 1/4지점에 위치하도록 하였고, 중심y값도 똑같이 height / 4를 빼서 전체 높이의 1/4지점에 위치하도록 설정하였다. 2번공은 똑같이 1/4지점에 위치하되 반대 방향에 위치하도록 했다. 반지름은 height / 10으로 전체 높이의 1/10로 설정하였다. 
+
+(사진)
