@@ -32,7 +32,7 @@ public class MainGame {
             gameObjects.add(ball);  // gameObjects에 넣음.
         }
 
-        fighter = new Fighter();  // fighter 생성
+        fighter = new Fighter(600, 800);  // fighter 생성
         gameObjects.add(fighter);  // gameObjects에 넣음.
     }
 

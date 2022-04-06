@@ -20,8 +20,14 @@ public class Fighter implements GameObject {
     private float dx, dy;  // 얼마나 이동할 것인지.
     private float tx, ty;  // 타겟의 좌표.
 
-    public Fighter() {
-        dstRect.set(0, 0, 200, 200);
+    public Fighter(int x, int y) {
+        this.x = x;  // 초기값 설정.
+        this.y = y;
+        this.tx = x;
+        this.ty = y;
+        int radius = 100;
+
+        dstRect.set(x - radius, y - radius, x + radius, y + radius);
 
         if (bitmap == null) {  // 리소스 한번만 로드하도록.
             Resources res = GameView.view.getResources();
