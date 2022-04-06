@@ -23,17 +23,15 @@ import java.util.Random;
 import java.util.Vector;
 
 public class GameView extends View implements Choreographer.FrameCallback {
-    private static final int BALL_COUNT = 10;  // View 상속받음.
+    // private static final int BALL_COUNT = 10;
 
     public static GameView view;
 
     private static final String TAG = GameView.class.getSimpleName();
 
-    // private ArrayList<Ball> balls = new ArrayList<>();
+    // private Fighter fighter;  // fighter.
 
-    private Fighter fighter;  // fighter.
-
-    private ArrayList<GameObject> gameObjects = new ArrayList<>();  // GameObject
+    // private ArrayList<GameObject> gameObjects = new ArrayList<>();  // GameObject
 
     private long lastTimeNanos;  // 기억하는 시각.
 
@@ -57,7 +55,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
         framePerSecond = 1_000_000_000 / elapsed;  // fps 구함.
         lastTimeNanos = now;  // 현재 시각 저장.
 
-        update();  // 게임 내용 업데이트하는 함수.
+        MainGame.getInstance().update();  // 게임 내용 업데이트하는 함수.
 
         invalidate();  // 다시 그려지는 것을 예약하는 함수.
 
@@ -65,7 +63,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
     }
 
     private void initView() {  // 초기화하는 함수.
-        Random random = new Random();
+        /*Random random = new Random();
         for(int i = 0;i < BALL_COUNT; i++) {  // 공 여러개 생성
             int dx = random.nextInt(10) + 5;
             int dy = random.nextInt(10) + 5;
@@ -74,7 +72,9 @@ public class GameView extends View implements Choreographer.FrameCallback {
         }
 
         fighter = new Fighter();  // fighter 생성
-        gameObjects.add(fighter);  // gameObjects에 넣음.
+        gameObjects.add(fighter);  // gameObjects에 넣음.*/
+
+        MainGame.getInstance().init();
 
         fpsPaint.setColor(Color.BLUE);  // text 색 설정.
         fpsPaint.setTextSize(50);  // text 크기 설정.
@@ -82,7 +82,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
+        /*switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
                 float x = event.getX();
@@ -90,37 +90,29 @@ public class GameView extends View implements Choreographer.FrameCallback {
                 fighter.setPosition(x, y);
                 return true;
         }
-        return super.onTouchEvent(event);
+        return super.onTouchEvent(event);*/
+
+        return MainGame.getInstance().onTouchEvent(event);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         // super.onDraw(canvas);
 
-        /*for(Ball ball : balls) {  // 공 여러개 그리기.
-            ball.draw(canvas);
-        }
-
-        fighter.draw(canvas);  // fighter 그리기.*/
-
-        for(GameObject gobj : gameObjects) {  // 모든 gameObjects에 대해 그림.
+        /*for(GameObject gobj : gameObjects) {  // 모든 gameObjects에 대해 그림.
             gobj.draw(canvas);
-        }
+        }*/
+
+        MainGame.getInstance().draw(canvas);
 
         canvas.drawText("" + framePerSecond, 0, 100, fpsPaint);  // fps text 그림.
 
-        Log.d(TAG, "onDraw()");
+        // Log.d(TAG, "onDraw()");
     }
 
-    private void update() {  // 게임 내용 업데이트하는 함수.
-        /*for(Ball ball : balls) {   // 공 업데이트.
-            ball.update();
-        }
-
-        fighter.update();  // fighter 업데이트.*/
-
+    /*private void update() {  // 게임 내용 업데이트하는 함수.
         for(GameObject gobj : gameObjects) {  // 모든 gameObjects 업데이트.
             gobj.update();
         }
-    }
+    }*/
 }
