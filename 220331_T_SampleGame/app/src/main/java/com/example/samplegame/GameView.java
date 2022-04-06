@@ -61,7 +61,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
         MainGame.getInstance().init();
 
         fpsPaint.setColor(Color.BLUE);  // text 색 설정.
-        fpsPaint.setTextSize(50);  // text 크기 설정.
+        fpsPaint.setTextSize(100);  // text 크기 설정.
     }
 
     @Override
@@ -75,7 +75,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
         MainGame.getInstance().draw(canvas);
 
-        canvas.drawText("" + framePerSecond, 0, 100, fpsPaint);  // fps text 그림.
+        canvas.drawText("FPS:" + framePerSecond, framePerSecond * 10, 100, fpsPaint);
 
         // Log.d(TAG, "onDraw()");
     }

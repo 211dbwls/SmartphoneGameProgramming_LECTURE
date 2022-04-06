@@ -51,11 +51,6 @@ public class Fighter implements GameObject {
         dstRect.offset(dx, dy);  // 이동.
     }
 
-    /*public void setPosition(float x, float y) {
-        int radius =  200 / 2;
-        dstRect.set((int)x - radius, (int)y - radius, (int)x + radius, (int)y + radius);
-    }*/
-
     public void setTargetPosition(float x, float y) {  // 타겟 위치 저장.
         tx = x;
         ty = y;
