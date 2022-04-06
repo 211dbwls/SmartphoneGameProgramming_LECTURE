@@ -1,0 +1,23 @@
+MainGame.java 생성
+
+singleton pattern 사용
+
+-
+
+GameView 코드 MainGame으로 이동
+
+-
+
+시간차(frameTime) 저장
+
+- 
+
+fighter가 target point를 따라가도록
+
+타겟 위치 설정
+
+(atan2 : 부호까지 결정)
+현재 위치와 타겟 위치의 각도 구함
+frame마다 이동해야할 거리 구함
+얼마나 이동할 것인지 설정
+이동
