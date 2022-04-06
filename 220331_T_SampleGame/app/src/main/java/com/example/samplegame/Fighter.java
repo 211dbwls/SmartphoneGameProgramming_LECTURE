@@ -44,9 +44,44 @@ public class Fighter implements GameObject {
         dy = (float) (dist * Math.sin(angle));
 
         Log.d(TAG, "x="+x+" y="+y+" dx="+dx+" dy="+dy);
-        
-        x += dx;
-        y += dy;
+
+        if(dx > 0) {  // x가 증가하고 있을 때
+            if(x + dx > tx) {  // 타겟 위치를 지나쳤을 때
+                x = tx;  // 타겟 위치로 가고
+                dx = tx - x;  // 더 움직이지 않도록 함.
+            }
+            else {
+                x += dx;
+            }
+        }
+        else {  // 감소하고 있을 때
+            if (x + dx < tx) {
+                x = tx;
+                dx = tx - x;
+            }
+            else {
+                x += dx;
+            }
+        }
+
+        if(dy > 0) {  // x가 증가하고 있을 때
+            if(y + dy > ty) {  // 타겟 위치를 지나쳤을 때
+                y = ty;  // 타겟 위치로 가고
+                dy = ty - y;  // 더 움직이지 않도록 함.
+            }
+            else {
+                y += dy;
+            }
+        }
+        else {  // 감소하고 있을 때
+            if (y + dy < ty) {
+                y = ty;
+                dy = ty - y;
+            }
+            else {
+                y += dy;
+            }
+        }
         
         dstRect.offset(dx, dy);  // 이동.
     }
