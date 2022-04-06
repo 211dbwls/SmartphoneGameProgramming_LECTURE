@@ -21,3 +21,36 @@ fighter가 target point를 따라가도록
 frame마다 이동해야할 거리 구함
 얼마나 이동할 것인지 설정
 이동
+
+- 
+
+fps 표시 방법 변경
+
+-
+
+fighter 흔들리는 거 수정
+-> 더 이상 값이 변경되지 않도록 설정
+
+-
+
+fighter 처음 생성 위치(초기값) 설정
+
+-
+
+size dp로 설정
+
+-
+
+android:layout_height="500dp"
+ALt + Enter > Extract Dimes...
+
+dimens.xml
+수정
+
+-
+
+Metrics.java 생성
+
+-
+
+GameView size 결정될 때 초기화하도록 

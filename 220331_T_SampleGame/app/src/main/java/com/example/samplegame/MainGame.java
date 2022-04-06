@@ -1,6 +1,7 @@
 package com.example.samplegame;
 
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
@@ -32,7 +33,9 @@ public class MainGame {
             gameObjects.add(ball);  // gameObjects에 넣음.
         }
 
-        fighter = new Fighter(600, 800);  // fighter 생성
+        float fx = Metrics.width / 2;
+        float fy = Metrics.height / 2;
+        fighter = new Fighter(fx, fy);  // fighter 생성
         gameObjects.add(fighter);  // gameObjects에 넣음.
     }
 

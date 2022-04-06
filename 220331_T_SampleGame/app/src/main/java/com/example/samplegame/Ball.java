@@ -40,7 +40,7 @@ public class Ball implements GameObject {
             }
         }
         else {  // 오른쪽으로 움직일때.
-            if(dstRect.right > GameView.view.getWidth()) {  // 벽에 부딪힐 경우.
+            if(dstRect.right > Metrics.width) {  // 벽에 부딪힐 경우.
                 dx = -dx;  // 방향 바꿈.
             }
         }
@@ -51,7 +51,7 @@ public class Ball implements GameObject {
             }
         }
         else {  // 위로 움직일때
-            if(dstRect.bottom > GameView.view.getHeight()) {   // 벽에 부딪힐 경우.
+            if(dstRect.bottom > Metrics.height) {   // 벽에 부딪힐 경우.
                 dy = -dy;  // 방향 바꿈.
             }
         }

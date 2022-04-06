@@ -23,7 +23,7 @@ public class Fighter implements GameObject {
     private float dx, dy;  // 얼마나 이동할 것인지.
     private float tx, ty;  // 타겟의 좌표.
 
-    public Fighter(int x, int y) {
+    public Fighter(float x, float y) {
         this.x = x;  // 초기값 설정.
         this.y = y;
         this.tx = x;

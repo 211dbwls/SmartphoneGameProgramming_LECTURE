@@ -32,14 +32,32 @@ public class GameView extends View implements Choreographer.FrameCallback {
     private int framePerSecond;  // fps.
     private Paint fpsPaint = new Paint();  // fps 그릴 때 사용할 Paint.
 
+    private boolean initialized;
+
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
         view = this;
 
-        initView();  // 초기화하는 함수.
+        // initView();  // 초기화하는 함수.
 
-        Choreographer.getInstance().postFrameCallback(this);
+        // Choreographer.getInstance().postFrameCallback(this);
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {  // GameView 사이즈가 결정될 때
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        Metrics.width = w;
+        Metrics.height = h;
+
+        if(!initialized) {
+            initView();  // 초기화하는 함수.
+
+            initialized = true;
+
+            Choreographer.getInstance().postFrameCallback(this);
+        }
     }
 
     @Override
