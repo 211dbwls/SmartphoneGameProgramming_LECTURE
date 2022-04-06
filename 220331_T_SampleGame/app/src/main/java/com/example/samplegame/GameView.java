@@ -46,13 +46,15 @@ public class GameView extends View implements Choreographer.FrameCallback {
     public void doFrame(long currentTimeNanos) {  // 매 프레임마다 불리는 함수
         long now = currentTimeNanos;  // 현재 시각.
         int elapsed = (int) (now - lastTimeNanos);  // 전 프레임부터 현재 프레임까지 흐른 시간 구함.
-        framePerSecond = 1_000_000_000 / elapsed;  // fps 구함.
-        lastTimeNanos = now;  // 현재 시각 저장.
+        if(elapsed != 0) {
+            framePerSecond = 1_000_000_000 / elapsed;  // fps 구함.
+            lastTimeNanos = now;  // 현재 시각 저장.
 
-        MainGame game = MainGame.getInstance();
-        game.update(elapsed);  // 게임 내용 업데이트하는 함수.
+            MainGame game = MainGame.getInstance();
+            game.update(elapsed);  // 게임 내용 업데이트하는 함수.
 
-        invalidate();  // 다시 그려지는 것을 예약하는 함수.
+            invalidate();  // 다시 그려지는 것을 예약하는 함수.
+        }
 
         Choreographer.getInstance().postFrameCallback(this);
     }
