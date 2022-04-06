@@ -21,6 +21,8 @@ public class MainGame {
 
     private ArrayList<GameObject> gameObjects = new ArrayList<>();  // GameObject
 
+    public float frameTime;  // 시간차
+
     public void init() {
         Random random = new Random();
         for(int i = 0;i < BALL_COUNT; i++) {  // 공 여러개 생성
@@ -52,7 +54,9 @@ public class MainGame {
         }
     }
 
-    public void update() {
+    public void update(int elapsedNanos) {
+        frameTime = (float) (elapsedNanos / 1_000_000_000f);  // frameTime 구함.
+
         for(GameObject gobj : gameObjects) {  // 모든 gameObjects 업데이트.
             gobj.update();
         }
