@@ -29,15 +29,13 @@ public class Fighter implements GameObject {
         this.tx = x;
         this.ty = y;
 
-        // int radius_dp = 30;
-        // DisplayMetrics displayMetrics = GameView.view.getResources().getDisplayMetrics();
-        // int radius = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, radius_dp, displayMetrics);
-        Resources res = GameView.view.getResources();
-        float radius = res.getDimension(R.dimen.fighter_radius);
+        // Resources res = GameView.view.getResources();
+        float radius = Metrics.size(R.dimen.fighter_radius);
 
         dstRect.set(x - radius, y - radius, x + radius, y + radius);
 
         if (bitmap == null) {  // 리소스 한번만 로드하도록.
+            Resources res = GameView.view.getResources();
             bitmap = BitmapFactory.decodeResource(res, R.mipmap.plane_240);
             srcRect.set(0, 0, bitmap.getWidth(), bitmap.getWidth());  // srcRect 초기화.
         }
@@ -50,7 +48,7 @@ public class Fighter implements GameObject {
     public void update() {
         float angle = (float) Math.atan2(ty - y, tx - x);  // 현재 위치와 타겟 위치의 각도 구함.
 
-        float speed = 1000;
+        float speed = Metrics.size(R.dimen.fighter_speed);
         float dist = speed * MainGame.getInstance().frameTime;  // 이번 frame에 움직여야할 거리.
 
         dx = (float) (dist * Math.cos(angle));  // 얼마나 이동할 것인지 설정.
