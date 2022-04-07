@@ -14,6 +14,7 @@ public class Bullet implements GameObject {
     protected final float dx, dy;
     protected final float ex, ey;
     protected static Paint paint;
+
     public Bullet(float x, float y, float angle) {
         this.x = x;
         this.y = y;
@@ -32,9 +33,15 @@ public class Bullet implements GameObject {
     }
     @Override
     public void update() {
-        float frameTime = MainGame.getInstance().frameTime;
+        MainGame game = MainGame.getInstance();
+
+        float frameTime = game.frameTime;
         x += dx * frameTime;
         y += dy * frameTime;
+
+        if(y < 0) {
+            game.remove(this);
+        }
     }
 
     @Override

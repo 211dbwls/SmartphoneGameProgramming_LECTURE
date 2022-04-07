@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 
 import com.example.dragonflight.R;
+import com.example.dragonflight.framework.GameView;
 import com.example.dragonflight.framework.Metrics;
 import com.example.dragonflight.framework.GameObject;
 
@@ -60,5 +61,14 @@ public class MainGame {
 
     public void add(GameObject gameObject) {
         gameObjects.add(gameObject);
+    }
+
+    public void remove(GameObject gameObject) {
+        GameView.view.post(new Runnable() {
+            @Override
+            public void run() {
+                gameObjects.remove(gameObject);
+            }
+        });
     }
 }
