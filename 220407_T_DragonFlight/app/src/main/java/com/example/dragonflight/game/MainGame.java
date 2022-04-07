@@ -3,6 +3,7 @@ package com.example.dragonflight.game;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
+import com.example.dragonflight.R;
 import com.example.dragonflight.framework.Metrics;
 import com.example.dragonflight.framework.GameObject;
 
@@ -23,7 +24,7 @@ public class MainGame {
 
     public void init() {
         float fx = Metrics.width / 2;
-        float fy = Metrics.height / 2;
+        float fy = Metrics.height - Metrics.size(R.dimen.fighter_y_offset);  // y좌표 고정 위치 설정.
         fighter = new Fighter(fx, fy);
         gameObjects.add(fighter);
     }
