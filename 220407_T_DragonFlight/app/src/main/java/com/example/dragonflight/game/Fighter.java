@@ -16,6 +16,9 @@ public class Fighter extends Sprite {
     private float dx, dy;
     private float tx, ty;
 
+    private float elapsedTimeForFire;
+    private float fireInterval = 1.0f / 10;  // 초당 10발.
+
     private static Bitmap targetBitmap;
 
     public Fighter(float x, float y) {
@@ -33,10 +36,17 @@ public class Fighter extends Sprite {
     }
 
     public void update() {
+        float frameTime = MainGame.getInstance().frameTime;
+        elapsedTimeForFire += frameTime;
+        if(elapsedTimeForFire >= fireInterval) {  // 주기적으로 총알 발사되도록.
+            fire();
+            elapsedTimeForFire -= fireInterval;
+        }
+
         if (dx == 0 && dy == 0)
             return;
 
-        float dx = this.dx * MainGame.getInstance().frameTime;
+        float dx = this.dx * frameTime;
         boolean arrived = false;
 
         if ((dx > 0 && x + dx > tx) || (dx < 0 && x + dx < tx)) {
