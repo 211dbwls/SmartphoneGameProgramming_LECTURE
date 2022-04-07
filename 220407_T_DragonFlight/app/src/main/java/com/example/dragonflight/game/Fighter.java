@@ -1,8 +1,13 @@
-package com.example.dragonflight;
+package com.example.dragonflight.game;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.RectF;
+
+import com.example.dragonflight.framework.Metrics;
+import com.example.dragonflight.R;
+import com.example.dragonflight.framework.Sprite;
+import com.example.dragonflight.framework.BitmapPool;
 
 public class Fighter extends Sprite {
     private static final String TAG = Fighter.class.getSimpleName();

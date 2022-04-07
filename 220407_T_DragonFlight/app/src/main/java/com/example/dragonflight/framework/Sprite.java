@@ -1,10 +1,12 @@
-package com.example.dragonflight;
+package com.example.dragonflight.framework;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.RectF;
+
+import com.example.dragonflight.framework.BitmapPool;
+import com.example.dragonflight.framework.GameObject;
+import com.example.dragonflight.framework.Metrics;
 
 public class Sprite implements GameObject {
     protected Bitmap bitmap;

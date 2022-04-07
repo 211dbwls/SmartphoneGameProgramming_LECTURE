@@ -1,8 +1,12 @@
-package com.example.dragonflight;
+package com.example.dragonflight.game;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+
+import com.example.dragonflight.framework.GameObject;
+import com.example.dragonflight.framework.Metrics;
+import com.example.dragonflight.R;
 
 public class Bullet implements GameObject {
     protected float x, y;

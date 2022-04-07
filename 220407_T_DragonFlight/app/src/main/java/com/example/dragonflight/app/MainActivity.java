@@ -1,8 +1,10 @@
-package com.example.dragonflight;
+package com.example.dragonflight.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.dragonflight.R;
 
 public class MainActivity extends AppCompatActivity {
 

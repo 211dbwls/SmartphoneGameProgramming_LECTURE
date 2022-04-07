@@ -1,4 +1,4 @@
-package com.example.dragonflight;
+package com.example.dragonflight.framework;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
