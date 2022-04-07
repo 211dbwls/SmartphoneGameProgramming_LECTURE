@@ -19,7 +19,6 @@ public class Ball implements GameObject {
         this.dx = dx;  // 공 이동 속도 초기화.
         this.dy = dy;
 
-        // dstRect.set(0, 0, 200, 200);
         float radius = Metrics.size(R.dimen.ball_radius);
         float x = 100, y = 100;
         dstRect.set(x - radius, y - radius, x + radius, y + radius);
@@ -44,26 +43,22 @@ public class Ball implements GameObject {
 
         if(dx < 0) {  // 왼쪽으로 움직일때.
             if(dstRect.left < 0) {  // 벽에 부딪힐 경우.
-                // dx = -dx;  // 방향 바꿈.
                 this.dx = -this.dx;
             }
         }
         else {  // 오른쪽으로 움직일때.
             if(dstRect.right > Metrics.width) {  // 벽에 부딪힐 경우.
-                // dx = -dx;  // 방향 바꿈.
                 this.dx = -this.dx;
             }
         }
 
         if(dy < 0) {  // 아래로 움직일때
             if(dstRect.top < 0) {  // 벽에 부딪힐 경우.
-                // dy = -dy;  // 방향 바꿈.
                 this.dy = -this.dy;
             }
         }
         else {  // 위로 움직일때
             if(dstRect.bottom > Metrics.height) {   // 벽에 부딪힐 경우.
-                // dy = -dy;  // 방향 바꿈.
                 this.dy = -this.dy;
             }
         }

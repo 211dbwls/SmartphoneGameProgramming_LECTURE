@@ -32,8 +32,6 @@ public class MainGame {
         float diff = max - min;
 
         for(int i = 0;i < BALL_COUNT; i++) {  // 공 여러개 생성
-            // int dx = random.nextInt(10) + 5;
-            // int dy = random.nextInt(10) + 5;
             float dx = random.nextFloat() * diff + min;
             float dy = random.nextFloat() * diff + min;
 
