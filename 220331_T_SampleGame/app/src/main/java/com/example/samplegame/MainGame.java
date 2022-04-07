@@ -26,9 +26,17 @@ public class MainGame {
 
     public void init() {
         Random random = new Random();
+
+        float min = Metrics.size(R.dimen.ball_speed_min);
+        float max = Metrics.size(R.dimen.ball_speed_max);
+        float diff = max - min;
+
         for(int i = 0;i < BALL_COUNT; i++) {  // 공 여러개 생성
-            int dx = random.nextInt(10) + 5;
-            int dy = random.nextInt(10) + 5;
+            // int dx = random.nextInt(10) + 5;
+            // int dy = random.nextInt(10) + 5;
+            float dx = random.nextFloat() * diff + min;
+            float dy = random.nextFloat() * diff + min;
+
             Ball ball = new Ball(dx, dy);
             gameObjects.add(ball);  // gameObjects에 넣음.
         }
