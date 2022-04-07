@@ -1,0 +1,71 @@
+
+[SampleGame]
+ball 움직임에  frameTime 적용
+dimen.xml에 ball_radius, speed 추가
+
+-
+
+dx, dy 한번만 저장하도록
+
+-
+
+fighter.update() 간단하게 코드 수정
+
+-
+
+target image 표시
+
+-
+
+비해기를 각도에 맞게 회전
+
+-
+
+sprite 클래스 생성
+
+-
+
+bitmap load -> bitmap pool
+
+-
+
+bullet 클래스 추가 
+
+-
+
+[DragonFlight]
+이전에 사용한 파일 복사
+
+- 
+
+오류 수정
+- dimens.xml 추가
+- 타겟 이미지 추가
+- Ball생성 부분 코드 삭제
+- GameView 배치
+
+-
+
+package 생성
+app - MainActivity
+framework 
+game 
+
+-
+
+세로모드만 가능하도록
+
+-
+
+fighter y좌표 고정
+
+-
+
+총알 밖으로 나갈 시 삭제
+
+-
+
+주기적으로 총알 발사되도록
+
+-
+
