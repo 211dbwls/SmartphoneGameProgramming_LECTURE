@@ -15,34 +15,42 @@ public class Fighter implements GameObject {
     private static final String TAG = Fighter.class.getSimpleName();
 
     private RectF dstRect = new RectF();  // float로 변경.
+    private RectF targetRect = new RectF();  // targetImage Rect
 
     private static Bitmap bitmap;
-    private static Rect srcRect =  new Rect();
+    private static Bitmap targetBitmap;  // target Bitmap
 
     private float x, y;  // 현재 좌표.
     private float dx, dy;  // 얼마나 이동할 것인지.
     private float tx, ty;  // 타겟의 좌표.
+    private float radius;
 
     public Fighter(float x, float y) {
         this.x = x;  // 초기값 설정.
         this.y = y;
-        this.tx = x;
-        this.ty = y;
 
         // Resources res = GameView.view.getResources();
-        float radius = Metrics.size(R.dimen.fighter_radius);
+        radius = Metrics.size(R.dimen.fighter_radius);
 
         dstRect.set(x - radius, y - radius, x + radius, y + radius);
+
+        this.tx = x;
+        this.ty = y;
+        targetRect.set(dstRect);
 
         if (bitmap == null) {  // 리소스 한번만 로드하도록.
             Resources res = GameView.view.getResources();
             bitmap = BitmapFactory.decodeResource(res, R.mipmap.plane_240);
-            srcRect.set(0, 0, bitmap.getWidth(), bitmap.getWidth());  // srcRect 초기화.
+            targetBitmap = BitmapFactory.decodeResource(res, R.mipmap.target);
         }
     }
 
     public void draw(Canvas canvas) {  // 그리는 함수.
-        canvas.drawBitmap(bitmap, srcRect, dstRect, null);
+        canvas.drawBitmap(bitmap, null, dstRect, null);
+
+        if (dx != 0 && dy != 0) {
+            canvas.drawBitmap(targetBitmap, null, targetRect, null);
+        }
     }
 
     public void update() {
@@ -71,6 +79,8 @@ public class Fighter implements GameObject {
     public void setTargetPosition(float tx, float ty) {
         this.tx = tx;
         this.ty = ty;
+
+        targetRect.set(tx - radius/2, ty - radius/2, tx + radius/2, ty + radius/2);
 
         float angle = (float) Math.atan2(ty - y, tx - x);
         float speed = Metrics.size(R.dimen.fighter_speed);
