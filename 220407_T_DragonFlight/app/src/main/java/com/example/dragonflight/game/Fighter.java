@@ -44,7 +44,7 @@ public class Fighter extends Sprite {
             elapsedTimeForFire -= fireInterval;
         }
 
-        if (dx == 0 && dy == 0)
+        if (dx == 0)
             return;
 
         float dx = this.dx * frameTime;
@@ -59,7 +59,7 @@ public class Fighter extends Sprite {
             x += dx;
         }
 
-        dstRect.offset(dx, dy);
+        dstRect.offset(dx, 0);
 
         if(arrived) {
             this.dx = 0;
@@ -68,11 +68,14 @@ public class Fighter extends Sprite {
 
     public void setTargetPosition(float tx, float ty) {
         this.tx = tx;
-        this.ty = ty;
+        this.ty = y;
 
         targetRect.set(tx - radius/2, ty - radius/2, tx + radius/2, ty + radius/2);
 
         dx = Metrics.size(R.dimen.fighter_speed);
+        if (tx < x) {
+            dx = -dx;
+        }
     }
 
     public void fire() {
