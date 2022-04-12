@@ -46,12 +46,17 @@ public class MainGame {
     }
 
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
+        int action = event.getAction();
+
+        switch (action) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
                 float x = event.getX();
                 float y = event.getY();
                 fighter.setTargetPosition(x, y);
+                if (action == MotionEvent.ACTION_DOWN) {
+                    fighter.fire();
+                }
                 return true;
         }
         return false;
@@ -69,5 +74,9 @@ public class MainGame {
         for(GameObject gobj : gameObjects) {  // 모든 gameObjects 업데이트.
             gobj.update();
         }
+    }
+
+    public void add(GameObject gameObject) {
+        gameObjects.add(gameObject);
     }
 }
