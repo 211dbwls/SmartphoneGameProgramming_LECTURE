@@ -24,6 +24,7 @@ public class Fighter implements GameObject {
     private float dx, dy;  // 얼마나 이동할 것인지.
     private float tx, ty;  // 타겟의 좌표.
     private float radius;
+    private float angle;  // 비행기 각도.
 
     public Fighter(float x, float y) {
         this.x = x;  // 초기값 설정.
@@ -36,7 +37,10 @@ public class Fighter implements GameObject {
 
         this.tx = x;
         this.ty = y;
+
         targetRect.set(dstRect);
+
+        angle = -(float) (Math.PI / 2);
 
         if (bitmap == null) {  // 리소스 한번만 로드하도록.
             Resources res = GameView.view.getResources();
@@ -46,7 +50,12 @@ public class Fighter implements GameObject {
     }
 
     public void draw(Canvas canvas) {  // 그리는 함수.
+        canvas.save();
+        canvas.rotate((float) (angle * 180 / Math.PI) + 90, x, y);
+
         canvas.drawBitmap(bitmap, null, dstRect, null);
+
+        canvas.restore();
 
         if (dx != 0 && dy != 0) {
             canvas.drawBitmap(targetBitmap, null, targetRect, null);
@@ -82,7 +91,7 @@ public class Fighter implements GameObject {
 
         targetRect.set(tx - radius/2, ty - radius/2, tx + radius/2, ty + radius/2);
 
-        float angle = (float) Math.atan2(ty - y, tx - x);
+        angle = (float) Math.atan2(ty - y, tx - x);
         float speed = Metrics.size(R.dimen.fighter_speed);
         float dist = speed * MainGame.getInstance().frameTime;
 
