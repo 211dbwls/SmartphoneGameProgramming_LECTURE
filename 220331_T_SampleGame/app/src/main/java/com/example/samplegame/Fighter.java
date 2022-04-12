@@ -46,42 +46,23 @@ public class Fighter implements GameObject {
     }
 
     public void update() {
-        if(dx > 0) {  // x가 증가하고 있을 때
-            if(x + dx > tx) {  // 타겟 위치를 지나쳤을 때
-                x = tx;  // 타겟 위치로 가고
-                dx = tx - x;  // 더 움직이지 않도록 함.
-            }
-            else {
-                x += dx;
-            }
+        if (dx == 0 && dy == 0)
+            return;
+
+        if ((dx > 0 && x + dx > tx) || (dx < 0 && x + dx < tx)) {
+            dx = tx - x;
+            x = tx;
         }
-        else {  // 감소하고 있을 때
-            if (x + dx < tx) {
-                x = tx;
-                dx = tx - x;
-            }
-            else {
-                x += dx;
-            }
+        else {
+            x += dx;
         }
 
-        if(dy > 0) {  // x가 증가하고 있을 때
-            if(y + dy > ty) {  // 타겟 위치를 지나쳤을 때
-                y = ty;  // 타겟 위치로 가고
-                dy = ty - y;  // 더 움직이지 않도록 함.
-            }
-            else {
-                y += dy;
-            }
+        if ((dy > 0 && y + dy > ty) || (dy < 0 && y + dy < ty)) {
+            dy = ty - y;
+            y = ty;
         }
-        else {  // 감소하고 있을 때
-            if (y + dy < ty) {
-                y = ty;
-                dy = ty - y;
-            }
-            else {
-                y += dy;
-            }
+        else {
+            y += dy;
         }
         
         dstRect.offset(dx, dy);  // 이동.
