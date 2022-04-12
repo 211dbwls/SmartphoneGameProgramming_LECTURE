@@ -31,7 +31,7 @@ public class Fighter extends Sprite {
 
     public void draw(Canvas canvas) {
         canvas.drawBitmap(bitmap, null, dstRect, null);
-        if (dx != 0 && dy != 0) {
+        if (dx != 0 || dy != 0) {
             canvas.drawBitmap(targetBitmap, null, targetRect, null);
         }
     }
@@ -70,7 +70,7 @@ public class Fighter extends Sprite {
         this.tx = tx;
         this.ty = y;
 
-        targetRect.set(tx - radius/2, ty - radius/2, tx + radius/2, ty + radius/2);
+        targetRect.set(tx - radius/2, y - radius/2, tx + radius/2, y + radius/2);
 
         dx = Metrics.size(R.dimen.fighter_speed);
         if (tx < x) {
