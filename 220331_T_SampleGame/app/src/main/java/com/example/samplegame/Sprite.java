@@ -18,8 +18,7 @@ public class Sprite implements GameObject {
 
         dstRect.set(x - radius, y - radius, x + radius, y + radius);
 
-        Resources res = GameView.view.getResources();
-        bitmap = BitmapFactory.decodeResource(res, bitmapResId);
+        bitmap = BitmapPool.get(bitmapResId);
     }
 
     public Sprite(float x, float y, float w, float h, int bitmapResId) {
@@ -29,8 +28,7 @@ public class Sprite implements GameObject {
 
         dstRect.set(x - w / 2, y - h / 2, x + w / 2, y + h / 2);
 
-        Resources res = GameView.view.getResources();
-        bitmap = BitmapFactory.decodeResource(res, bitmapResId);
+        bitmap = BitmapPool.get(bitmapResId);
     }
 
     @Override

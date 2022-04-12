@@ -1,15 +1,8 @@
 package com.example.samplegame;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.util.TypedValue;
-import android.view.Display;
 
 public class Fighter extends Sprite {
     private static final String TAG = Fighter.class.getSimpleName();
@@ -29,8 +22,7 @@ public class Fighter extends Sprite {
 
         angle = -(float) (Math.PI / 2);
 
-        Resources res = GameView.view.getResources();
-        targetBitmap = BitmapFactory.decodeResource(res, R.mipmap.target);
+        targetBitmap = BitmapPool.get(R.mipmap.target);
     }
 
     public void draw(Canvas canvas) {  // 그리는 함수.
