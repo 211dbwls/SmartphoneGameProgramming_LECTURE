@@ -46,16 +46,6 @@ public class Fighter implements GameObject {
     }
 
     public void update() {
-        float angle = (float) Math.atan2(ty - y, tx - x);  // 현재 위치와 타겟 위치의 각도 구함.
-
-        float speed = Metrics.size(R.dimen.fighter_speed);
-        float dist = speed * MainGame.getInstance().frameTime;  // 이번 frame에 움직여야할 거리.
-
-        dx = (float) (dist * Math.cos(angle));  // 얼마나 이동할 것인지 설정.
-        dy = (float) (dist * Math.sin(angle));
-
-        Log.d(TAG, "x="+x+" y="+y+" dx="+dx+" dy="+dy);
-
         if(dx > 0) {  // x가 증가하고 있을 때
             if(x + dx > tx) {  // 타겟 위치를 지나쳤을 때
                 x = tx;  // 타겟 위치로 가고
@@ -97,8 +87,15 @@ public class Fighter implements GameObject {
         dstRect.offset(dx, dy);  // 이동.
     }
 
-    public void setTargetPosition(float x, float y) {  // 타겟 위치 저장.
-        tx = x;
-        ty = y;
+    public void setTargetPosition(float tx, float ty) {
+        this.tx = tx;
+        this.ty = ty;
+
+        float angle = (float) Math.atan2(ty - y, tx - x);
+        float speed = Metrics.size(R.dimen.fighter_speed);
+        float dist = speed * MainGame.getInstance().frameTime;
+
+        dx = (float) (dist * Math.cos(angle));
+        dy = (float) (dist * Math.sin(angle));
     }
 }

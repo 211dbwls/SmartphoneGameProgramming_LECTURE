@@ -22,7 +22,7 @@ public class Metrics {
         TypedValue outValue = new TypedValue();
         res.getValue(dimenResId, outValue, true);
         float value = outValue.getFloat();
-        
+
         return value;
     }
 }
