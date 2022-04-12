@@ -7,31 +7,15 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
-public class Ball implements GameObject {
+public class Ball extends Sprite {
     /* 공이 가지고 있어야 하는 정보 */
     private float dx, dy;
-    private RectF dstRect = new RectF();
-
-    private static Bitmap bitmap;
-    private static Rect srcRect =  new Rect();
 
     public Ball(float dx, float dy) {
-        this.dx = dx;  // 공 이동 속도 초기화.
+        super(100, 100, R.dimen.ball_radius, R.mipmap.soccer_ball_240);
+
+        this.dx = dx;
         this.dy = dy;
-
-        float radius = Metrics.size(R.dimen.ball_radius);
-        float x = 100, y = 100;
-        dstRect.set(x - radius, y - radius, x + radius, y + radius);
-
-        if (bitmap == null) {  // 리소스 한번만 로드하도록.
-            Resources res = GameView.view.getResources();
-            bitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);
-            srcRect.set(0, 0, bitmap.getWidth(), bitmap.getWidth());  // srcRect 초기화.
-        }
-    }
-
-    public void draw(Canvas canvas) {  // 그리는 함수.
-        canvas.drawBitmap(bitmap, srcRect, dstRect, null);
     }
 
     public void update() {
