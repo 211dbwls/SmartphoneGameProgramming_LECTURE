@@ -19,6 +19,8 @@ public class Bullet implements GameObject, BoxCollidable {
 
     protected static float laserWidth;
 
+    protected RectF boundgingBox = new RectF();
+
     public Bullet(float x, float y, float angle) {
         this.x = x;
         this.y = y;
@@ -44,6 +46,9 @@ public class Bullet implements GameObject, BoxCollidable {
         x += dx * frameTime;
         y += dy * frameTime;
 
+        float hw = laserWidth / 2;
+        boundgingBox.set(x - hw, y, x + hw, y + ey);
+
         if(y < 0) {
             game.remove(this);
         }
@@ -56,8 +61,6 @@ public class Bullet implements GameObject, BoxCollidable {
 
     @Override
     public RectF getBoundingRect() {
-        float hw = laserWidth / 2;
-
-        return new RectF(x - hw, y, x + hw, y + ey);
+        return boundgingBox;
     }
 }

@@ -11,6 +11,7 @@ public class Enemy extends Sprite implements BoxCollidable {
     protected float dy;
 
     public static float size;
+    protected RectF boundingBox = new RectF();
 
     public Enemy(float x, float speed) {
         super(x, -size, size, size, R.mipmap.f_01_01);
@@ -24,6 +25,9 @@ public class Enemy extends Sprite implements BoxCollidable {
         y += dy * frameTime;
         setDstRectWithRadius();
 
+        boundingBox.set(dstRect);
+        boundingBox.inset(size / 10, size / 10);
+
         if (dstRect.top > Metrics.height) {
             MainGame.getInstance().remove(this);
         }
@@ -31,6 +35,6 @@ public class Enemy extends Sprite implements BoxCollidable {
 
     @Override
     public RectF getBoundingRect() {
-        return dstRect;
+        return boundingBox;
     }
 }
