@@ -23,7 +23,13 @@ public class MainGame {
     private Fighter fighter;
     public float frameTime;
 
+    public static void clear() {
+        singleton = null;
+    }
+
     public void init() {
+        gameObjects.clear();
+
         float fx = Metrics.width / 2;
         float fy = Metrics.height - Metrics.size(R.dimen.fighter_y_offset);  // y좌표 고정 위치 설정.
         fighter = new Fighter(fx, fy);
