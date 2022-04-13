@@ -7,7 +7,7 @@ import com.example.dragonflight.framework.GameObject;
 import com.example.dragonflight.framework.Metrics;
 
 public class EnemyGenerator implements GameObject {
-    private static final float INITIAL_SPAWN_INTERVAL =  5.0f;
+    private static final float INITIAL_SPAWN_INTERVAL = 2.0f;
     private final float spawnInterval;
     private final float fallSpeed;
     private float elapsedTime;
@@ -15,6 +15,8 @@ public class EnemyGenerator implements GameObject {
     public EnemyGenerator() {
         this.spawnInterval = INITIAL_SPAWN_INTERVAL;
         this.fallSpeed = Metrics.size(R.dimen.enemy_initial_speed);
+
+        Enemy.size = Metrics.width / 5.0f;
     }
 
     @Override
@@ -29,8 +31,11 @@ public class EnemyGenerator implements GameObject {
     }
 
     private void spawn() {
-        Enemy enemy = new Enemy(Metrics.width / 2, fallSpeed);
-        MainGame.getInstance().add(enemy);
+        float tenth = Metrics.width / 10;  // 화면을 10개로 나눈 후
+        for (int i = 1; i <= 9; i += 2) {  // 1, 3, 5, 7, 9 위치에 spawn되도록
+            Enemy enemy = new Enemy(tenth * i, fallSpeed);
+            MainGame.getInstance().add(enemy);
+        }
     }
 
     @Override
