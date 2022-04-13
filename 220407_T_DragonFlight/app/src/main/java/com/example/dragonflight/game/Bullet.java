@@ -3,17 +3,21 @@ package com.example.dragonflight.game;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 
+import com.example.dragonflight.framework.BoxCollidable;
 import com.example.dragonflight.framework.GameObject;
 import com.example.dragonflight.framework.Metrics;
 import com.example.dragonflight.R;
 
-public class Bullet implements GameObject {
+public class Bullet implements GameObject, BoxCollidable {
     protected float x, y;
     protected final float length;
     protected final float dx, dy;
     protected final float ex, ey;
     protected static Paint paint;
+
+    protected static float laserWidth;
 
     public Bullet(float x, float y, float angle) {
         this.x = x;
@@ -28,7 +32,8 @@ public class Bullet implements GameObject {
         if (paint == null) {
             paint = new Paint();
             paint.setColor(Color.RED);
-            paint.setStrokeWidth(Metrics.size(R.dimen.laser_width));
+            laserWidth = Metrics.size(R.dimen.laser_width);
+            paint.setStrokeWidth(laserWidth);
         }
     }
     @Override
@@ -47,5 +52,12 @@ public class Bullet implements GameObject {
     @Override
     public void draw(Canvas canvas) {
         canvas.drawLine(x, y, x + ex, y + ey, paint);
+    }
+
+    @Override
+    public RectF getBoundingRect() {
+        float hw = laserWidth / 2;
+
+        return new RectF(x - hw, y, x + hw, y + ey);
     }
 }

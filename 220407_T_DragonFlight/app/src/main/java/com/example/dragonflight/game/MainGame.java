@@ -1,9 +1,11 @@
 package com.example.dragonflight.game;
 
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import com.example.dragonflight.R;
+import com.example.dragonflight.framework.CollisionHelper;
 import com.example.dragonflight.framework.GameView;
 import com.example.dragonflight.framework.Metrics;
 import com.example.dragonflight.framework.GameObject;
@@ -11,6 +13,8 @@ import com.example.dragonflight.framework.GameObject;
 import java.util.ArrayList;
 
 public class MainGame {
+    private static final String TAG = MainGame.class.getSimpleName();
+
     private static MainGame singleton;
     public static MainGame getInstance() {
         if (singleton == null) {
@@ -61,6 +65,36 @@ public class MainGame {
         frameTime = (float) (elapsedNanos / 1_000_000_000f);
         for (GameObject gobj : gameObjects) {
             gobj.update();
+        }
+
+        checkCollision();
+    }
+
+    private void checkCollision() {
+        for(GameObject o1 : gameObjects) {
+            if(!(o1 instanceof Enemy)) {  // Enemy가 아닌 경우 무시.
+                continue;
+            }
+            Enemy enemy = (Enemy) o1;
+            boolean removed = false;
+
+            for(GameObject o2 : gameObjects) {
+                if(!(o2 instanceof Bullet)) {  // Bullet이 아닌 경우 무시.
+                    continue;
+                }
+                Bullet bullet = (Bullet) o2;
+
+                if(CollisionHelper.collides(enemy, bullet)) {  // enemy와 bullet이 충돌했을 경우
+                    Log.d(TAG, "Collision");
+                    remove(bullet);
+                    remove(enemy);
+                    removed = true;
+                    break;
+                }
+            }
+            if(removed) {
+                continue;
+            }
         }
     }
 
