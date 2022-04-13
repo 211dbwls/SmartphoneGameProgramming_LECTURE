@@ -1,10 +1,14 @@
 package com.example.dragonflight.game;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.util.Log;
 import android.view.MotionEvent;
 
 import com.example.dragonflight.R;
+import com.example.dragonflight.framework.BoxCollidable;
 import com.example.dragonflight.framework.CollisionHelper;
 import com.example.dragonflight.framework.GameView;
 import com.example.dragonflight.framework.Metrics;
@@ -27,6 +31,8 @@ public class MainGame {
     private Fighter fighter;
     public float frameTime;
 
+    private Paint collisionPaint;
+
     public static void clear() {
         singleton = null;
     }
@@ -40,6 +46,10 @@ public class MainGame {
         gameObjects.add(fighter);
 
         gameObjects.add(new EnemyGenerator());
+
+        collisionPaint = new Paint();
+        collisionPaint.setStyle(Paint.Style.STROKE);
+        collisionPaint.setColor(Color.RED);
     }
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -58,6 +68,11 @@ public class MainGame {
     public void draw(Canvas canvas) {
         for (GameObject gobj : gameObjects) {
             gobj.draw(canvas);
+
+            if(gobj instanceof BoxCollidable) {  // 바운딩 박스 그리기.
+                RectF box = ((BoxCollidable) gobj).getBoundingRect();
+                canvas.drawRect(box, collisionPaint);
+            }
         }
     }
 
