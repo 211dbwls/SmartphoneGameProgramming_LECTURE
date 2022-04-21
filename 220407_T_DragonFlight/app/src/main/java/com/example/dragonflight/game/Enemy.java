@@ -8,6 +8,8 @@ import com.example.dragonflight.framework.Metrics;
 import com.example.dragonflight.framework.Sprite;
 
 public class Enemy extends Sprite implements BoxCollidable {
+    protected final int level;
+
     protected float dy;
 
     public static float size;
@@ -17,9 +19,10 @@ public class Enemy extends Sprite implements BoxCollidable {
             R.mipmap.f_01_01, R.mipmap.f_02_01, R.mipmap.f_03_01, R.mipmap.f_04_01, R.mipmap.f_05_01,
             R.mipmap.f_06_01, R.mipmap.f_07_01, R.mipmap.f_08_01, R.mipmap.f_09_01, R.mipmap.f_10_01
     };
-    
+
     public Enemy(int level, float x, float speed) {
         super(x, -size, size, size, bitmapIds[level - 1]);
+        this.level = level;
 
         dy = speed;
     }
