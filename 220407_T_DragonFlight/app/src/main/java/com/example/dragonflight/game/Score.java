@@ -2,6 +2,7 @@ package com.example.dragonflight.game;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
@@ -46,8 +47,19 @@ public class Score implements GameObject {
 
     @Override
     public void update() {
-        if(displayScore < score) {
+        int diff = score - displayScore;
+        if(diff == 0) {
+            return;
+        }
+
+        if(-10 < diff && diff < 0) {
+            displayScore--;
+        }
+        else if(0 < diff && diff <  10) {
             displayScore++;
+        }
+        else {
+            displayScore += diff / 10;
         }
     }
 

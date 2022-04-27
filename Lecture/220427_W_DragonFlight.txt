@@ -1,0 +1,31 @@
+bullet 없애기
+Bullet을 생성자로 생성하지 않고 factory를 이용하는 방식으로 전환
+Bullet에 recycleBin사용
+
+enemy 없애기
+Enemy를 생성자로 생성하지 않고 factory를 이용하는 방식으로 전환
+Enemy에 recycleBin사용
+
+-
+
+Recyclable, RecycleBin 만들고 Bullet에 적용
+Recyclable, RecycleBin을 Enemy에 적용
+
+-
+
+재활용통 안에 객체가 중복으로 들어가지 않도록
+(총알이 현재 화면에 있으면서 재활용 대상인 경우가 있어서 수정.)
+
+-
+
+Layer 적용
+
+-
+
+CollisionChecker
+
+- 
+
+score
+enemy level에 따라 증가
+점수 증가하는 애니메이션 추가(점수가 커질때 속도에 맞게 올라가도록)
