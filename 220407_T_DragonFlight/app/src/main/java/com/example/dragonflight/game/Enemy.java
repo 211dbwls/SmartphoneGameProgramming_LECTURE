@@ -8,6 +8,8 @@ import com.example.dragonflight.framework.BoxCollidable;
 import com.example.dragonflight.framework.Metrics;
 import com.example.dragonflight.framework.Sprite;
 
+import java.util.ArrayList;
+
 public class Enemy extends AnimSprite implements BoxCollidable {
     public static final float FRAMES_PER_SECOND = 10.0f;
 
@@ -27,7 +29,11 @@ public class Enemy extends AnimSprite implements BoxCollidable {
     public static final int MAX_LEVEL = bitmapIds.length;
     protected final int level;
 
-    public Enemy(int level, float x, float speed) {
+    public static Enemy get(int level, float x, float speed) {
+        return new Enemy(level, x, speed);
+    }
+
+    private Enemy(int level, float x, float speed) {
         super(x, -size, size, size, bitmapIds[level - 1], FRAMES_PER_SECOND, 0);
         this.level = level;
 
