@@ -31,6 +31,11 @@ public class RecycleBin {
             bin = new ArrayList<>();  // 새로 만듦.
             recycleBin.put(clazz, bin);
         }
+
+        if(bin.indexOf(object) >= 0) {  // 이미 recycle bin에 들어간 경우
+            return;
+        }
+
         bin.add(object);  // object를 넣음
     }
 }
