@@ -11,6 +11,8 @@ import com.example.dragonflight.framework.GameObject;
 import com.example.dragonflight.framework.Metrics;
 import com.example.dragonflight.R;
 
+import java.util.ArrayList;
+
 public class Bullet implements GameObject, BoxCollidable {
     private static final String TAG = Bullet.class.getSimpleName();
 
@@ -25,8 +27,21 @@ public class Bullet implements GameObject, BoxCollidable {
 
     protected RectF boundgingBox = new RectF();
 
+    protected static ArrayList<Bullet> recycleBin = new ArrayList<>();
+
     public static Bullet get(float x, float y) {
+        if(recycleBin.size() > 0) {
+            Bullet bullet = recycleBin.remove(0);
+            // Log.d(TAG, "Recycle: " + recycleBin.size() + " bullets");
+            bullet.set(x, y);
+            return bullet;
+        }
         return new Bullet(x, y);
+    }
+
+    private void set(float x, float y) {
+        this.x = x;
+        this.y = y;
     }
 
     private Bullet(float x, float y) {
@@ -57,6 +72,8 @@ public class Bullet implements GameObject, BoxCollidable {
 
         if (y < 0) {
             game.remove(this);
+            recycleBin.add(this);
+            // Log.d(TAG, "Remove: " + recycleBin.size() + " bullets");
         }
     }
 
