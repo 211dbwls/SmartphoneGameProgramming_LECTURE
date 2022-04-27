@@ -1,9 +1,12 @@
 package com.example.dragonflight.game;
 
+import android.graphics.Bitmap;
 import android.graphics.RectF;
+import android.util.Log;
 
 import com.example.dragonflight.R;
 import com.example.dragonflight.framework.AnimSprite;
+import com.example.dragonflight.framework.BitmapPool;
 import com.example.dragonflight.framework.BoxCollidable;
 import com.example.dragonflight.framework.Metrics;
 import com.example.dragonflight.framework.Sprite;
@@ -11,6 +14,8 @@ import com.example.dragonflight.framework.Sprite;
 import java.util.ArrayList;
 
 public class Enemy extends AnimSprite implements BoxCollidable {
+    private static final String TAG = Enemy.class.getSimpleName();
+
     public static final float FRAMES_PER_SECOND = 10.0f;
 
     protected float dy;
@@ -29,8 +34,22 @@ public class Enemy extends AnimSprite implements BoxCollidable {
     public static final int MAX_LEVEL = bitmapIds.length;
     protected final int level;
 
+    protected static ArrayList<Enemy> recycleBin = new ArrayList<>();
+
     public static Enemy get(int level, float x, float speed) {
+        if(recycleBin.size() > 0) {
+            Enemy enemy = recycleBin.remove(0);
+            enemy.set(level, x, speed);
+            return enemy;
+        }
         return new Enemy(level, x, speed);
+    }
+
+    private void set(int level, float x, float speed) {
+        bitmap = BitmapPool.get(bitmapIds[level - 1]);
+        this.x = x;
+        this.y = -size;
+        this.dy = speed;
     }
 
     private Enemy(int level, float x, float speed) {
@@ -38,6 +57,8 @@ public class Enemy extends AnimSprite implements BoxCollidable {
         this.level = level;
 
         dy = speed;
+
+        Log.d(TAG, "Created: " + this);
     }
 
     @Override
@@ -53,6 +74,7 @@ public class Enemy extends AnimSprite implements BoxCollidable {
 
         if (dstRect.top > Metrics.height) {
             MainGame.getInstance().remove(this);
+            recycleBin.add(this);
         }
     }
 

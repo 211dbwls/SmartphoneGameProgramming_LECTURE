@@ -57,7 +57,7 @@ public class Bullet implements GameObject, BoxCollidable {
             paint.setStrokeWidth(laserWidth);
         }
 
-        Log.d(TAG, "Created: " + this);
+        // Log.d(TAG, "Created: " + this);
     }
 
     @Override
