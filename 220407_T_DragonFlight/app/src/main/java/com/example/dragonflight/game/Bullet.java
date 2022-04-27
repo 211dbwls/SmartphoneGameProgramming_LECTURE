@@ -10,10 +10,12 @@ import com.example.dragonflight.framework.BoxCollidable;
 import com.example.dragonflight.framework.GameObject;
 import com.example.dragonflight.framework.Metrics;
 import com.example.dragonflight.R;
+import com.example.dragonflight.framework.Recyclable;
+import com.example.dragonflight.framework.RecycleBin;
 
 import java.util.ArrayList;
 
-public class Bullet implements GameObject, BoxCollidable {
+public class Bullet implements GameObject, BoxCollidable, Recyclable {
     private static final String TAG = Bullet.class.getSimpleName();
 
     protected float x, y;
@@ -27,11 +29,10 @@ public class Bullet implements GameObject, BoxCollidable {
 
     protected RectF boundgingBox = new RectF();
 
-    protected static ArrayList<Bullet> recycleBin = new ArrayList<>();
-
     public static Bullet get(float x, float y) {
-        if(recycleBin.size() > 0) {
-            Bullet bullet = recycleBin.remove(0);
+        Bullet bullet = (Bullet) RecycleBin.get(Bullet.class);
+
+        if(bullet != null) {
             // Log.d(TAG, "Recycle: " + recycleBin.size() + " bullets");
             bullet.set(x, y);
             return bullet;
@@ -72,7 +73,6 @@ public class Bullet implements GameObject, BoxCollidable {
 
         if (y < 0) {
             game.remove(this);
-            recycleBin.add(this);
             // Log.d(TAG, "Remove: " + recycleBin.size() + " bullets");
         }
     }
@@ -85,5 +85,10 @@ public class Bullet implements GameObject, BoxCollidable {
     @Override
     public RectF getBoundingRect() {
         return boundgingBox;
+    }
+
+    @Override
+    public void finish() {
+
     }
 }

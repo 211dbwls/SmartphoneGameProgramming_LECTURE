@@ -13,6 +13,8 @@ import com.example.dragonflight.framework.CollisionHelper;
 import com.example.dragonflight.framework.GameView;
 import com.example.dragonflight.framework.Metrics;
 import com.example.dragonflight.framework.GameObject;
+import com.example.dragonflight.framework.Recyclable;
+import com.example.dragonflight.framework.RecycleBin;
 
 import java.util.ArrayList;
 
@@ -127,6 +129,9 @@ public class MainGame {
             @Override
             public void run() {
                 gameObjects.remove(gameObject);
+                if(gameObject instanceof Recyclable) {
+                    RecycleBin.add((Recyclable) gameObject);
+                }
             }
         });
     }
