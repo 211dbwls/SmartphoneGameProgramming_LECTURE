@@ -22,6 +22,7 @@ public class Score implements GameObject {
     private RectF dstRect = new RectF();
 
     private int score;
+    private int displayScore;
 
     public Score() {
         this.bitmap = BitmapPool.get(R.mipmap.number_24x32);
@@ -45,17 +46,21 @@ public class Score implements GameObject {
 
     @Override
     public void update() {
-
+        if(displayScore < score) {
+            displayScore++;
+        }
     }
 
     @Override
     public void draw(Canvas canvas) {
-        int value = this.score;
+        int value = this.displayScore;
+
         float x = right;
 
         while (value > 0) {
             int digit = value % 10;
             srcRect.set(digit * srcCharWidth, 0, (digit + 1) * srcCharWidth, srcCharHeight);
+
             x -= dstCharWidth;
             dstRect.set(x, top, x + dstCharWidth, top + dstCharHeight);
             canvas.drawBitmap(bitmap, srcRect, dstRect, null);
