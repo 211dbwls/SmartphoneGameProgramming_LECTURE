@@ -29,8 +29,14 @@ public class MainGame {
         return singleton;
     }
     private static final int BALL_COUNT = 10;
-    private ArrayList<GameObject> gameObjects = new ArrayList<>();
+
+    protected ArrayList<ArrayList<GameObject>> layers;
+    public enum Layer {
+        bullet, enemy, player, controller, COUNT
+    }
+
     private Fighter fighter;
+
     public float frameTime;
 
     private Paint collisionPaint;
@@ -40,18 +46,25 @@ public class MainGame {
     }
 
     public void init() {
-        gameObjects.clear();
+        initLayers(Layer.COUNT.ordinal());  // ordinal() : 정수로 만들어주는 함수.
 
         float fx = Metrics.width / 2;
         float fy = Metrics.height - Metrics.size(R.dimen.fighter_y_offset);  // y좌표 고정 위치 설정.
         fighter = new Fighter(fx, fy);
-        gameObjects.add(fighter);
+        add(Layer.player, fighter);
 
-        gameObjects.add(new EnemyGenerator());
+        add(Layer.controller, new EnemyGenerator());
 
         collisionPaint = new Paint();
         collisionPaint.setStyle(Paint.Style.STROKE);
         collisionPaint.setColor(Color.RED);
+    }
+
+    private void initLayers(int count) {  // layer 초기화.
+        layers = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            layers.add(new ArrayList<>());
+        }
     }
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -68,34 +81,42 @@ public class MainGame {
     }
 
     public void draw(Canvas canvas) {
-        for (GameObject gobj : gameObjects) {
-            gobj.draw(canvas);
+        for(ArrayList<GameObject> gameObjects : layers) {  // layer를 돌면서 그림.
+            for (GameObject gobj : gameObjects) {
+                gobj.draw(canvas);
 
-            if(gobj instanceof BoxCollidable) {  // 바운딩 박스 그리기.
-                RectF box = ((BoxCollidable) gobj).getBoundingRect();
-                canvas.drawRect(box, collisionPaint);
+                if (gobj instanceof BoxCollidable) {  // 바운딩 박스 그리기.
+                    RectF box = ((BoxCollidable) gobj).getBoundingRect();
+                    canvas.drawRect(box, collisionPaint);
+                }
             }
         }
     }
 
     public void update(int elapsedNanos) {
         frameTime = (float) (elapsedNanos / 1_000_000_000f);
-        for (GameObject gobj : gameObjects) {
-            gobj.update();
+
+        for(ArrayList<GameObject> gameObjects : layers) {  // layer를 돌면서 update.
+            for (GameObject gobj : gameObjects) {
+                gobj.update();
+            }
         }
 
         checkCollision();
     }
 
     private void checkCollision() {
-        for(GameObject o1 : gameObjects) {
+        ArrayList<GameObject> bullets = layers.get(Layer.bullet.ordinal());
+        ArrayList<GameObject> enemies = layers.get(Layer.enemy.ordinal());
+
+        for(GameObject o1 : enemies) {
             if(!(o1 instanceof Enemy)) {  // Enemy가 아닌 경우 무시.
                 continue;
             }
             Enemy enemy = (Enemy) o1;
             boolean removed = false;
 
-            for(GameObject o2 : gameObjects) {
+            for(GameObject o2 : bullets) {
                 if(!(o2 instanceof Bullet)) {  // Bullet이 아닌 경우 무시.
                     continue;
                 }
@@ -115,11 +136,12 @@ public class MainGame {
         }
     }
 
-    public void add(GameObject gameObject) {
+    public void add(Layer layer, GameObject gameObject) {
         GameView.view.post(new Runnable() {
             @Override
             public void run() {
-                gameObjects.add(gameObject);
+                ArrayList<GameObject> gameObjects = layers.get(layer.ordinal());  // 해당 레이어 찾음.
+                gameObjects.add(gameObject);  // 해당 레이어에 gameObject 추가.
             }
         });
     }
@@ -128,15 +150,25 @@ public class MainGame {
         GameView.view.post(new Runnable() {
             @Override
             public void run() {
-                gameObjects.remove(gameObject);
-                if(gameObject instanceof Recyclable) {
-                    RecycleBin.add((Recyclable) gameObject);
+                for(ArrayList<GameObject> gameObjects : layers) {  // layer을 돌면서
+                    boolean removed = gameObjects.remove(gameObject);  // gameObject 삭제.
+                    if(!removed) continue;
+
+                    if (gameObject instanceof Recyclable) {
+                        RecycleBin.add((Recyclable) gameObject);
+                    }
+                    break;
                 }
             }
         });
     }
 
     public int objectCount() {
-        return gameObjects.size();
+        int count = 0;
+        for(ArrayList<GameObject> gameObjects : layers) {
+            count += gameObjects.size();
+        }
+
+        return count;
     }
 }

@@ -51,7 +51,7 @@ public class EnemyGenerator implements GameObject {
                 level = Enemy.MAX_LEVEL;
             }
             Enemy enemy = Enemy.get(level, tenth * i, fallSpeed);
-            MainGame.getInstance().add(enemy);
+            MainGame.getInstance().add(MainGame.Layer.enemy, enemy);
         }
     }
 
