@@ -34,7 +34,7 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
 
     public static final int MIN_LEVEL = 1;
     public static final int MAX_LEVEL = bitmapIds.length;
-    protected final int level;
+    protected int level;
 
     public static Enemy get(int level, float x, float speed) {
         Enemy enemy = (Enemy) RecycleBin.get(Enemy.class);
@@ -51,6 +51,7 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
         this.x = x;
         this.y = -size;
         this.dy = speed;
+        this.level = level;
     }
 
     private Enemy(int level, float x, float speed) {
@@ -86,5 +87,9 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
     @Override
     public void finish() {
 
+    }
+
+    public int getScore() {
+        return level * 10;
     }
 }
