@@ -54,6 +54,7 @@ public class MainGame {
         add(Layer.player, fighter);
 
         add(Layer.controller, new EnemyGenerator());
+        add(Layer.controller, new CollisionChecker());
 
         collisionPaint = new Paint();
         collisionPaint.setStyle(Paint.Style.STROKE);
@@ -101,39 +102,10 @@ public class MainGame {
                 gobj.update();
             }
         }
-
-        checkCollision();
     }
 
-    private void checkCollision() {
-        ArrayList<GameObject> bullets = layers.get(Layer.bullet.ordinal());
-        ArrayList<GameObject> enemies = layers.get(Layer.enemy.ordinal());
-
-        for(GameObject o1 : enemies) {
-            if(!(o1 instanceof Enemy)) {  // Enemy가 아닌 경우 무시.
-                continue;
-            }
-            Enemy enemy = (Enemy) o1;
-            boolean removed = false;
-
-            for(GameObject o2 : bullets) {
-                if(!(o2 instanceof Bullet)) {  // Bullet이 아닌 경우 무시.
-                    continue;
-                }
-                Bullet bullet = (Bullet) o2;
-
-                if(CollisionHelper.collides(enemy, bullet)) {  // enemy와 bullet이 충돌했을 경우
-                    Log.d(TAG, "Collision");
-                    remove(bullet);
-                    remove(enemy);
-                    removed = true;
-                    break;
-                }
-            }
-            if(removed) {
-                continue;
-            }
-        }
+    public ArrayList<GameObject> objectsAt(Layer layer) {
+        return layers.get(layer.ordinal());
     }
 
     public void add(Layer layer, GameObject gameObject) {
