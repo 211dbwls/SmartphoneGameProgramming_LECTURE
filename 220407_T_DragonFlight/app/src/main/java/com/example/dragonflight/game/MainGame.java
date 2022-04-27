@@ -22,6 +22,8 @@ public class MainGame {
     private static final String TAG = MainGame.class.getSimpleName();
 
     private static MainGame singleton;
+    private Score score;
+
     public static MainGame getInstance() {
         if (singleton == null) {
             singleton = new MainGame();
@@ -32,7 +34,7 @@ public class MainGame {
 
     protected ArrayList<ArrayList<GameObject>> layers;
     public enum Layer {
-        bullet, enemy, player, controller, COUNT
+        ui, bullet, enemy, player, controller, COUNT
     }
 
     private Fighter fighter;
@@ -55,6 +57,10 @@ public class MainGame {
 
         add(Layer.controller, new EnemyGenerator());
         add(Layer.controller, new CollisionChecker());
+
+        score = new Score();
+        score.set(123456);
+        add(Layer.ui, score);
 
         collisionPaint = new Paint();
         collisionPaint.setStyle(Paint.Style.STROKE);
