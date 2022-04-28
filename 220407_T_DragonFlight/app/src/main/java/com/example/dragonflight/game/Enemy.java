@@ -37,7 +37,7 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
     public static final int MAX_LEVEL = bitmapIds.length;
     protected int level;
 
-    protected int life, maxLife;
+    protected float life, maxLife;
 
     protected Gauge gauge;
 
@@ -114,7 +114,7 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
         return level * level * 100;
     }
 
-    public boolean decreaseLife(int power) {
+    public boolean decreaseLife(float power) {
         life -= power;
         if(life <= 0) {
             return true;
