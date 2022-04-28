@@ -1,0 +1,23 @@
+pause되었다가 resume이 되었을 때 frameTime 
+게임이 다시 시작할 때 lastTimeNanos를 0으로 설정
+lastTimeNanos가 0일 때 now로 설정해  흐른 시간이 없도록(바로 실행되도록)
+
+-
+
+Background 생성
+Background 애니메이션
+
+- 
+
+Enemy level에 따라 life 설정
+총알 파워에 따라 데미지 얻고 죽도록
+enemy lifd에 따라 게이지 표시
+
+-
+
+점수에 따라 BUllet power 달라지도록
+
+-
+
+GameActivity 생성(xml 생성하지 않음)
+화면 변경

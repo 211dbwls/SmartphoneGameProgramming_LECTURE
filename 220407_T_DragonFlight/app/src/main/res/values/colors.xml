@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="enemy_gauge_fg">#CDFD0000</color>
     <color name="enemy_gauge_bg">#FFFFFF</color>
+    <color name="main_title_bg">#EC938C</color>
+    <color name="main_title_fg">#3F51B5</color>
 </resources>

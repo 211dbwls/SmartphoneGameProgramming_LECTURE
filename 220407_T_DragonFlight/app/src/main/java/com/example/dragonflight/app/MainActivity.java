@@ -2,7 +2,9 @@ package com.example.dragonflight.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.dragonflight.R;
 import com.example.dragonflight.framework.GameView;
@@ -16,23 +18,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    @Override
-    protected void onPause() {
-        GameView.view.pauseGame();
-        super.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        GameView.view.resumeGame();
-    }
-
-    @Override
-    protected void onDestroy() {
-        GameView.view = null;
-        MainGame.clear();
-
-        super.onDestroy();
+    public void onBtnStart(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
     }
 }
