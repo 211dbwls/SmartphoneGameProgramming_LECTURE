@@ -4,12 +4,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.util.Log;
 import android.view.MotionEvent;
 
 import com.example.dragonflight.R;
 import com.example.dragonflight.framework.BoxCollidable;
-import com.example.dragonflight.framework.CollisionHelper;
 import com.example.dragonflight.framework.GameView;
 import com.example.dragonflight.framework.Metrics;
 import com.example.dragonflight.framework.GameObject;
@@ -61,8 +59,8 @@ public class MainGame {
         score = new Score();
         add(Layer.ui, score);
 
-        add(Layer.bg1, new Background(R.mipmap.bg_city, Metrics.size(R.dimen.bg_speed_city)));
-        add(Layer.bg2, new Background(R.mipmap.clouds, Metrics.size(R.dimen.bg_speed_clouds)));
+        add(Layer.bg1, new VertScrollBackground(R.mipmap.bg_city, Metrics.size(R.dimen.bg_speed_city)));
+        add(Layer.bg2, new VertScrollBackground(R.mipmap.clouds, Metrics.size(R.dimen.bg_speed_clouds)));
 
         collisionPaint = new Paint();
         collisionPaint.setStyle(Paint.Style.STROKE);
