@@ -23,4 +23,7 @@
 
     <dimen name="bg_speed_city">10dp</dimen>
     <dimen name="bg_speed_clouds">20dp</dimen>
+
+    <dimen name="enemy_gauge_fg_width">3dp</dimen>
+    <dimen name="enemy_gauge_bg_width">4dp</dimen>
 </resources>

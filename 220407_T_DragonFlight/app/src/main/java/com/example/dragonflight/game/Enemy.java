@@ -1,6 +1,7 @@
 package com.example.dragonflight.game;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.util.Log;
 
@@ -38,6 +39,8 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
 
     protected int life, maxLife;
 
+    protected Gauge gauge;
+
     public static Enemy get(int level, float x, float speed) {
         Enemy enemy = (Enemy) RecycleBin.get(Enemy.class);
 
@@ -55,6 +58,7 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
         this.dy = speed;
         this.level = level;
         life = maxLife = level * 10;  // level에 따라 life 설정
+        gauge.setValue(1.0f);
     }
 
     private Enemy(int level, float x, float speed) {
@@ -64,6 +68,12 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
         dy = speed;
 
         life = maxLife = level * 10;  // level에 따라 life 설정
+
+        gauge = new Gauge(
+                Metrics.size(R.dimen.enemy_gauge_fg_width), R.color.enemy_gauge_fg,
+                Metrics.size(R.dimen.enemy_gauge_bg_width), R.color.enemy_gauge_bg,
+                size * 0.9f);
+        gauge.setValue(1.0f);
 
         Log.d(TAG, "Created: " + this);
     }
@@ -85,13 +95,19 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
     }
 
     @Override
+    public void draw(Canvas canvas) {
+        super.draw(canvas);
+
+        gauge.draw(canvas, x, y + size * 0.5f);
+    }
+
+    @Override
     public RectF getBoundingRect() {
         return boundingBox;
     }
 
     @Override
     public void finish() {
-
     }
 
     public int getScore() {
@@ -103,6 +119,9 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
         if(life <= 0) {
             return true;
         }
+
+        gauge.setValue((float)life / maxLife);
+
         return false;
     }
 }
