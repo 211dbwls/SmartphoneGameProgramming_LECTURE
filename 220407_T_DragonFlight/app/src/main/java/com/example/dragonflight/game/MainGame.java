@@ -34,7 +34,7 @@ public class MainGame {
 
     protected ArrayList<ArrayList<GameObject>> layers;
     public enum Layer {
-        ui, bullet, enemy, player, controller, COUNT
+        bg, ui, bullet, enemy, player, controller, COUNT
     }
 
     private Fighter fighter;
@@ -60,6 +60,9 @@ public class MainGame {
 
         score = new Score();
         add(Layer.ui, score);
+
+        add(Layer.bg, new Background(R.mipmap.bg_city));
+        add(Layer.bg, new Background(R.mipmap.clouds));
 
         collisionPaint = new Paint();
         collisionPaint.setStyle(Paint.Style.STROKE);
