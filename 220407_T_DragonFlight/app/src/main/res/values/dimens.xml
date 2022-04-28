@@ -16,7 +16,11 @@
 
     <dimen name="enemy_radius">30dp</dimen>
     <dimen name="enemy_initial_speed">100dp</dimen>
+
     <dimen name="score_margin_right">20dp</dimen>
     <dimen name="score_margin_top">20dp</dimen>
     <dimen name="score_digit_width">20dp</dimen>
+
+    <dimen name="bg_speed_city">10dp</dimen>
+    <dimen name="bg_speed_clouds">20dp</dimen>
 </resources>

@@ -4,11 +4,25 @@ import com.example.dragonflight.framework.Metrics;
 import com.example.dragonflight.framework.Sprite;
 
 public class Background extends Sprite {
-    public Background(int bitmapResId) {
+    private final float speed;
+    private final float height;
+
+    public Background(int bitmapResId, float speed) {
         super(Metrics.width / 2, Metrics.height / 2,  Metrics.width, Metrics.height, bitmapResId);
 
-        float height = bitmap.getHeight() * Metrics.width / bitmap.getWidth();  // 이미지의 폭에 따른 높이를 구함
+        this.height = bitmap.getHeight() * Metrics.width / bitmap.getWidth();  // 이미지의 폭에 따른 높이를 구함
         // ImageWidth :  ImageHeight = ScreenWidth : ScreenHeight
+        setDstRect(Metrics.width, height);
+
+        this.speed = speed;
+    }
+
+    @Override
+    public void update() {
+        this.y += speed * MainGame.getInstance().frameTime;
+        if(y > Metrics.height) {
+            y =  0;
+        }
         setDstRect(Metrics.width, height);
     }
 }
