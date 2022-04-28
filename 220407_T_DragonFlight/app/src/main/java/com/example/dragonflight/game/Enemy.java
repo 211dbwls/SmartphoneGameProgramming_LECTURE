@@ -36,6 +36,8 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
     public static final int MAX_LEVEL = bitmapIds.length;
     protected int level;
 
+    protected int life, maxLife;
+
     public static Enemy get(int level, float x, float speed) {
         Enemy enemy = (Enemy) RecycleBin.get(Enemy.class);
 
@@ -52,6 +54,7 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
         this.y = -size;
         this.dy = speed;
         this.level = level;
+        life = maxLife = level * 10;  // level에 따라 life 설정
     }
 
     private Enemy(int level, float x, float speed) {
@@ -59,6 +62,8 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
         this.level = level;
 
         dy = speed;
+
+        life = maxLife = level * 10;  // level에 따라 life 설정
 
         Log.d(TAG, "Created: " + this);
     }
@@ -91,5 +96,13 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
 
     public int getScore() {
         return level * level * 100;
+    }
+
+    public boolean decreaseLife(int power) {
+        life -= power;
+        if(life <= 0) {
+            return true;
+        }
+        return false;
     }
 }

@@ -25,7 +25,7 @@ public class CollisionChecker implements GameObject {
                 continue;
             }
             Enemy enemy = (Enemy) o1;
-            boolean removed = false;
+            boolean collided = false;
 
             for(GameObject o2 : bullets) {
                 if(!(o2 instanceof Bullet)) {  // Bullet이 아닌 경우 무시.
@@ -35,14 +35,20 @@ public class CollisionChecker implements GameObject {
 
                 if(CollisionHelper.collides(enemy, bullet)) {  // enemy와 bullet이 충돌했을 경우
                     Log.d(TAG, "Collision");
+
                     game.remove(bullet);
-                    game.remove(enemy);
-                    game.score.add(enemy.getScore());  // 점수 추가.
-                    removed = true;
+
+                    boolean dead = enemy.decreaseLife(bullet.getPower());
+                    if(dead) {
+                        game.remove(enemy);
+                        game.score.add(enemy.getScore());  // 점수 추가.
+                    }
+
+                    collided = true;
                     break;
                 }
             }
-            if(removed) {
+            if(collided) {
                 continue;
             }
         }

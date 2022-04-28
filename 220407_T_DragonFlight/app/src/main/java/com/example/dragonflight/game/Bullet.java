@@ -32,7 +32,7 @@ public class Bullet implements GameObject, BoxCollidable, Recyclable {
     public static Bullet get(float x, float y) {
         Bullet bullet = (Bullet) RecycleBin.get(Bullet.class);
 
-        if(bullet != null) {
+        if (bullet != null) {
             // Log.d(TAG, "Recycle: " + recycleBin.size() + " bullets");
             bullet.set(x, y);
             return bullet;
@@ -90,5 +90,9 @@ public class Bullet implements GameObject, BoxCollidable, Recyclable {
     @Override
     public void finish() {
 
+    }
+
+    public int getPower() {
+        return 10;
     }
 }
