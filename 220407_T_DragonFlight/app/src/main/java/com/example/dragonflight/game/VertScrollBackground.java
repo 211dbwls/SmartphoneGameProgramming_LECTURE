@@ -22,7 +22,6 @@ public class VertScrollBackground extends Sprite {
     @Override
     public void update() {
         this.y += speed * MainGame.getInstance().frameTime;
-
     }
 
     @Override
