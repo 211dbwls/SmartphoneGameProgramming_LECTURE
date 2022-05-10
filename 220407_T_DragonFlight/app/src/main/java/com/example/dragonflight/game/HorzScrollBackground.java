@@ -5,11 +5,11 @@ import android.graphics.Canvas;
 import com.example.dragonflight.framework.Metrics;
 import com.example.dragonflight.framework.Sprite;
 
-public class HorizonScrollBackground extends Sprite {
+public class HorzScrollBackground extends Sprite {
     private final float speed;
     private final int width;
 
-    public HorizonScrollBackground(int bitmapResId, float speed) {
+    public HorzScrollBackground(int bitmapResId, float speed) {
         super(Metrics.width / 2, Metrics.height / 2,  Metrics.width, Metrics.height, bitmapResId);
 
         this.width = bitmap.getWidth() * Metrics.height / bitmap.getHeight();  // 이미지의 폭에 따른 높이를 구함
