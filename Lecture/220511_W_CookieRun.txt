@@ -1,0 +1,9 @@
+score 수정
+
+- 
+
+MainGame에서 BaseGame 분리
+
+...
+
+Map 으로부터 platform/item 생성하도록

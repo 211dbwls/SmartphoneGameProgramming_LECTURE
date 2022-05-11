@@ -107,4 +107,8 @@ public class BaseGame  {
     public boolean onTouchEvent(MotionEvent event) {
         return false;
     }
+
+    public void finish() {
+        GameView.view.getActivity().finish();
+    }
 }
