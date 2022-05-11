@@ -11,6 +11,7 @@ import com.example.cookierun.framework.RecycleBin;
 public class JellyItem extends ScrollObject {
     private static final String TAG = JellyItem.class.getSimpleName();
 
+    public static final int JELLY_COUNT = 60;
     private static final int SIZE = 66;
     private static final int BORDER = 2;
     private static final int ITEMS_IN_A_ROW = 30;
@@ -31,7 +32,8 @@ public class JellyItem extends ScrollObject {
         int srcLeft = BORDER + (index % ITEMS_IN_A_ROW) * (SIZE + BORDER);
         int srcTop = BORDER + (index / ITEMS_IN_A_ROW) * (SIZE + BORDER);
         srcRect.set(srcLeft, srcTop, srcLeft + SIZE, srcTop + SIZE);
-        Log.d(TAG, "index=" + index + " rect=" + srcRect);
+        //Log.d(TAG, "index=" + index + " rect=" + srcRect);
+
         float left = game.size(unitLeft);
         float top = game.size(unitTop);
         float unit = game.size(1);
