@@ -5,7 +5,7 @@ import com.example.cookierun.framework.BitmapPool;
 import com.example.cookierun.framework.RecycleBin;
 import com.example.cookierun.framework.Sprite;
 
-public class Platform extends Sprite {
+public class Platform extends ScrollObject {
     public enum Type {
         T_10x2, T_2x2, T_3x1;
 
