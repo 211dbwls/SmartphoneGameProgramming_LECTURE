@@ -1,6 +1,5 @@
 package com.example.dragonflight.game;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.util.Log;
@@ -10,12 +9,10 @@ import com.example.dragonflight.framework.AnimSprite;
 import com.example.dragonflight.framework.BaseGame;
 import com.example.dragonflight.framework.BitmapPool;
 import com.example.dragonflight.framework.BoxCollidable;
+import com.example.dragonflight.framework.Gauge;
 import com.example.dragonflight.framework.Metrics;
 import com.example.dragonflight.framework.Recyclable;
 import com.example.dragonflight.framework.RecycleBin;
-import com.example.dragonflight.framework.Sprite;
-
-import java.util.ArrayList;
 
 public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
     private static final String TAG = Enemy.class.getSimpleName();
