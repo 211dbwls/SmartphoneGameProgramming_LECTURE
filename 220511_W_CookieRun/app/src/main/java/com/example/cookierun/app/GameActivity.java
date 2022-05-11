@@ -6,8 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cookierun.framework.BaseGame;
 import com.example.cookierun.framework.GameView;
-import com.example.dragonflight.framework.BaseGame;
-import com.example.dragonflight.framework.GameView;
+import com.example.cookierun.game.MainGame;
 
 public class GameActivity extends AppCompatActivity {
 
