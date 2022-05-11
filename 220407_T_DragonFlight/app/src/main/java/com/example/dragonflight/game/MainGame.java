@@ -56,7 +56,6 @@ public class MainGame {
         add(Layer.controller, new EnemyGenerator());
         add(Layer.controller, new CollisionChecker());
 
-        score = new Score();
         add(Layer.ui, score);
 
         // add(Layer.bg1, new VertScrollBackground(R.mipmap.bg_city, Metrics.size(R.dimen.bg_speed_city)));

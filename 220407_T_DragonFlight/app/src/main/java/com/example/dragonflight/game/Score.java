@@ -25,13 +25,13 @@ public class Score implements GameObject {
     private int score;
     private int displayScore;
 
-    public Score() {
-        this.bitmap = BitmapPool.get(R.mipmap.number_24x32);
+    public Score(int mipmapResId, float marginTop, float marginRight, float charWidth) {
+        this.bitmap = BitmapPool.get(mipmapResId);
 
-        this.right = Metrics.width - Metrics.size(R.dimen.score_margin_right);
-        this.top = Metrics.size(R.dimen.score_margin_top);
+        this.right = Metrics.width - marginRight;
+        this.top = marginTop;
 
-        this.dstCharWidth = Metrics.size(R.dimen.score_digit_width);
+        this.dstCharWidth = charWidth;
         this.srcCharWidth = bitmap.getWidth() / 10;
         this.srcCharHeight = bitmap.getHeight();
         this.dstCharHeight = dstCharWidth * srcCharHeight / srcCharWidth;
