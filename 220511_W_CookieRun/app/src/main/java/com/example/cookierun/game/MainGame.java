@@ -8,6 +8,8 @@ import com.example.cookierun.framework.Sprite;
 public class MainGame extends BaseGame {
     private static final String TAG = MainGame.class.getSimpleName();
 
+    public static final String PARAM_STAGE_INDEX = "stage_index";
+
     public static MainGame get() {
         if (singleton == null) {
             singleton = new MainGame();
@@ -22,6 +24,12 @@ public class MainGame extends BaseGame {
     public float size(float unit) {
         return Metrics.height / 9.5f * unit;
     }
+
+    public void setMapIndex(int mapIndex) {
+        this.mapIndex = mapIndex;
+    }
+
+    protected int mapIndex;
 
     public void init() {
         super.init();
@@ -39,6 +47,6 @@ public class MainGame extends BaseGame {
         add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.cookie_run_bg_2, Metrics.size(R.dimen.bg_scroll_2)));
         add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.cookie_run_bg_3, Metrics.size(R.dimen.bg_scroll_3)));
 
-        MapLoader.get().init();
+        MapLoader.get().init(mapIndex);
         add(Layer.controller.ordinal(), MapLoader.get());}
 }

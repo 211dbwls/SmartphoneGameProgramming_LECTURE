@@ -1,5 +1,6 @@
 package com.example.cookierun.app;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +14,13 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MainGame.get();
+
+        MainGame game = MainGame.get();
+        Intent intent = getIntent();
+
+        int stageIndex = intent.getExtras().getInt(MainGame.PARAM_STAGE_INDEX);
+        game.setMapIndex(stageIndex);
+
         setContentView(new GameView(this, null));
     }
 

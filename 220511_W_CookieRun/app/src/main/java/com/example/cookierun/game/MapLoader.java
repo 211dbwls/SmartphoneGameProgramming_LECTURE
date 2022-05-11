@@ -1,13 +1,20 @@
 package com.example.cookierun.game;
 
+import android.content.res.AssetManager;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
 
 import com.example.cookierun.framework.GameObject;
+import com.example.cookierun.framework.GameView;
 import com.example.cookierun.framework.Metrics;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class MapLoader implements GameObject {
@@ -16,6 +23,10 @@ public class MapLoader implements GameObject {
     private static MapLoader instance;
     private final Random random;
     private final float unit;
+
+    private final ArrayList<String> lines = new ArrayList<String>();
+    private int columns;
+    private int rows;
 
     public float speed = -200;
     public float scroll, itemLeft, platformLeft;
@@ -34,10 +45,15 @@ public class MapLoader implements GameObject {
         return instance;
     }
 
-    public void init() {
+    private static String[] MAP_FILES = {
+            "stage_01.txt", "stage_02.txt",
+    };
+
+    public void init(int mapIndex) {
         scroll = 0;
         itemLeft = platformLeft = 0;
 
+        loadFromTextAsset(MAP_FILES[mapIndex]);
         // itemPaint = new Paint();
         // itemPaint.setColor(Color.RED);
         // itemPaint.setStrokeWidth(5);
@@ -46,6 +62,31 @@ public class MapLoader implements GameObject {
         // platformPaint.setColor(Color.BLUE);
         // platformPaint.setStrokeWidth(5);
     }
+
+    private void loadFromTextAsset(String filename) {
+        AssetManager assets = GameView.view.getContext().getAssets();
+        try {
+            InputStream is = assets.open(filename);
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader reader = new BufferedReader(isr);
+            String header = reader.readLine();
+            String[] comps = header.split(" ");
+            columns = Integer.parseInt(comps[0]);
+            rows = Integer.parseInt(comps[1]);
+            Log.d(TAG, "Col=" + columns + " Row="  + rows);
+            while (true) {
+                String line = reader.readLine();
+                if (line == null) {
+                    break;
+                }
+                Log.d(TAG,  "-row=" + line);
+                lines.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void update(float frameTime) {
         scroll += speed * frameTime;
