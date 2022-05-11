@@ -29,8 +29,11 @@ public class MainGame extends BaseGame {
                 size(2), size(7),
                 size(2), size(2),
                 R.mipmap.cookie);
-        add(Layer.player.ordinal(), player);add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.cookie, Metrics.size(R.dimen.bg_scroll_1)));
+        add(Layer.player.ordinal(), player);
 
+        add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.cookie_run_bg_1, Metrics.size(R.dimen.bg_scroll_1)));
+        add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.cookie_run_bg_2, Metrics.size(R.dimen.bg_scroll_2)));
+        add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.cookie_run_bg_3, Metrics.size(R.dimen.bg_scroll_3)));
     }
 
 }
