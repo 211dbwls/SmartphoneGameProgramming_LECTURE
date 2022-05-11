@@ -3,6 +3,7 @@ package com.example.dragonflight.game;
 import android.graphics.Canvas;
 
 import com.example.dragonflight.R;
+import com.example.dragonflight.framework.BaseGame;
 import com.example.dragonflight.framework.GameObject;
 import com.example.dragonflight.framework.Metrics;
 
@@ -27,7 +28,7 @@ public class EnemyGenerator implements GameObject {
 
     @Override
     public void update() {
-        float frameTime = MainGame.getInstance().frameTime;
+        float frameTime = BaseGame.getInstance().frameTime;
         elapsedTime += frameTime;
 
         if (elapsedTime > spawnInterval) {
@@ -51,7 +52,7 @@ public class EnemyGenerator implements GameObject {
                 level = Enemy.MAX_LEVEL;
             }
             Enemy enemy = Enemy.get(level, tenth * i, fallSpeed);
-            MainGame.getInstance().add(MainGame.Layer.enemy, enemy);
+            MainGame.get().add(MainGame.Layer.enemy, enemy);
         }
     }
 

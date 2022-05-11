@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.dragonflight.R;
 import com.example.dragonflight.framework.AnimSprite;
+import com.example.dragonflight.framework.BaseGame;
 import com.example.dragonflight.framework.BitmapPool;
 import com.example.dragonflight.framework.BoxCollidable;
 import com.example.dragonflight.framework.Metrics;
@@ -82,7 +83,7 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
     public void update() {
         // super.update();
 
-        float frameTime = MainGame.getInstance().frameTime;
+        float frameTime = BaseGame.getInstance().frameTime;
         y += dy * frameTime;
         setDstRectWithRadius();
 
@@ -90,7 +91,7 @@ public class Enemy extends AnimSprite implements BoxCollidable, Recyclable {
         boundingBox.inset(size / 10, size / 10);
 
         if (dstRect.top > Metrics.height) {
-            MainGame.getInstance().remove(this);
+            BaseGame.getInstance().remove(this);
         }
     }
 

@@ -7,6 +7,7 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 
 import com.example.dragonflight.R;
+import com.example.dragonflight.framework.BaseGame;
 import com.example.dragonflight.framework.BoxCollidable;
 import com.example.dragonflight.framework.GameView;
 import com.example.dragonflight.framework.Metrics;
@@ -16,34 +17,23 @@ import com.example.dragonflight.framework.RecycleBin;
 
 import java.util.ArrayList;
 
-public class MainGame {
+public class MainGame extends BaseGame {
     private static final String TAG = MainGame.class.getSimpleName();
 
-    private static MainGame singleton;
-    Score score;
-
-    public static MainGame getInstance() {
+    public static MainGame get() {
         if (singleton == null) {
             singleton = new MainGame();
         }
-        return singleton;
+        return (MainGame) singleton;
     }
-    private static final int BALL_COUNT = 10;
 
-    protected ArrayList<ArrayList<GameObject>> layers;
     public enum Layer {
         bg1, bullet, enemy, player, bg2, ui, controller, COUNT
     }
 
     private Fighter fighter;
 
-    public float frameTime;
-
-    private Paint collisionPaint;
-
-    public static void clear() {
-        singleton = null;
-    }
+    Score score;
 
     public void init() {
         initLayers(Layer.COUNT.ordinal());  // ordinal() : 정수로 만들어주는 함수.
@@ -63,17 +53,6 @@ public class MainGame {
 
         add(Layer.bg1, new HorzScrollBackground(R.mipmap.bg_city, Metrics.size(R.dimen.bg_speed_city)));
         add(Layer.bg2, new HorzScrollBackground(R.mipmap.clouds, Metrics.size(R.dimen.bg_speed_clouds)));
-
-        collisionPaint = new Paint();
-        collisionPaint.setStyle(Paint.Style.STROKE);
-        collisionPaint.setColor(Color.RED);
-    }
-
-    private void initLayers(int count) {  // layer 초기화.
-        layers = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            layers.add(new ArrayList<>());
-        }
     }
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -89,66 +68,11 @@ public class MainGame {
         return false;
     }
 
-    public void draw(Canvas canvas) {
-        for(ArrayList<GameObject> gameObjects : layers) {  // layer를 돌면서 그림.
-            for (GameObject gobj : gameObjects) {
-                gobj.draw(canvas);
-
-                if (gobj instanceof BoxCollidable) {  // 바운딩 박스 그리기.
-                    RectF box = ((BoxCollidable) gobj).getBoundingRect();
-                    canvas.drawRect(box, collisionPaint);
-                }
-            }
-        }
-    }
-
-    public void update(int elapsedNanos) {
-        frameTime = (float) (elapsedNanos / 1_000_000_000f);
-
-        for(ArrayList<GameObject> gameObjects : layers) {  // layer를 돌면서 update.
-            for (GameObject gobj : gameObjects) {
-                gobj.update();
-            }
-        }
-    }
-
     public ArrayList<GameObject> objectsAt(Layer layer) {
         return layers.get(layer.ordinal());
     }
 
     public void add(Layer layer, GameObject gameObject) {
-        GameView.view.post(new Runnable() {
-            @Override
-            public void run() {
-                ArrayList<GameObject> gameObjects = layers.get(layer.ordinal());  // 해당 레이어 찾음.
-                gameObjects.add(gameObject);  // 해당 레이어에 gameObject 추가.
-            }
-        });
-    }
-
-    public void remove(GameObject gameObject) {
-        GameView.view.post(new Runnable() {
-            @Override
-            public void run() {
-                for(ArrayList<GameObject> gameObjects : layers) {  // layer을 돌면서
-                    boolean removed = gameObjects.remove(gameObject);  // gameObject 삭제.
-                    if(!removed) continue;
-
-                    if (gameObject instanceof Recyclable) {
-                        RecycleBin.add((Recyclable) gameObject);
-                    }
-                    break;
-                }
-            }
-        });
-    }
-
-    public int objectCount() {
-        int count = 0;
-        for(ArrayList<GameObject> gameObjects : layers) {
-            count += gameObjects.size();
-        }
-
-        return count;
+        add(layer.ordinal(), gameObject);
     }
 }

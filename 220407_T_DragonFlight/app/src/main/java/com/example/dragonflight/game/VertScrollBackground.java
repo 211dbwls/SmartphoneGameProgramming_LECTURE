@@ -2,6 +2,7 @@ package com.example.dragonflight.game;
 
 import android.graphics.Canvas;
 
+import com.example.dragonflight.framework.BaseGame;
 import com.example.dragonflight.framework.Metrics;
 import com.example.dragonflight.framework.Sprite;
 
@@ -21,7 +22,7 @@ public class VertScrollBackground extends Sprite {
 
     @Override
     public void update() {
-        this.y += speed * MainGame.getInstance().frameTime;
+        this.y += speed * BaseGame.getInstance().frameTime;
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
 
+import com.example.dragonflight.framework.BaseGame;
 import com.example.dragonflight.framework.BoxCollidable;
 import com.example.dragonflight.framework.GameObject;
 import com.example.dragonflight.framework.Metrics;
@@ -68,7 +69,7 @@ public class Bullet implements GameObject, BoxCollidable, Recyclable {
 
     @Override
     public void update() {
-        MainGame game = MainGame.getInstance();
+        BaseGame game = BaseGame.getInstance();
 
         float frameTime = game.frameTime;
         y -= speed * frameTime;

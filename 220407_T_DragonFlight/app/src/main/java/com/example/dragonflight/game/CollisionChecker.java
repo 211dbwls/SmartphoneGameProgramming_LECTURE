@@ -5,6 +5,7 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import android.graphics.Canvas;
 import android.util.Log;
 
+import com.example.dragonflight.framework.BaseGame;
 import com.example.dragonflight.framework.CollisionHelper;
 import com.example.dragonflight.framework.GameObject;
 
@@ -15,7 +16,7 @@ public class CollisionChecker implements GameObject {
 
     @Override
     public void update() {
-        MainGame game = MainGame.getInstance();
+        MainGame game = MainGame.get();
 
         ArrayList<GameObject> bullets = game.objectsAt(MainGame.Layer.bullet);
         ArrayList<GameObject> enemies = game.objectsAt(MainGame.Layer.enemy);

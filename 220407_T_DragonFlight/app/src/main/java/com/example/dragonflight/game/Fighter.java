@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
+import com.example.dragonflight.framework.BaseGame;
 import com.example.dragonflight.framework.Metrics;
 import com.example.dragonflight.R;
 import com.example.dragonflight.framework.Sprite;
@@ -37,7 +38,7 @@ public class Fighter extends Sprite {
     }
 
     public void update() {
-        float frameTime = MainGame.getInstance().frameTime;
+        float frameTime = BaseGame.getInstance().frameTime;
         elapsedTimeForFire += frameTime;
         if(elapsedTimeForFire >= fireInterval) {  // 주기적으로 총알 발사되도록.
             fire();
@@ -79,12 +80,12 @@ public class Fighter extends Sprite {
     }
 
     public void fire() {
-        int score = MainGame.getInstance().score.get();
+        int score = MainGame.get().score.get();
         if(score > 100000) {
             score =  100000;
         }
         float power = 10 + score / 1000;
         Bullet bullet = Bullet.get(x, y, power);
-        MainGame.getInstance().add(MainGame.Layer.bullet, bullet);
+        MainGame.get().add(MainGame.Layer.bullet, bullet);
     }
 }

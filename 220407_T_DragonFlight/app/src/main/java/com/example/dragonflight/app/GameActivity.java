@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.dragonflight.framework.BaseGame;
 import com.example.dragonflight.framework.GameView;
 import com.example.dragonflight.game.MainGame;
 
@@ -30,7 +31,8 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         GameView.view = null;
-        MainGame.clear();
+        //MainGame.clear();
+        BaseGame.clear();
 
         super.onDestroy();
     }
