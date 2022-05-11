@@ -15,13 +15,15 @@ public class MainGame extends BaseGame {
         return (MainGame)singleton;
     }
     public enum Layer {
-        player, COUNT
+        bg, player, COUNT
     }
 
     public void init() {
         initLayers(Layer.COUNT.ordinal());
 
         add(Layer.player.ordinal(), new Sprite(Metrics.width / 2, Metrics.height / 2, 500, 500, R.mipmap.cookie));
+        add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.cookie, Metrics.size(R.dimen.bg_scroll_1)));
+
     }
 
 }
