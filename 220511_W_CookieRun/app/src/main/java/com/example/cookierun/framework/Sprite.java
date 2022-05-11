@@ -8,6 +8,7 @@ public class Sprite implements GameObject {
     protected Bitmap bitmap;
     protected RectF dstRect = new RectF();
     protected float x, y, radius;
+
     public Sprite(float x, float y, int radiusDimenResId, int bitmapResId) {
         this.x = x;
         this.y = y;
@@ -22,6 +23,9 @@ public class Sprite implements GameObject {
         this.radius = w / 2;
         dstRect.set(x - w / 2, y - h / 2, x + w / 2, y + h / 2);
         bitmap = BitmapPool.get(bitmapResId);
+    }
+
+    protected Sprite() {
     }
 
     public void setDstRectWithRadius() {
