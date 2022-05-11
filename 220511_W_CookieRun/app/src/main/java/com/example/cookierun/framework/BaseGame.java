@@ -10,7 +10,8 @@ import java.util.ArrayList;
 
 public class BaseGame  {
     protected static BaseGame singleton;
-    public float frameTime, elapsedTime;
+    protected float frameTime, elapsedTime;
+
     public static BaseGame getInstance() {
 //        if (singleton == null) {
 //            singleton = new BaseGame();
@@ -44,7 +45,7 @@ public class BaseGame  {
         elapsedTime += frameTime;
         for (ArrayList<GameObject> gameObjects : layers) {
             for (GameObject gobj : gameObjects) {
-                gobj.update();
+                gobj.update(frameTime);
             }
         }
     }
