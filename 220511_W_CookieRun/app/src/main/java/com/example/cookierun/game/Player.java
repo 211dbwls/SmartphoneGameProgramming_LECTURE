@@ -2,12 +2,14 @@ package com.example.cookierun.game;
 
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.util.Log;
 
 import com.example.cookierun.R;
 import com.example.cookierun.framework.BoxCollidable;
 import com.example.cookierun.framework.SheetSprite;
 
 public class Player extends SheetSprite implements BoxCollidable {
+    private static final String TAG = Player.class.getSimpleName();
 
     private static final float FRAMES_PER_SECOND = 8f;  // 1초에 8장
 
@@ -28,5 +30,9 @@ public class Player extends SheetSprite implements BoxCollidable {
     @Override
     public RectF getBoundingRect() {
         return dstRect;
+    }
+
+    public void jump() {
+        Log.d(TAG, "Jump");
     }
 }

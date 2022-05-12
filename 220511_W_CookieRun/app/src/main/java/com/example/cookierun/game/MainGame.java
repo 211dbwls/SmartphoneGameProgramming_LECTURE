@@ -1,5 +1,7 @@
 package com.example.cookierun.game;
 
+import android.view.MotionEvent;
+
 import com.example.cookierun.R;
 import com.example.cookierun.framework.BaseGame;
 import com.example.cookierun.framework.Metrics;
@@ -9,6 +11,8 @@ public class MainGame extends BaseGame {
     private static final String TAG = MainGame.class.getSimpleName();
 
     public static final String PARAM_STAGE_INDEX = "stage_index";
+
+    private Player player;
 
     public static MainGame get() {
         if (singleton == null) {
@@ -37,7 +41,7 @@ public class MainGame extends BaseGame {
 
         initLayers(Layer.COUNT.ordinal());
 
-        Player player = new Player(size(2), size(7), size(2), size(2));
+        player = new Player(size(2), size(7), size(2), size(2));
         add(Layer.player.ordinal(), player);
 
         add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.cookie_run_bg_1, Metrics.size(R.dimen.bg_scroll_1)));
@@ -45,5 +49,16 @@ public class MainGame extends BaseGame {
         add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.cookie_run_bg_3, Metrics.size(R.dimen.bg_scroll_3)));
 
         MapLoader.get().init(mapIndex);
-        add(Layer.controller.ordinal(), MapLoader.get());}
+        add(Layer.controller.ordinal(), MapLoader.get());
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            player.jump();
+            return true;
+        }
+        return false;
+    }
+
 }
