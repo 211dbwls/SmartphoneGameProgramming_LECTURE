@@ -8,11 +8,15 @@ import com.example.cookierun.game.Player;
 import java.util.ArrayList;
 
 public class CollisionChecker implements GameObject {
+    private final Player player;
 
+    public CollisionChecker(Player player) {
+        this.player = player;
+    }
     @Override
     public void update(float frameTime) {
         MainGame game = MainGame.get();
-        Player player = (Player) game.objectsAt(MainGame.Layer.player.ordinal()).get(0);
+        // Player player = (Player) game.objectsAt(MainGame.Layer.player.ordinal()).get(0);
         ArrayList<GameObject> items = game.objectsAt(MainGame.Layer.item.ordinal());
 
         for (GameObject item: items) {

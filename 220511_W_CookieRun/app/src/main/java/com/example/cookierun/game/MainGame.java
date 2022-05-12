@@ -54,7 +54,7 @@ public class MainGame extends BaseGame {
         MapLoader mapLoader = MapLoader.get();
         mapLoader.init(mapIndex);
         add(Layer.controller.ordinal(), mapLoader);
-        add(Layer.controller.ordinal(), new CollisionChecker());
+        add(Layer.controller.ordinal(), new CollisionChecker(player));
     }
 
     @Override
