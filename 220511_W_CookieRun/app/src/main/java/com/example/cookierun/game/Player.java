@@ -2,7 +2,6 @@ package com.example.cookierun.game;
 
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.util.Log;
 
 import com.example.cookierun.R;
 import com.example.cookierun.framework.BoxCollidable;
@@ -25,10 +24,21 @@ public class Player extends SheetSprite implements BoxCollidable {
         run, jump, doubleJump, falling, COUNT;
 
         Rect[] srcRects() {
-            return rects[this.ordinal()];
+            return rectsArray[this.ordinal()];
         }
 
-        static Rect[][] rects;
+        void applyInsets(RectF dstRect) {
+            float[] inset = insets[this.ordinal()];
+            float w = dstRect.width();
+            float h = dstRect.height();
+
+            dstRect.left += w * inset[0];
+            dstRect.top += h * inset[1];
+            dstRect.right -= w * inset[2];
+            dstRect.bottom -= h * inset[3];
+        }
+
+        static Rect[][] rectsArray;
 
         static void initRects() {
             int[][] indices = {
@@ -38,8 +48,9 @@ public class Player extends SheetSprite implements BoxCollidable {
                     new int[] { 0 }, // falling
             };
 
-            ArrayList<Rect[]> rectsList = new ArrayList<>();
-            for (int[] ints : indices) {
+            rectsArray = new Rect[indices.length][];
+            for (int r = 0; r < indices.length; r++) {
+                int[] ints = indices[r];
                 Rect[] rects = new Rect[ints.length];
                 for (int i = 0; i < ints.length; i++) {
                     int idx = ints[i];
@@ -48,10 +59,16 @@ public class Player extends SheetSprite implements BoxCollidable {
                     Rect rect = new Rect(l, t, l + 140, t + 140);
                     rects[i] = rect;
                 }
-                rectsList.add(rects);
+                rectsArray[r] = rects;
             }
-            rects = rectsList.toArray(new Rect[rectsList.size()][]);
         }
+
+        float[][] insets = {
+                new float[] { 0.10f, 0.05f, 0.10f, 0.00f }, // run
+                new float[] { 0.10f, 0.20f, 0.10f, 0.00f }, // jump
+                new float[] { 0.10f, 0.15f, 0.10f, 0.00f }, // doubleJump
+                new float[] { 0.10f, 0.05f, 0.10f, 0.00f }, // falling
+        };
     }
 
     private State state = State.run;
@@ -59,6 +76,8 @@ public class Player extends SheetSprite implements BoxCollidable {
     private final float jumpPower;
     private final float gravity;
     private float jumpSpeed;
+
+    protected RectF collisionBox = new RectF();
 
     public Player(float x, float y, float w, float h) {
         super(R.mipmap.cookie, FRAMES_PER_SECOND);
@@ -75,12 +94,12 @@ public class Player extends SheetSprite implements BoxCollidable {
 
     @Override
     public RectF getBoundingRect() {
-        return dstRect;
+        return collisionBox;
     }
 
     @Override
     public void update(float frameTime) {
-        float foot = dstRect.bottom;
+        float foot = collisionBox.bottom;
 
         switch (state) {
             case jump:
@@ -100,6 +119,7 @@ public class Player extends SheetSprite implements BoxCollidable {
                 }
                 y += dy;
                 dstRect.offset(0, dy);
+                collisionBox.offset(0, dy);
                 break;
             case run:
                 float platformTop = findNearestPlatformTop(foot);
@@ -150,5 +170,7 @@ public class Player extends SheetSprite implements BoxCollidable {
     private void setState(State state) {
         this.state = state;
         srcRects = state.srcRects();
+        collisionBox.set(dstRect);
+        state.applyInsets(collisionBox);
     }
 }
