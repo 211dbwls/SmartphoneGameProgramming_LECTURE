@@ -2,10 +2,13 @@ package com.example.cookierun.game;
 
 import android.view.MotionEvent;
 
+import com.example.cookierun.BuildConfig;
 import com.example.cookierun.R;
 import com.example.cookierun.framework.BaseGame;
+import com.example.cookierun.framework.GameObject;
 import com.example.cookierun.framework.Metrics;
-import com.example.cookierun.framework.Sprite;
+
+import java.util.ArrayList;
 
 public class MainGame extends BaseGame {
     private static final String TAG = MainGame.class.getSimpleName();
@@ -37,7 +40,6 @@ public class MainGame extends BaseGame {
 
     public void init() {
         super.init();
-        showsBoxCollidables = true;
 
         initLayers(Layer.COUNT.ordinal());
 

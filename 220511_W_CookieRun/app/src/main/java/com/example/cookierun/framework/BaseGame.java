@@ -6,6 +6,8 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 
+import com.example.cookierun.BuildConfig;
+
 import java.util.ArrayList;
 
 public class BaseGame  {
@@ -23,13 +25,13 @@ public class BaseGame  {
     }
     protected ArrayList<ArrayList<GameObject>> layers;
     protected Paint collisionPaint;
-    protected boolean showsBoxCollidables;
 
     public void init() {
-        collisionPaint = new Paint();
-        collisionPaint.setStyle(Paint.Style.STROKE);
-        collisionPaint.setColor(Color.RED);
-
+        if (BuildConfig.showsCollisionBox) {
+            collisionPaint = new Paint();
+            collisionPaint.setStyle(Paint.Style.STROKE);
+            collisionPaint.setColor(Color.RED);
+        }
         elapsedTime = 0;
     }
 
@@ -56,7 +58,8 @@ public class BaseGame  {
                 gobj.draw(canvas);
             }
         }
-        if (showsBoxCollidables) {
+
+        if (BuildConfig.showsCollisionBox) {
             drawBoxCollidables(canvas);
         }
     }
@@ -108,6 +111,9 @@ public class BaseGame  {
         return false;
     }
 
+    public ArrayList<GameObject> objectsAt(int layerIndex) {
+        return layers.get(layerIndex);
+    }
     public void finish() {
         GameView.view.getActivity().finish();
     }
