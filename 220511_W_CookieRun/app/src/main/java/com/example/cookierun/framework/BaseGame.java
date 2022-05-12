@@ -7,6 +7,7 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 
 import com.example.cookierun.BuildConfig;
+import com.example.cookierun.game.Touchable;
 
 import java.util.ArrayList;
 
@@ -108,7 +109,24 @@ public class BaseGame  {
     }
 
     public boolean onTouchEvent(MotionEvent event) {
+        int touchLayer = getTouchLayerIndex();
+        if (touchLayer < 0) {
+            return false;
+        }
+
+        ArrayList<GameObject> gameObjects = layers.get(touchLayer);
+        for (GameObject gobj : gameObjects) {
+            if (!(gobj instanceof Touchable)) {
+                continue;
+            }
+            boolean processed = ((Touchable) gobj).onTouchEvent(event);
+            if (processed) return true;
+        }
         return false;
+    }
+
+    protected int getTouchLayerIndex() {
+        return -1;
     }
 
     public ArrayList<GameObject> objectsAt(int layerIndex) {
