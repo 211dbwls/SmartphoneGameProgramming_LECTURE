@@ -3,11 +3,10 @@ package com.example.cookierun.game;
 import com.example.cookierun.R;
 import com.example.cookierun.framework.BitmapPool;
 import com.example.cookierun.framework.RecycleBin;
-import com.example.cookierun.framework.Sprite;
 
 import java.util.Random;
 
-public class Platform extends ScrollObject {
+public class Platform extends MapSprite {
     public enum Type {
         T_10x2, T_2x2, T_3x1, COUNT;
 

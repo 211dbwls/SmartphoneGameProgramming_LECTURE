@@ -2,13 +2,12 @@ package com.example.cookierun.game;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.util.Log;
 
 import com.example.cookierun.R;
 import com.example.cookierun.framework.BitmapPool;
 import com.example.cookierun.framework.RecycleBin;
 
-public class JellyItem extends ScrollObject {
+public class JellyItem extends MapSprite {
     private static final String TAG = JellyItem.class.getSimpleName();
 
     public static final int JELLY_COUNT = 60;

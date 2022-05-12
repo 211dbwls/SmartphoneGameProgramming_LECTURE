@@ -1,17 +1,16 @@
 package com.example.cookierun.game;
 
 import android.graphics.RectF;
-import android.util.Log;
 
 import com.example.cookierun.framework.BaseGame;
 import com.example.cookierun.framework.BoxCollidable;
 import com.example.cookierun.framework.Recyclable;
 import com.example.cookierun.framework.Sprite;
 
-public class ScrollObject extends Sprite implements Recyclable, BoxCollidable {
-    private static final String TAG = ScrollObject.class.getSimpleName();
+public class MapSprite extends Sprite implements Recyclable, BoxCollidable {
+    private static final String TAG = MapSprite.class.getSimpleName();
 
-    protected ScrollObject() {
+    protected MapSprite() {
         // Log.d(TAG, "New:" + this);
     }
 
