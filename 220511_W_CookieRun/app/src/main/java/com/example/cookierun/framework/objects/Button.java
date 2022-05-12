@@ -1,8 +1,8 @@
-package com.example.cookierun.game;
+package com.example.cookierun.framework.objects;
 
 import android.view.MotionEvent;
 
-import com.example.cookierun.framework.Sprite;
+import com.example.cookierun.framework.interfaces.Touchable;
 
 public class Button extends Sprite implements Touchable {
     protected final Callback callback;

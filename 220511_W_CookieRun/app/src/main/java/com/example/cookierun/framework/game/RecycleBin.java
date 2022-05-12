@@ -1,4 +1,6 @@
-package com.example.cookierun.framework;
+package com.example.cookierun.framework.game;
+
+import com.example.cookierun.framework.interfaces.Recyclable;
 
 import java.util.ArrayList;
 import java.util.HashMap;

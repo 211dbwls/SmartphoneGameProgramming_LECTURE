@@ -1,4 +1,4 @@
-package com.example.cookierun.framework;
+package com.example.cookierun.framework.view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,6 +13,9 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+
+import com.example.cookierun.framework.game.BaseGame;
+import com.example.cookierun.framework.res.Metrics;
 
 public class GameView extends View implements Choreographer.FrameCallback {
     public static GameView view;

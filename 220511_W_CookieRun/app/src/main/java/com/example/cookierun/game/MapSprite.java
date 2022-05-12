@@ -2,10 +2,10 @@ package com.example.cookierun.game;
 
 import android.graphics.RectF;
 
-import com.example.cookierun.framework.BaseGame;
-import com.example.cookierun.framework.BoxCollidable;
-import com.example.cookierun.framework.Recyclable;
-import com.example.cookierun.framework.Sprite;
+import com.example.cookierun.framework.game.BaseGame;
+import com.example.cookierun.framework.interfaces.BoxCollidable;
+import com.example.cookierun.framework.interfaces.Recyclable;
+import com.example.cookierun.framework.objects.Sprite;
 
 public class MapSprite extends Sprite implements Recyclable, BoxCollidable {
     private static final String TAG = MapSprite.class.getSimpleName();

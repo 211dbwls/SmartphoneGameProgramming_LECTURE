@@ -1,7 +1,10 @@
-package com.example.cookierun.framework;
+package com.example.cookierun.game;
 
 import android.graphics.Canvas;
 
+import com.example.cookierun.framework.interfaces.BoxCollidable;
+import com.example.cookierun.framework.interfaces.GameObject;
+import com.example.cookierun.framework.util.CollisionHelper;
 import com.example.cookierun.game.MainGame;
 import com.example.cookierun.game.Player;
 

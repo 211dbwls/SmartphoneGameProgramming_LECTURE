@@ -1,9 +1,10 @@
-package com.example.cookierun.framework;
+package com.example.cookierun.framework.res;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
+
+import com.example.cookierun.framework.view.GameView;
 
 import java.util.HashMap;
 

@@ -1,6 +1,8 @@
-package com.example.cookierun.framework;
+package com.example.cookierun.framework.util;
 
 import android.graphics.RectF;
+
+import com.example.cookierun.framework.interfaces.BoxCollidable;
 
 public class CollisionHelper {
     public static boolean collides(BoxCollidable o1, BoxCollidable o2) {

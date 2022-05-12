@@ -4,10 +4,10 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 
 import com.example.cookierun.R;
-import com.example.cookierun.framework.BoxCollidable;
-import com.example.cookierun.framework.GameObject;
-import com.example.cookierun.framework.Metrics;
-import com.example.cookierun.framework.SheetSprite;
+import com.example.cookierun.framework.interfaces.BoxCollidable;
+import com.example.cookierun.framework.interfaces.GameObject;
+import com.example.cookierun.framework.res.Metrics;
+import com.example.cookierun.framework.objects.SheetSprite;
 
 import java.util.ArrayList;
 

@@ -1,8 +1,8 @@
 package com.example.cookierun.game;
 
 import com.example.cookierun.R;
-import com.example.cookierun.framework.BitmapPool;
-import com.example.cookierun.framework.RecycleBin;
+import com.example.cookierun.framework.res.BitmapPool;
+import com.example.cookierun.framework.game.RecycleBin;
 
 import java.util.Random;
 

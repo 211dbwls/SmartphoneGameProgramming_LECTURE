@@ -1,7 +1,9 @@
-package com.example.cookierun.framework;
+package com.example.cookierun.framework.res;
 
 import android.content.res.Resources;
 import android.util.TypedValue;
+
+import com.example.cookierun.framework.view.GameView;
 
 public class Metrics {
     public static int width;

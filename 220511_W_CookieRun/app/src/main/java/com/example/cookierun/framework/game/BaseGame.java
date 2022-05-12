@@ -1,4 +1,4 @@
-package com.example.cookierun.framework;
+package com.example.cookierun.framework.game;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -7,7 +7,11 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 
 import com.example.cookierun.BuildConfig;
-import com.example.cookierun.game.Touchable;
+import com.example.cookierun.framework.interfaces.BoxCollidable;
+import com.example.cookierun.framework.interfaces.GameObject;
+import com.example.cookierun.framework.view.GameView;
+import com.example.cookierun.framework.interfaces.Recyclable;
+import com.example.cookierun.framework.interfaces.Touchable;
 
 import java.util.ArrayList;
 

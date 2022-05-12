@@ -5,8 +5,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.cookierun.framework.BaseGame;
-import com.example.cookierun.framework.GameView;
+import com.example.cookierun.framework.game.BaseGame;
+import com.example.cookierun.framework.view.GameView;
 import com.example.cookierun.game.MainGame;
 
 public class GameActivity extends AppCompatActivity {

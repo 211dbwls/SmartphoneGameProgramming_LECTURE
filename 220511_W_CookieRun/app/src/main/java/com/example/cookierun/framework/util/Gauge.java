@@ -1,10 +1,12 @@
-package com.example.cookierun.framework;
+package com.example.cookierun.framework.util;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import androidx.core.content.ContextCompat;
+
+import com.example.cookierun.framework.view.GameView;
 
 public class Gauge {
     private final float width;

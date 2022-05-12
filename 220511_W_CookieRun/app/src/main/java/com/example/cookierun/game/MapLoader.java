@@ -4,9 +4,9 @@ import android.content.res.AssetManager;
 import android.graphics.Canvas;
 
 import com.example.cookierun.R;
-import com.example.cookierun.framework.GameObject;
-import com.example.cookierun.framework.GameView;
-import com.example.cookierun.framework.Metrics;
+import com.example.cookierun.framework.interfaces.GameObject;
+import com.example.cookierun.framework.view.GameView;
+import com.example.cookierun.framework.res.Metrics;
 
 import java.io.BufferedReader;
 import java.io.IOException;

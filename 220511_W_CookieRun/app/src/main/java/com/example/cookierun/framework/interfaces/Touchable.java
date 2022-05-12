@@ -1,4 +1,4 @@
-package com.example.cookierun.game;
+package com.example.cookierun.framework.interfaces;
 
 import android.view.MotionEvent;
 

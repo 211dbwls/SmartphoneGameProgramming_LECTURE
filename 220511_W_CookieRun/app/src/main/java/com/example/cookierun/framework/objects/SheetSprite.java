@@ -1,7 +1,9 @@
-package com.example.cookierun.framework;
+package com.example.cookierun.framework.objects;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
+
+import com.example.cookierun.framework.res.BitmapPool;
 
 public class SheetSprite extends Sprite {
     private final float framesPerSecond;

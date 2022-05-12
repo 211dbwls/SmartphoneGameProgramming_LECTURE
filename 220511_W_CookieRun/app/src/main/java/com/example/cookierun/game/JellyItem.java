@@ -5,8 +5,8 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 
 import com.example.cookierun.R;
-import com.example.cookierun.framework.BitmapPool;
-import com.example.cookierun.framework.RecycleBin;
+import com.example.cookierun.framework.res.BitmapPool;
+import com.example.cookierun.framework.game.RecycleBin;
 
 public class JellyItem extends MapSprite {
     private static final String TAG = JellyItem.class.getSimpleName();

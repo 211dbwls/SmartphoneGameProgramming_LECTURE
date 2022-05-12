@@ -1,4 +1,4 @@
-package com.example.cookierun.framework;
+package com.example.cookierun.framework.objects;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;

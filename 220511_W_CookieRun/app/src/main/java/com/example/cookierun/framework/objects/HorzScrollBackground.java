@@ -1,10 +1,8 @@
-package com.example.cookierun.game;
+package com.example.cookierun.framework.objects;
 
 import android.graphics.Canvas;
 
-import com.example.cookierun.framework.BaseGame;
-import com.example.cookierun.framework.Metrics;
-import com.example.cookierun.framework.Sprite;
+import com.example.cookierun.framework.res.Metrics;
 
 public class HorzScrollBackground extends Sprite {
     private final float speed;
