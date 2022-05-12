@@ -5,6 +5,7 @@ import android.view.MotionEvent;
 import com.example.cookierun.BuildConfig;
 import com.example.cookierun.R;
 import com.example.cookierun.framework.BaseGame;
+import com.example.cookierun.framework.CollisionChecker;
 import com.example.cookierun.framework.GameObject;
 import com.example.cookierun.framework.Metrics;
 
@@ -50,8 +51,10 @@ public class MainGame extends BaseGame {
         add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.cookie_run_bg_2, Metrics.size(R.dimen.bg_scroll_2)));
         add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.cookie_run_bg_3, Metrics.size(R.dimen.bg_scroll_3)));
 
-        MapLoader.get().init(mapIndex);
-        add(Layer.controller.ordinal(), MapLoader.get());
+        MapLoader mapLoader = MapLoader.get();
+        mapLoader.init(mapIndex);
+        add(Layer.controller.ordinal(), mapLoader);
+        add(Layer.controller.ordinal(), new CollisionChecker());
     }
 
     @Override
