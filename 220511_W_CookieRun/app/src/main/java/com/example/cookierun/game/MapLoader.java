@@ -3,6 +3,7 @@ package com.example.cookierun.game;
 import android.content.res.AssetManager;
 import android.graphics.Canvas;
 
+import com.example.cookierun.R;
 import com.example.cookierun.framework.GameObject;
 import com.example.cookierun.framework.GameView;
 import com.example.cookierun.framework.Metrics;
@@ -25,7 +26,7 @@ public class MapLoader implements GameObject {
     private int columns;
     private int rows;
 
-    public float speed = -200;
+    public float speed;
 
     public float scroll;
     private int current;
@@ -33,6 +34,7 @@ public class MapLoader implements GameObject {
     private MapLoader() {
         random = new Random();
         unit = MainGame.get().size(1);
+        speed = Metrics.size(R.dimen.map_scroll_speed);
     }
 
     public static MapLoader get() {
