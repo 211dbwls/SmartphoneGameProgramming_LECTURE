@@ -22,7 +22,7 @@ public class Player extends SheetSprite implements BoxCollidable {
     }
 
     private enum State {
-        run, jump, doubleJump, COUNT;
+        run, jump, doubleJump, falling, COUNT;
 
         Rect[] srcRects() {
             return rects[this.ordinal()];
@@ -35,6 +35,7 @@ public class Player extends SheetSprite implements BoxCollidable {
                     new int[] { 100, 101, 102, 103 }, // run
                     new int[] { 7, 8 }, // jump
                     new int[] { 1, 2, 3, 4 }, // doubleJump
+                    new int[] { 0 }, // falling
             };
 
             ArrayList<Rect[]> rectsList = new ArrayList<>();
@@ -79,22 +80,34 @@ public class Player extends SheetSprite implements BoxCollidable {
 
     @Override
     public void update(float frameTime) {
-        if (state == State.jump || state == State.doubleJump) {
-            float dy = jumpSpeed * frameTime;
-            jumpSpeed += gravity * frameTime;
-            // Log.d(TAG, "y=" + y + " dy=" + dy + " js=" + jumpSpeed);
+        float foot = dstRect.bottom;
 
-            if (jumpSpeed >= 0) {
-                float foot = dstRect.bottom;
-                float platformTop = findNearestPlatformTop(foot);
-                Log.i(TAG, "foot=" + foot + " ptop=" + platformTop);
-                if (foot + dy >= platformTop) {
-                    dy = platformTop - foot;
-                    setState(State.run);
+        switch (state) {
+            case jump:
+            case doubleJump:
+            case falling:
+                float dy = jumpSpeed * frameTime;
+                jumpSpeed += gravity * frameTime;
+                // Log.d(TAG, "y=" + y + " dy=" + dy + " js=" + jumpSpeed);
+
+                if (jumpSpeed >= 0) {
+                    float platformTop = findNearestPlatformTop(foot);
+                    // Log.i(TAG, "foot="+foot + " ptop=" + platformTop);
+                    if (foot + dy >= platformTop) {
+                        dy = platformTop - foot;
+                        setState(State.run);
+                    }
                 }
-            }
-            y += dy;
-            dstRect.offset(0, dy);
+                y += dy;
+                dstRect.offset(0, dy);
+                break;
+            case run:
+                float platformTop = findNearestPlatformTop(foot);
+                if (foot < platformTop) {
+                    setState(State.falling);
+                    jumpSpeed = 0;
+                }
+                break;
         }
     }
 
@@ -109,20 +122,20 @@ public class Player extends SheetSprite implements BoxCollidable {
             if (rect.left > x || x > rect.right) {
                 continue;
             }
-            Log.d(TAG, "foot:" + foot + " platform: " + rect);
+            //Log.d(TAG, "foot:" + foot + " platform: " + rect);
             if (rect.top < foot) {
                 continue;
             }
             if (top > rect.top) {
                 top = rect.top;
             }
-            Log.d(TAG, "top=" + top + " gotcha:" + platform);
+            //Log.d(TAG, "top=" + top + " gotcha:" + platform);
         }
         return top;
     }
 
     public void jump() {
-        Log.d(TAG, "Jump");
+        //Log.d(TAG, "Jump");
 
         if (state == State.run) {
             setState(State.jump);
