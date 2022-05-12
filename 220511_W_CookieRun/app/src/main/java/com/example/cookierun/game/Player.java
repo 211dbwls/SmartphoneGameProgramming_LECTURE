@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.example.cookierun.R;
 import com.example.cookierun.framework.BoxCollidable;
+import com.example.cookierun.framework.Metrics;
 import com.example.cookierun.framework.SheetSprite;
 
 import java.util.ArrayList;
@@ -52,11 +53,20 @@ public class Player extends SheetSprite implements BoxCollidable {
 
     private State state = State.run;
 
+    private final float ground;
+    private final float jumpPower;
+    private final float gravity;
+    private float jumpSpeed;
+
     public Player(float x, float y, float w, float h) {
         super(R.mipmap.cookie, FRAMES_PER_SECOND);
 
         this.x = x;
         this.y = y;
+        this.ground = y;
+        jumpPower = Metrics.size(R.dimen.player_jump_power);
+        gravity = Metrics.size(R.dimen.player_gravity);
+
         setDstRect(w, h);
 
         setState(State.run);
@@ -67,15 +77,31 @@ public class Player extends SheetSprite implements BoxCollidable {
         return dstRect;
     }
 
+    @Override
+    public void update(float frameTime) {
+        if (state == State.jump) {
+            float dy = jumpSpeed * frameTime;
+            jumpSpeed += gravity * frameTime;
+            // Log.d(TAG, "y=" + y + " dy=" + dy + " js=" + jumpSpeed);
+            if (y + dy >= ground) {
+                dy = ground - y;
+                setState(State.run);
+            }
+            y += dy;
+            dstRect.offset(0, dy);
+        }
+    }
+
     public void jump() {
         Log.d(TAG, "Jump");
 
         if (state == State.run) {
             setState(State.jump);
+            jumpSpeed = -jumpPower;
         }
-        else {
-            setState(State.run);
-        }
+        //else {
+        //   setState(State.run);
+        //}
     }
 
     private void setState(State state) {
