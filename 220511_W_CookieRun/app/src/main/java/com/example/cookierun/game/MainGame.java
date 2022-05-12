@@ -8,6 +8,7 @@ import com.example.cookierun.framework.BaseGame;
 import com.example.cookierun.framework.CollisionChecker;
 import com.example.cookierun.framework.GameObject;
 import com.example.cookierun.framework.Metrics;
+import com.example.cookierun.framework.Sprite;
 
 import java.util.ArrayList;
 
@@ -26,7 +27,7 @@ public class MainGame extends BaseGame {
     }
 
     public enum Layer {
-        bg, platform, item, player, controller, COUNT
+        bg, platform, item, player, ui, controller, COUNT
     }
 
     public float size(float unit) {
@@ -55,6 +56,13 @@ public class MainGame extends BaseGame {
         mapLoader.init(mapIndex);
         add(Layer.controller.ordinal(), mapLoader);
         add(Layer.controller.ordinal(), new CollisionChecker(player));
+
+        float btn_x = size(1.5f);
+        float btn_y = size(8.75f);
+        float btn_w = size(8.0f / 3.0f);
+        float btn_h = size(1.0f);
+        add(Layer.ui.ordinal(), new Sprite(btn_x, btn_y, btn_w, btn_h, R.mipmap.btn_jump_n));
+        add(Layer.ui.ordinal(), new Sprite(Metrics.width - btn_x, btn_y, btn_w, btn_h, R.mipmap.btn_slide_n));
     }
 
     @Override
