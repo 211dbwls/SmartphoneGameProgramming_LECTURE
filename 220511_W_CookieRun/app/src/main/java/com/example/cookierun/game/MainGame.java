@@ -37,10 +37,7 @@ public class MainGame extends BaseGame {
 
         initLayers(Layer.COUNT.ordinal());
 
-        Sprite player = new Sprite(
-                size(2), size(7),
-                size(2), size(2),
-                R.mipmap.cookie);
+        Player player = new Player(size(2), size(7), size(2), size(2));
         add(Layer.player.ordinal(), player);
 
         add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.cookie_run_bg_1, Metrics.size(R.dimen.bg_scroll_1)));

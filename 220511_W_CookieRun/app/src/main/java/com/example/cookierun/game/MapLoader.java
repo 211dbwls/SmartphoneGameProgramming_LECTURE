@@ -2,9 +2,6 @@ package com.example.cookierun.game;
 
 import android.content.res.AssetManager;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.util.Log;
 
 import com.example.cookierun.framework.GameObject;
 import com.example.cookierun.framework.GameView;
