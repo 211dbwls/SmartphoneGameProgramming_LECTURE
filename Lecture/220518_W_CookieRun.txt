@@ -1,0 +1,3 @@
+            animator.setInterpolator(new BounceInterpolator());
+
+소리 추가
