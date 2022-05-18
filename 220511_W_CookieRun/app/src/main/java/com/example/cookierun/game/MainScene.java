@@ -5,6 +5,7 @@ import com.example.cookierun.framework.game.Scene;
 import com.example.cookierun.framework.res.Metrics;
 import com.example.cookierun.framework.objects.Button;
 import com.example.cookierun.framework.objects.HorzScrollBackground;
+import com.example.cookierun.framework.res.Sound;
 
 public class MainScene extends Scene {
     private static final String TAG = MainScene.class.getSimpleName();
@@ -93,5 +94,25 @@ public class MainScene extends Scene {
 
     protected int getTouchLayerIndex() {
         return Layer.touchUi.ordinal();
+    }
+
+    @Override
+    public void start() {
+        Sound.playMusic(R.raw.main);
+    }
+
+    @Override
+    public void pause() {
+        Sound.pauseMusic();
+    }
+
+    @Override
+    public void resume() {
+        Sound.resumeMusic();
+    }
+
+    @Override
+    public void end() {
+        Sound.stopMusic();
     }
 }
