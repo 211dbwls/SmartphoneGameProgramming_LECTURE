@@ -17,11 +17,11 @@ public class Platform extends MapSprite {
         T_10x2, T_2x2, T_3x1, COUNT;
 
         float width() {
-            return MainGame.get().size(widths[ordinal()]);
+            return widths[ordinal()];
         }
 
         float height() {
-            return MainGame.get().size(heights[ordinal()]);
+            return heights[ordinal()];
         }
 
         int bitmapId() {
@@ -54,9 +54,6 @@ public class Platform extends MapSprite {
     private void init(Type type, float unitLeft, float unitTop) {
         this.type = type;
         bitmap = BitmapPool.get(type.bitmapId());
-        MainGame game = MainGame.get();
-        float left = game.size(unitLeft);
-        float top = game.size(unitTop);
-        dstRect.set(left, top, left + type.width(), top + type.height());
+        setUnitDstRect(unitLeft, unitTop, type.width(), type.height());
     }
 }
