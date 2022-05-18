@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.cookierun.framework.interfaces.BoxCollidable;
 import com.example.cookierun.framework.interfaces.GameObject;
+import com.example.cookierun.framework.res.Sound;
 import com.example.cookierun.framework.util.CollisionHelper;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class CollisionChecker implements GameObject {
                 if (item instanceof JellyItem) {
                     JellyItem jelly = (JellyItem) item;
                     if (!jelly.valid) continue;
+                    Sound.playEffect(jelly.soundId());
                     if (jelly.index == 26) {
                         Log.d(TAG, "Collision: " + jelly);
                         player.changeBitmap();
