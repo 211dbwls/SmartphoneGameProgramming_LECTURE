@@ -7,6 +7,12 @@ import com.example.cookierun.framework.game.RecycleBin;
 import java.util.Random;
 
 public class Platform extends MapSprite {
+    private Type type;
+
+    public boolean canPass() {
+        return type != Type.T_10x2;
+    }
+
     public enum Type {
         T_10x2, T_2x2, T_3x1, COUNT;
 
@@ -59,6 +65,7 @@ public class Platform extends MapSprite {
     }
 
     private void init(Type type, float unitLeft, float unitTop) {
+        this.type = type;
         bitmap = BitmapPool.get(type.bitmapId());
         MainGame game = MainGame.get();
         float left = game.size(unitLeft);
