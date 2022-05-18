@@ -76,6 +76,15 @@ public class Obstacle extends MapSprite {
                     rect.right,
                     rect.bottom
             );
+            float elapsed = (System.currentTimeMillis() - obstacle.createdOn) / 1000.f;
+            final float start = 2.0f;
+            if (elapsed > start) {
+                final float fps = 8.0f;
+                int index = Math.round((elapsed - start) * fps);
+                if (index < mipmapResIds.length) {
+                    obstacle.bitmap = BitmapPool.get(mipmapResIds[index]);
+                }
+            }
         }
     }
 
@@ -88,12 +97,14 @@ public class Obstacle extends MapSprite {
     private static Modifier[] MODIFIERS = {
             new Modifier(.5f, .5f*99/63f, R.mipmap.epn01_tm01_jp1a),
             new AnimModifier(1.2f, 131/81f, new int[] {
+                    R.mipmap.trans_00p,
                     R.mipmap.epn01_tm01_jp1up_01,
                     R.mipmap.epn01_tm01_jp1up_02,
                     R.mipmap.epn01_tm01_jp1up_03,
                     R.mipmap.epn01_tm01_jp1up_04,
             }, 64/131f),
             new AnimModifier(1, 222/87f, new int[] {
+                    R.mipmap.trans_00p,
                     R.mipmap.epn01_tm01_jp2up_01,
                     R.mipmap.epn01_tm01_jp2up_02,
                     R.mipmap.epn01_tm01_jp2up_03,
