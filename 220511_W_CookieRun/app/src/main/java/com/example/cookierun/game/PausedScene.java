@@ -26,7 +26,7 @@ public class PausedScene extends Scene {
 
         add(Layer.ui.ordinal(), new Sprite(
                 Metrics.width / 2, Metrics.height / 2,
-                Metrics.width, Metrics.height,
+                Metrics.width / 2, Metrics.height * 4 / 5,
                 R.mipmap.trans_50p));
 
         add(Layer.ui.ordinal(), new Sprite(
@@ -46,7 +46,10 @@ public class PausedScene extends Scene {
         {
             @Override
             public boolean onTouch(Button.Action action) {
-                return false;
+                if (action == Button.Action.released) {
+                    Scene.popScene();
+                }
+                return true;
             }
         }));
         btn_y += btn_height;
@@ -56,7 +59,8 @@ public class PausedScene extends Scene {
         {
             @Override
             public boolean onTouch(Button.Action action) {
-                return false;
+                finish();
+                return true;
             }
         }));
     }
