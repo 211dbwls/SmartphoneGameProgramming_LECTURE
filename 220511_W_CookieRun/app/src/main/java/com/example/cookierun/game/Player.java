@@ -87,7 +87,7 @@ public class Player extends SheetSprite implements BoxCollidable {
     public Player(float x, float y, float w, float h) {
         super(0, FRAMES_PER_SECOND);
         loadCookiesInfo();
-        selectCookie(0);
+        selectCookie(1);
 
         this.x = x;
         this.y = y;
