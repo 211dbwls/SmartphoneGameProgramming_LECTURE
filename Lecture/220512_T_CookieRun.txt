@@ -1,0 +1,22 @@
+framework.objects.SheetSprite 및 app.Player 클래스 추가.
+
+-
+
+애니메이션 적용
+
+-
+
+점프
+1. 터치할 경우 플레이어의 점프 함수에 들어오는지 확인
+2. 터치할 경우 런, 점프 애니메이션으로 변경되도록
+3, 중력 사용해서 점프 구현
+4. 더블 점프 구현
+
+-
+
+shows BoxCollidable 를 BuildConfig 로부터 가져온 값으로만 하도록. 낙하시 가장 가까운 Platform …
+
+slide 추가 ~
+
+***********************************
+sprite resource 닷컴 : 이미지  다운
