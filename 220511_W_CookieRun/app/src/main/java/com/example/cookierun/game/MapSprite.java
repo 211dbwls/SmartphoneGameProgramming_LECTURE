@@ -14,6 +14,8 @@ public class MapSprite extends Sprite implements Recyclable, BoxCollidable {
         // Log.d(TAG, "New:" + this);
     }
 
+    protected boolean valid = true;
+
     protected void setUnitDstRect(float unitLeft, float unitTop, float unitWidth, float unitHeight) {
         MainScene game = MainScene.get();
         float left = game.size(unitLeft);
@@ -32,8 +34,13 @@ public class MapSprite extends Sprite implements Recyclable, BoxCollidable {
         }
     }
 
+    protected void init() {
+        valid = true;
+    }
+
     @Override
     public void finish() {
+        valid = false;
     }
 
     @Override

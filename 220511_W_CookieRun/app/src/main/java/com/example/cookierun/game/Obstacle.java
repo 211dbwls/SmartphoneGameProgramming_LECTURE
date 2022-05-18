@@ -156,6 +156,7 @@ public class Obstacle extends MapSprite {
     };
 
     private void init(int index, float unitLeft, float unitTop) {
+        super.init();
         animator = null;
         bitmap = null;
         modifier = MODIFIERS[index];
