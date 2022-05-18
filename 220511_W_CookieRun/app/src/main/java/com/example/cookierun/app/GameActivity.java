@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.cookierun.framework.game.Scene;
 import com.example.cookierun.framework.view.GameView;
 import com.example.cookierun.game.MainScene;
+import com.example.cookierun.game.PausedScene;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -17,10 +18,7 @@ public class GameActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        int stageIndex = intent.getExtras().getInt(MainScene.PARAM_STAGE_INDEX);
-        MainScene game = MainScene.get();
-        game.setMapIndex(stageIndex);
-        Scene.push(game);
+        Scene.push(PausedScene.get());
 
         setContentView(new GameView(this, null));
     }
