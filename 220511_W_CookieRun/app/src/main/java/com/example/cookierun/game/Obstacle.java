@@ -6,6 +6,7 @@ import com.example.cookierun.framework.res.BitmapPool;
 
 public class Obstacle extends MapSprite {
     private Modifier modifier;
+    private long createdOn;
 
     public static Obstacle get(int index, float unitLeft, float unitTop) {
         Obstacle obs = (Obstacle) RecycleBin.get(Obstacle.class);
@@ -17,8 +18,8 @@ public class Obstacle extends MapSprite {
     }
 
     private static class Modifier {
-        private final float height;
-        private int mipmapResId;
+        protected final float height;
+        protected int mipmapResId;
 
         public Modifier(float heightUnit) {
             this.height = heightUnit;
@@ -29,7 +30,7 @@ public class Obstacle extends MapSprite {
             this.mipmapResId = mipmapResId;
         }
 
-        public void update(float frameTime) {
+        public void update(Obstacle obstacle, float frameTime) {
         }
 
         public void init(Obstacle obstacle, float unitLeft, float unitTop) {
@@ -52,6 +53,20 @@ public class Obstacle extends MapSprite {
         public void init(Obstacle obstacle, float unitLeft, float unitTop) {
             super.init(obstacle, unitLeft, unitTop);
             obstacle.bitmap = BitmapPool.get(mipmapResIds[0]);
+            obstacle.createdOn = System.currentTimeMillis();
+        }
+
+        @Override
+        public void update(Obstacle obstacle, float frameTime) {
+            float elapsed = (System.currentTimeMillis() - obstacle.createdOn) / 1000.f;
+            final float start = 2.0f;
+            if (elapsed > start) {
+                final float fps = 8.0f;
+                int index = Math.round((elapsed - start) * fps);
+                if (index < mipmapResIds.length) {
+                    obstacle.bitmap = BitmapPool.get(mipmapResIds[index]);
+                }
+            }
         }
     }
 
@@ -82,5 +97,11 @@ public class Obstacle extends MapSprite {
     private void init(int index, float unitLeft, float unitTop) {
         modifier = MODIFIERS[index];
         modifier.init(this, unitLeft, unitTop);
+    }
+
+    @Override
+    public void update(float frameTime) {
+        super.update(frameTime);
+        modifier.update(this, frameTime);
     }
 }
