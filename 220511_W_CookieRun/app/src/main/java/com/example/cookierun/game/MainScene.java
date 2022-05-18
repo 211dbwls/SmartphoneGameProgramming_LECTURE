@@ -22,7 +22,7 @@ public class MainScene extends Scene {
     }
 
     public enum Layer {
-        bg, platform, item, player, obstacle, ui, touchUi, controller, COUNT;
+        bg, platform, item, obstacle, player, ui, touchUi, controller, COUNT;
     }
 
     public float size(float unit) {
@@ -87,11 +87,7 @@ public class MainScene extends Scene {
 
     @Override
     public boolean handleBackKey() {
-        PausedScene scene = PausedScene.get();
-        if (scene.objectCount() == 0) {
-            scene.init();
-        }
-        push(scene);
+        push(PausedScene.get());
         return true;
     }
 

@@ -11,6 +11,7 @@ public class PausedScene extends Scene {
     public static PausedScene get() {
         if (singleton == null) {
             singleton = new PausedScene();
+            singleton.init();
         }
         return singleton;
     }
@@ -26,7 +27,7 @@ public class PausedScene extends Scene {
 
         add(Layer.ui.ordinal(), new Sprite(
                 Metrics.width / 2, Metrics.height / 2,
-                Metrics.width / 2, Metrics.height * 4 / 5,
+                Metrics.width, Metrics.height,
                 R.mipmap.trans_50p));
 
         add(Layer.ui.ordinal(), new Sprite(
