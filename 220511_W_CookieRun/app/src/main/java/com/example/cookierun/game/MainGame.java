@@ -21,7 +21,7 @@ public class MainGame extends BaseGame {
     }
 
     public enum Layer {
-        bg, platform, item, player, ui, touchUi, controller, COUNT
+        bg, platform, item, player, obstacle, ui, touchUi, controller, COUNT;
     }
 
     public float size(float unit) {

@@ -2,6 +2,7 @@ package com.example.cookierun.game;
 
 import com.example.cookierun.R;
 import com.example.cookierun.framework.game.RecycleBin;
+import com.example.cookierun.framework.res.BitmapPool;
 
 public class Obstacle extends MapSprite {
     public static Obstacle get(int index, float unitLeft, float unitTop) {
@@ -36,6 +37,7 @@ public class Obstacle extends MapSprite {
     };
 
     private void init(int index, float unitLeft, float unitTop) {
+        bitmap = BitmapPool.get(BITMAP_ID_ARRAYS[index][0]);
         setUnitDstRect(unitLeft, unitTop, 1, 1);
     }
 }

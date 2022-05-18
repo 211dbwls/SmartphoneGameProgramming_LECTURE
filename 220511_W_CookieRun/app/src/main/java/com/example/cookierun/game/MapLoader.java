@@ -131,6 +131,10 @@ public class MapLoader implements GameObject {
             Platform platform = Platform.get(Platform.Type.values()[ch - 'O'], leftUnit, topUnit);
             game.add(MainGame.Layer.platform.ordinal(), platform);
         }
+        else if (ch >= 'X' && ch <= 'Z') {
+            Obstacle obstacle = Obstacle.get(ch - 'X', leftUnit, topUnit);
+            game.add(MainGame.Layer.obstacle.ordinal(), obstacle);
+        }
     }
 
     @Override
