@@ -15,11 +15,12 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        MainScene game = MainScene.get();
         Intent intent = getIntent();
 
         int stageIndex = intent.getExtras().getInt(MainScene.PARAM_STAGE_INDEX);
+        MainScene game = MainScene.get();
         game.setMapIndex(stageIndex);
+        Scene.push(game);
 
         setContentView(new GameView(this, null));
     }
