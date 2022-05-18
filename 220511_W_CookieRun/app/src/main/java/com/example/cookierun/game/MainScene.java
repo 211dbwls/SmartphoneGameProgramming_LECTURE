@@ -85,6 +85,16 @@ public class MainScene extends Scene {
                 }));
     }
 
+    @Override
+    public boolean handleBackKey() {
+        PausedScene scene = PausedScene.get();
+        if (scene.objectCount() == 0) {
+            scene.init();
+        }
+        push(scene);
+        return true;
+    }
+
     protected int getTouchLayerIndex() {
         return Layer.touchUi.ordinal();
     }
