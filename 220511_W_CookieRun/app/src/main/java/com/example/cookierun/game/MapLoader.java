@@ -146,6 +146,10 @@ public class MapLoader implements GameObject {
             Obstacle obstacle = Obstacle.get(ch - 'X', leftUnit, topUnit);
             game.add(MainScene.Layer.obstacle.ordinal(), obstacle);
         }
+        else if (ch == 'T') {
+            Obstacle obstacle = Obstacle.get(Obstacle.Type.fallingFork.ordinal(), leftUnit, topUnit);
+            game.add(MainScene.Layer.obstacle.ordinal(), obstacle);
+        }
     }
 
     @Override
