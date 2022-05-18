@@ -23,6 +23,12 @@ public class Player extends SheetSprite implements BoxCollidable {
 
     private static final float FRAMES_PER_SECOND = 8f;  // 1초에 8장
 
+    public void changeBitmap() {
+        int nextIndex = (cookieIndex + 1) % cookieInfos.size();
+        selectCookie(nextIndex);
+        setState(state);
+    }
+
     private enum State {
         run, jump, doubleJump, falling, slide, COUNT;
 

@@ -20,6 +20,7 @@ public class JellyItem extends MapSprite {
     protected Rect srcRect = new Rect();
 
     protected RectF collisionBox = new RectF();
+    public int index;
 
     public static JellyItem get(int index, float unitLeft, float unitTop) {
         JellyItem item = (JellyItem) RecycleBin.get(JellyItem.class);
@@ -31,6 +32,7 @@ public class JellyItem extends MapSprite {
     }
 
     private void init(int index, float unitLeft, float unitTop) {
+        this.index = index;
         int srcLeft = BORDER + (index % ITEMS_IN_A_ROW) * (SIZE + BORDER);
         int srcTop = BORDER + (index / ITEMS_IN_A_ROW) * (SIZE + BORDER);
         srcRect.set(srcLeft, srcTop, srcLeft + SIZE, srcTop + SIZE);
