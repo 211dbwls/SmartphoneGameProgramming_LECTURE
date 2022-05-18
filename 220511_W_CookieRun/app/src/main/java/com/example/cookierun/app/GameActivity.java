@@ -17,6 +17,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
+        int stageIndex = intent.getExtras().getInt(MainScene.PARAM_STAGE_INDEX);
 
         MainScene game = MainScene.get();
         game.setMapIndex(stageIndex);
