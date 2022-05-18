@@ -21,7 +21,7 @@ public class Scene {
 
     protected float frameTime, elapsedTime;
 
-    public static Scene getInstance() {
+    public static Scene getTopScene() {
         int lastIndex = sceneStack.size() - 1;
         if (lastIndex < 0) return null;
         return sceneStack.get(lastIndex);

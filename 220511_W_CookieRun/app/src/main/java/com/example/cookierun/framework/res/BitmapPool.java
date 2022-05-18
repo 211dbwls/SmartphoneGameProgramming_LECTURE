@@ -12,7 +12,7 @@ public class BitmapPool {
     private static final String TAG = BitmapPool.class.getSimpleName();
     private static HashMap<Integer, Bitmap> bitmaps = new HashMap<>();
 
-    private static BitmapFactory.Options opts;
+    public static BitmapFactory.Options opts;
     static {
         opts = new BitmapFactory.Options();
         opts.inScaled = false;
