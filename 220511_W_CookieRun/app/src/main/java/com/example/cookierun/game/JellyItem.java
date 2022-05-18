@@ -57,6 +57,6 @@ public class JellyItem extends MapSprite {
 
     private JellyItem() {
         bitmap = BitmapPool.get(R.mipmap.jelly);
-        inset = MainGame.get().size(0.15f);
+        inset = MainScene.get().size(0.15f);
     }
 }

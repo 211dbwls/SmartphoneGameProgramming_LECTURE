@@ -1,23 +1,23 @@
 package com.example.cookierun.game;
 
 import com.example.cookierun.R;
-import com.example.cookierun.framework.game.BaseGame;
+import com.example.cookierun.framework.game.Scene;
 import com.example.cookierun.framework.res.Metrics;
 import com.example.cookierun.framework.objects.Button;
 import com.example.cookierun.framework.objects.HorzScrollBackground;
 
-public class MainGame extends BaseGame {
-    private static final String TAG = MainGame.class.getSimpleName();
+public class MainScene extends Scene {
+    private static final String TAG = MainScene.class.getSimpleName();
 
     public static final String PARAM_STAGE_INDEX = "stage_index";
 
     private Player player;
 
-    public static MainGame get() {
+    public static MainScene get() {
         if (singleton == null) {
-            singleton = new MainGame();
+            singleton = new MainScene();
         }
-        return (MainGame) singleton;
+        return (MainScene) singleton;
     }
 
     public enum Layer {

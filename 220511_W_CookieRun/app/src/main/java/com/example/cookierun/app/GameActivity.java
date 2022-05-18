@@ -5,9 +5,9 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.cookierun.framework.game.BaseGame;
+import com.example.cookierun.framework.game.Scene;
 import com.example.cookierun.framework.view.GameView;
-import com.example.cookierun.game.MainGame;
+import com.example.cookierun.game.MainScene;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -15,10 +15,10 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        MainGame game = MainGame.get();
+        MainScene game = MainScene.get();
         Intent intent = getIntent();
 
-        int stageIndex = intent.getExtras().getInt(MainGame.PARAM_STAGE_INDEX);
+        int stageIndex = intent.getExtras().getInt(MainScene.PARAM_STAGE_INDEX);
         game.setMapIndex(stageIndex);
 
         setContentView(new GameView(this, null));
@@ -39,7 +39,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         GameView.view = null;
-        BaseGame.clear();
+        Scene.clear();
         super.onDestroy();
     }
 }

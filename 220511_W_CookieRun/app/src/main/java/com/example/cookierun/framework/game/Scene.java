@@ -15,11 +15,11 @@ import com.example.cookierun.framework.interfaces.Touchable;
 
 import java.util.ArrayList;
 
-public class BaseGame  {
-    protected static BaseGame singleton;
+public class Scene {
+    protected static Scene singleton;
     protected float frameTime, elapsedTime;
 
-    public static BaseGame getInstance() {
+    public static Scene getInstance() {
 //        if (singleton == null) {
 //            singleton = new BaseGame();
 //        }

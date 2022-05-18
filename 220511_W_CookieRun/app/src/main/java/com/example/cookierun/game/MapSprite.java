@@ -2,7 +2,7 @@ package com.example.cookierun.game;
 
 import android.graphics.RectF;
 
-import com.example.cookierun.framework.game.BaseGame;
+import com.example.cookierun.framework.game.Scene;
 import com.example.cookierun.framework.interfaces.BoxCollidable;
 import com.example.cookierun.framework.interfaces.Recyclable;
 import com.example.cookierun.framework.objects.Sprite;
@@ -15,7 +15,7 @@ public class MapSprite extends Sprite implements Recyclable, BoxCollidable {
     }
 
     protected void setUnitDstRect(float unitLeft, float unitTop, float unitWidth, float unitHeight) {
-        MainGame game = MainGame.get();
+        MainScene game = MainScene.get();
         float left = game.size(unitLeft);
         float top = game.size(unitTop);
         dstRect.set(left, top, left + game.size(unitWidth), top + game.size(unitHeight));
@@ -28,7 +28,7 @@ public class MapSprite extends Sprite implements Recyclable, BoxCollidable {
         dstRect.offset(dx, 0);
         if (dstRect.right < 0) {
             // Log.d(TAG, "Removing:" + this);
-            BaseGame.getInstance().remove(this);
+            Scene.getInstance().remove(this);
         }
     }
 
