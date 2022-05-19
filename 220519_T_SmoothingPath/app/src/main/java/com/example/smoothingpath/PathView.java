@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
@@ -31,6 +30,11 @@ public class PathView extends View {
     }
 
     private Listener listener;
+
+    class Point {
+        float x, y;
+        float dx, dy;
+    }
 
     private int mExampleColor = Color.RED;
 
@@ -74,7 +78,7 @@ public class PathView extends View {
         if(ptCount == 0) {
             return;
         }
-        PointF first = points.get(0);
+        Point first = points.get(0);
         if(ptCount == 1) {
             canvas.drawCircle(first.x, first.y, 5.0f, paint);
             return;
@@ -88,12 +92,12 @@ public class PathView extends View {
         if(ptCount < 2) {
             return;
         }
-        PointF first = points.get(0);
+        Point first = points.get(0);
 
         path = new Path();
         path.moveTo(first.x, first.y);
         for (int i = 1; i < ptCount; i++) {
-            PointF pt = points.get(i);
+            Point pt = points.get(i);
             path.lineTo(pt.x, pt.y);
         }
     }
@@ -107,11 +111,11 @@ public class PathView extends View {
         //invalidateTextPaintAndMeasurements();
     }
 
-    ArrayList<PointF> points = new ArrayList<>();
+    ArrayList<Point> points = new ArrayList<>();
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            PointF point = new PointF();
+            Point point = new Point();
             point.x = event.getX();
             point.y = event.getY();
             points.add(point);
