@@ -24,6 +24,8 @@ public class PathView extends View {
 
     private Path path;
 
+    private Paint paint, alphaPaint;
+
     public int getPointCount() {
         return points.size();
     }
@@ -72,8 +74,6 @@ public class PathView extends View {
 
     private int mExampleColor = Color.RED;
 
-    private Paint paint;
-
     public PathView(Context context) {
         super(context);
         init(null, 0);
@@ -102,6 +102,9 @@ public class PathView extends View {
         paint.setStrokeWidth(2.0f);
         paint.setColor(mExampleColor);
 
+        alphaPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        alphaPaint.setAlpha(60 * 255 / 100); // 60% opacity
+
         bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.plane_240);
         hw = bitmap.getWidth() / 2;
         hh = bitmap.getHeight() / 2;
@@ -124,7 +127,7 @@ public class PathView extends View {
             canvas.drawPath(path, paint);
         }
 
-        canvas.drawBitmap(bitmap, fighterPos.x - hw, fighterPos.y - hh, null);
+        canvas.drawBitmap(bitmap, fighterPos.x - hw, fighterPos.y - hh, alphaPaint);
     }
 
     private void buildPath() {
