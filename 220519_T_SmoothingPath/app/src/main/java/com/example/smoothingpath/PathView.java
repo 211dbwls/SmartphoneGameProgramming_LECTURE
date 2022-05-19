@@ -55,7 +55,14 @@ public class PathView extends View {
         super.onDraw(canvas);
 
         int ptCount = points.size();
-        if (ptCount < 2) {
+
+        if(ptCount == 0) {
+            return;
+        }
+
+        PointF first = points.get(0);
+        if(ptCount == 1) {
+            canvas.drawCircle(first.x, first.y, 5.0f, paint);
             return;
         }
 
