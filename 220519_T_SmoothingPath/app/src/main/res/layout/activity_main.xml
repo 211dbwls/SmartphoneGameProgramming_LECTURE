@@ -7,6 +7,20 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear"
+            android:onClick="onBtnClear"
+            />
+
+    </LinearLayout>
+
     <com.example.smoothingpath.PathView
         android:id="@+id/pathView"
         android:layout_width="match_parent"
