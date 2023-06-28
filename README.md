@@ -24,7 +24,7 @@
 220421 목 중간고사 리뷰 | Dragon Flight  
 220427 수 Dragon Flight  
 220428 목 Dragon Flight  
-220504 수 02차 발표    
+220504 수 프로젝트 2차 발표    
 220511 수 Cookie Run  
 220512 목 Cookie Run  
 220518 수 Cookie Run  
